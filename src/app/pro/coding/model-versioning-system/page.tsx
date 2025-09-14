@@ -76,7 +76,7 @@ export default async function ModelVersioningSystemPage() {
   id: string;
   name: string;
   version: string;
-  state: 'training' | 'staging' | 'production' | 'archived';
+  state: &apos;training&apos; | &apos;staging&apos; | &apos;production&apos; | &apos;archived&apos;;
   createdAt: Date;
   updatedAt: Date;
   createdBy: string;
@@ -110,7 +110,7 @@ interface ModelMetadata {
 }
 
 interface ModelArtifact {
-  type: 'weights' | 'config' | 'preprocessor' | 'schema' | 'other';
+  type: &apos;weights&apos; | &apos;config&apos; | &apos;preprocessor&apos; | &apos;schema&apos; | &apos;other&apos;;
   path: string;
   size: number;
   checksum: string;
@@ -158,16 +158,16 @@ getProductionModels(): Model[]`}
               <div className="space-y-4">
                 <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-md">
                   <pre className="text-sm overflow-x-auto">
-{`import { EventEmitter } from 'events';
-import { createHash } from 'crypto';
-import { promises as fs } from 'fs';
-import path from 'path';
+{`import { EventEmitter } from &apos;events&apos;;
+import { createHash } from &apos;crypto&apos;;
+import { promises as fs } from &apos;fs&apos;;
+import path from &apos;path&apos;;
 
 interface Model {
   id: string;
   name: string;
   version: string;
-  state: 'training' | 'staging' | 'production' | 'archived';
+  state: &apos;training&apos; | &apos;staging&apos; | &apos;production&apos; | &apos;archived&apos;;
   createdAt: Date;
   updatedAt: Date;
   createdBy: string;
@@ -201,7 +201,7 @@ interface ModelMetadata {
 }
 
 interface ModelArtifact {
-  type: 'weights' | 'config' | 'preprocessor' | 'schema' | 'other';
+  type: &apos;weights&apos; | &apos;config&apos; | &apos;preprocessor&apos; | &apos;schema&apos; | &apos;other&apos;;
   path: string;
   size: number;
   checksum: string;
@@ -211,7 +211,7 @@ interface ModelArtifact {
 interface ModelDependency {
   modelId: string;
   version: string;
-  dependencyType: 'parent' | 'child' | 'base';
+  dependencyType: &apos;parent&apos; | &apos;child&apos; | &apos;base&apos;;
 }
 
 interface ModelFilters {
@@ -240,7 +240,7 @@ class ModelVersioningSystem extends EventEmitter {
   private modelVersions: Map<string, Map<string, Model>> = new Map();
   private storagePath: string;
 
-  constructor(storagePath: string = './model-storage') {
+  constructor(storagePath: string = &apos;./model-storage&apos;) {
     super();
     this.storagePath = storagePath;
   }
@@ -250,8 +250,8 @@ class ModelVersioningSystem extends EventEmitter {
     const model: Model = {
       id,
       name,
-      version: '1.0.0',
-      state: 'training',
+      version: &apos;1.0.0&apos;,
+      state: &apos;training&apos;,
       createdAt: new Date(),
       updatedAt: new Date(),
       createdBy,
@@ -265,7 +265,7 @@ class ModelVersioningSystem extends EventEmitter {
     this.modelVersions.set(id, new Map([[model.version, model]]));
     
     await this.persistModel(model);
-    this.emit('modelCreated', model);
+    this.emit(&apos;modelCreated&apos;, model);
     
     return model;
   }
@@ -283,7 +283,7 @@ class ModelVersioningSystem extends EventEmitter {
 
     // Validate version format (semantic versioning)
     if (!this.isValidVersion(version)) {
-      throw new Error('Invalid version format. Use semantic versioning (e.g., 1.0.0)');
+      throw new Error(&apos;Invalid version format. Use semantic versioning (e.g., 1.0.0)&apos;);
     }
 
     // Check if version already exists
@@ -306,7 +306,7 @@ class ModelVersioningSystem extends EventEmitter {
     versions?.set(version, newModel);
     
     await this.persistModel(newModel);
-    this.emit('versionCreated', newModel);
+    this.emit(&apos;versionCreated&apos;, newModel);
     
     return newModel;
   }
@@ -343,7 +343,7 @@ class ModelVersioningSystem extends EventEmitter {
     return models.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
   }
 
-  async updateModelState(id: string, state: Model['state']): Promise<Model> {
+  async updateModelState(id: string, state: Model[&apos;state&apos;]): Promise<Model> {
     const model = this.models.get(id);
     if (!model) {
       throw new Error(\`Model \${id} not found\`);
@@ -354,7 +354,7 @@ class ModelVersioningSystem extends EventEmitter {
     model.updatedAt = new Date();
 
     await this.persistModel(model);
-    this.emit('stateChanged', { model, previousState, newState: state });
+    this.emit(&apos;stateChanged&apos;, { model, previousState, newState: state });
     
     return model;
   }
@@ -375,14 +375,14 @@ class ModelVersioningSystem extends EventEmitter {
       ...targetModel,
       version: this.generateNextVersion(targetModel.version),
       updatedAt: new Date(),
-      state: 'staging' as const
+      state: &apos;staging&apos; as const
     };
 
     this.models.set(modelId, rollbackModel);
     versions.set(rollbackModel.version, rollbackModel);
     
     await this.persistModel(rollbackModel);
-    this.emit('rollbackPerformed', { originalModel: targetModel, rollbackModel });
+    this.emit(&apos;rollbackPerformed&apos;, { originalModel: targetModel, rollbackModel });
     
     return rollbackModel;
   }
@@ -392,7 +392,7 @@ class ModelVersioningSystem extends EventEmitter {
     const model2 = this.models.get(modelId2);
 
     if (!model1 || !model2) {
-      throw new Error('One or both models not found');
+      throw new Error(&apos;One or both models not found&apos;);
     }
 
     return {
@@ -423,14 +423,14 @@ class ModelVersioningSystem extends EventEmitter {
   }
 
   getProductionModels(): Model[] {
-    return this.listModels({ state: 'production' });
+    return this.listModels({ state: &apos;production&apos; });
   }
 
   // Private helper methods
   private generateModelId(name: string): string {
     const timestamp = Date.now();
-    const hash = createHash('md5').update(name + timestamp).digest('hex').substring(0, 8);
-    return \`\${name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}-\${hash}\`;
+    const hash = createHash(&apos;md5&apos;).update(name + timestamp).digest(&apos;hex&apos;).substring(0, 8);
+    return \`\${name.replace(/[^a-zA-Z0-9]/g, &apos;-&apos;).toLowerCase()}-\${hash}\`;
   }
 
   private isValidVersion(version: string): boolean {
@@ -439,7 +439,7 @@ class ModelVersioningSystem extends EventEmitter {
   }
 
   private generateNextVersion(currentVersion: string): string {
-    const [major, minor, patch] = currentVersion.split('.').map(Number);
+    const [major, minor, patch] = currentVersion.split(&apos;.&apos;).map(Number);
     return \`\${major}.\${minor}.\${patch + 1}\`;
   }
 
@@ -474,12 +474,12 @@ class ModelVersioningSystem extends EventEmitter {
 
   private async calculateChecksum(filePath: string): Promise<string> {
     const data = await fs.readFile(filePath);
-    return createHash('sha256').update(data).digest('hex');
+    return createHash(&apos;sha256&apos;).update(data).digest(&apos;hex&apos;);
   }
 
   private buildDependencies(baseModel: Model, version: string): ModelDependency[] {
     // In a real system, this would analyze the model to determine dependencies
-    // For now, we'll just copy existing dependencies
+    // For now, we&apos;ll just copy existing dependencies
     return baseModel.dependencies.map(dep => ({
       ...dep,
       // Update version references as needed
@@ -514,10 +514,10 @@ class ModelVersioningSystem extends EventEmitter {
     return differences;
   }
 
-  private comparePerformance(perf1: ModelMetadata['performance'], perf2: ModelMetadata['performance']): string[] {
+  private comparePerformance(perf1: ModelMetadata[&apos;performance&apos;], perf2: ModelMetadata[&apos;performance&apos;]): string[] {
     const differences: string[] = [];
     
-    const metrics = ['accuracy', 'precision', 'recall', 'f1Score'];
+    const metrics = [&apos;accuracy&apos;, &apos;precision&apos;, &apos;recall&apos;, &apos;f1Score&apos;];
     for (const metric of metrics) {
       const val1 = perf1[metric as keyof typeof perf1];
       const val2 = perf2[metric as keyof typeof perf2];
@@ -551,7 +551,7 @@ class ModelVersioningSystem extends EventEmitter {
   }
 
   private async persistModel(model: Model): Promise<void> {
-    const modelPath = path.join(this.storagePath, model.id, 'metadata.json');
+    const modelPath = path.join(this.storagePath, model.id, &apos;metadata.json&apos;);
     await fs.mkdir(path.dirname(modelPath), { recursive: true });
     await fs.writeFile(modelPath, JSON.stringify(model, null, 2));
   }
@@ -559,41 +559,41 @@ class ModelVersioningSystem extends EventEmitter {
 
 // Usage example
 async function main() {
-  const modelRegistry = new ModelVersioningSystem('./model-storage');
+  const modelRegistry = new ModelVersioningSystem(&apos;./model-storage&apos;);
   
   // Add event listeners
-  modelRegistry.on('modelCreated', (model) => {
+  modelRegistry.on(&apos;modelCreated&apos;, (model) => {
     console.log(\`Model created: \${model.name} v\${model.version}\`);
   });
   
-  modelRegistry.on('versionCreated', (model) => {
+  modelRegistry.on(&apos;versionCreated&apos;, (model) => {
     console.log(\`New version: \${model.name} v\${model.version}\`);
   });
 
   // Create a model
-  const model = await modelRegistry.createModel('sentiment-classifier', {
-    algorithm: 'BERT',
+  const model = await modelRegistry.createModel(&apos;sentiment-classifier&apos;, {
+    algorithm: &apos;BERT&apos;,
     hyperparameters: { learningRate: 0.001, batchSize: 32 },
-    trainingData: { datasetId: 'sentiment-v1', version: '1.0', size: 10000 },
+    trainingData: { datasetId: &apos;sentiment-v1&apos;, version: &apos;1.0&apos;, size: 10000 },
     performance: { accuracy: 0.95, f1Score: 0.94 },
     environment: {
-      framework: 'transformers',
-      version: '4.21.0',
-      pythonVersion: '3.9',
-      dependencies: ['torch', 'numpy']
+      framework: &apos;transformers&apos;,
+      version: &apos;4.21.0&apos;,
+      pythonVersion: &apos;3.9&apos;,
+      dependencies: [&apos;torch&apos;, &apos;numpy&apos;]
     }
-  }, 'ml-engineer@company.com');
+  }, &apos;ml-engineer@company.com&apos;);
 
   // Create a new version
   const newVersion = await modelRegistry.createVersion(
     model.id,
-    '1.1.0',
+    &apos;1.1.0&apos;,
     [
       {
-        type: 'weights',
-        path: './model-weights.bin',
+        type: &apos;weights&apos;,
+        path: &apos;./model-weights.bin&apos;,
         size: 0,
-        checksum: '',
+        checksum: &apos;&apos;,
         uploadedAt: new Date()
       }
     ],
@@ -603,11 +603,11 @@ async function main() {
   );
 
   // Promote to production
-  await modelRegistry.updateModelState(model.id, 'production');
+  await modelRegistry.updateModelState(model.id, &apos;production&apos;);
   
   // Search models
-  const results = modelRegistry.searchModels('sentiment');
-  console.log('Search results:', results);
+  const results = modelRegistry.searchModels(&apos;sentiment&apos;);
+  console.log(&apos;Search results:&apos;, results);
 }`}
                   </pre>
                 </div>
@@ -628,7 +628,7 @@ async function main() {
                   <div className="bg-green-50 dark:bg-green-950 p-4 rounded-md">
                     <h4 className="font-medium mb-2">Reproducibility</h4>
                     <p className="text-sm text-green-800 dark:text-green-200">
-                      In production ML, you need to be able to reproduce any model that's currently serving traffic. 
+                      In production ML, you need to be able to reproduce any model that&apos;s currently serving traffic. 
                       This includes not just the model weights, but the exact training data, hyperparameters, 
                       and environment that created it.
                     </p>
@@ -663,7 +663,7 @@ async function main() {
                     </p>
                     <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-md">
                       <p className="text-xs text-blue-800 dark:text-blue-200">
-                        <strong>MLOps Insight:</strong> This is similar to Git's approach - you create new commits 
+                        <strong>MLOps Insight:</strong> This is similar to Git&apos;s approach - you create new commits 
                         rather than modifying existing ones.
                       </p>
                     </div>
@@ -677,7 +677,7 @@ async function main() {
                     </p>
                     <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-md">
                       <p className="text-xs text-blue-800 dark:text-blue-800">
-                        <strong>MLOps Insight:</strong> In production, you'll often need to debug why a model 
+                        <strong>MLOps Insight:</strong> In production, you&apos;ll often need to debug why a model 
                         is performing poorly. Rich metadata makes this much easier.
                       </p>
                     </div>
@@ -733,7 +733,7 @@ async function main() {
               <div>
                 <h3 className="font-semibold mb-3 text-orange-700 dark:text-orange-400">Production Tools</h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  In production, you'll likely use existing tools rather than building from scratch:
+                  In production, you&apos;ll likely use existing tools rather than building from scratch:
                 </p>
                 <ul className="text-sm space-y-1 list-disc pl-5 text-muted-foreground">
                   <li><strong>MLflow:</strong> Open-source platform for managing ML lifecycle</li>

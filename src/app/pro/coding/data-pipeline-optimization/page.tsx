@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function DataPipelineOptimizationPage() {
@@ -47,9 +46,9 @@ export default async function DataPipelineOptimizationPage() {
               <div>
                 <h3 className="font-semibold mb-2">Background</h3>
                 <p className="text-sm text-muted-foreground">
-                  You're working on a data pipeline that processes large datasets for machine learning training. 
+                  You&apos;re working on a data pipeline that processes large datasets for machine learning training. 
                   The pipeline reads data from multiple sources, applies transformations, and writes to a destination. 
-                  Currently, it's processing data sequentially, which is too slow for your production requirements.
+                  Currently, it&apos;s processing data sequentially, which is too slow for your production requirements.
                 </p>
               </div>
 
@@ -113,7 +112,7 @@ interface ProcessedChunk {
               <div className="space-y-4">
                 <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-md">
                   <pre className="text-sm overflow-x-auto">
-{`import { EventEmitter } from 'events';
+{`import { EventEmitter } from &apos;events&apos;;
 
 interface DataSource {
   id: string;
@@ -159,7 +158,7 @@ class DataPipelineProcessor extends EventEmitter {
         const workerPromise = this.processDataSource(source)
           .finally(() => {
             this.activeWorkers--;
-            this.emit('workerComplete');
+            this.emit(&apos;workerComplete&apos;);
           });
         
         promises.push(workerPromise);
@@ -167,7 +166,7 @@ class DataPipelineProcessor extends EventEmitter {
 
       // Wait for at least one worker to complete
       if (this.activeWorkers >= this.maxWorkers) {
-        await new Promise(resolve => this.once('workerComplete', resolve));
+        await new Promise(resolve => this.once(&apos;workerComplete&apos;, resolve));
       }
     }
 
@@ -189,7 +188,7 @@ class DataPipelineProcessor extends EventEmitter {
           const processedChunk = await this.processChunk(chunk, source.id, chunkIndex);
           totalProcessed += processedChunk.data.length;
           
-          this.emit('chunkProcessed', {
+          this.emit(&apos;chunkProcessed&apos;, {
             sourceId: source.id,
             chunkIndex,
             progress: ((chunkIndex + 1) / totalChunks) * 100
@@ -262,18 +261,18 @@ async function main() {
   const processor = new DataPipelineProcessor(5);
   
   // Add progress tracking
-  processor.on('chunkProcessed', (data) => {
+  processor.on(&apos;chunkProcessed&apos;, (data) => {
     console.log(\`[Progress] Source \${data.sourceId}: \${data.progress.toFixed(1)}%\`);
   });
 
   const sources: DataSource[] = [
-    { id: 'source1', url: 'api/source1', chunkSize: 1000, totalRecords: 5000 },
-    { id: 'source2', url: 'api/source2', chunkSize: 500, totalRecords: 3000 },
-    { id: 'source3', url: 'api/source3', chunkSize: 2000, totalRecords: 8000 }
+    { id: &apos;source1&apos;, url: &apos;api/source1&apos;, chunkSize: 1000, totalRecords: 5000 },
+    { id: &apos;source2&apos;, url: &apos;api/source2&apos;, chunkSize: 500, totalRecords: 3000 },
+    { id: &apos;source3&apos;, url: &apos;api/source3&apos;, chunkSize: 2000, totalRecords: 8000 }
   ];
 
   const results = await processor.processDataSources(sources);
-  console.log('Processing complete:', results);
+  console.log(&apos;Processing complete:&apos;, results);
 }`}
                   </pre>
                 </div>
@@ -332,12 +331,12 @@ async function main() {
                     <h4 className="font-medium mb-2">Memory Management</h4>
                     <p className="text-sm text-muted-foreground mb-2">
                       Processing data in chunks prevents memory overflow when dealing with large datasets. 
-                      This is crucial when working with datasets that don't fit in memory.
+                      This is crucial when working with datasets that don&apos;t fit in memory.
                     </p>
                     <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-md">
                       <p className="text-xs text-blue-800 dark:text-blue-200">
                         <strong>MLOps Insight:</strong> In production, you might be processing terabytes of data. 
-                        Chunking is not optional - it's essential for system stability.
+                        Chunking is not optional - it&apos;s essential for system stability.
                       </p>
                     </div>
                   </div>
@@ -345,13 +344,13 @@ async function main() {
                   <div>
                     <h4 className="font-medium mb-2">Error Handling & Resilience</h4>
                     <p className="text-sm text-muted-foreground mb-2">
-                      The retry logic with exponential backoff ensures temporary failures don't crash the entire pipeline. 
+                      The retry logic with exponential backoff ensures temporary failures don&apos;t crash the entire pipeline. 
                       This is critical for production systems that run continuously.
                     </p>
                     <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-md">
                       <p className="text-xs text-blue-800 dark:text-blue-200">
                         <strong>MLOps Insight:</strong> Data pipelines in production must be fault-tolerant. 
-                        A single bad record or network hiccup shouldn't stop your entire ML pipeline.
+                        A single bad record or network hiccup shouldn&apos;t stop your entire ML pipeline.
                       </p>
                     </div>
                   </div>
