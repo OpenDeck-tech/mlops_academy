@@ -18,7 +18,7 @@ const sessionOptions: SessionOptions = {
 };
 
 export async function getSession() {
-  if (!sessionOptions.password || sessionOptions.password.length < 32) {
+  if (!sessionOptions.password || typeof sessionOptions.password !== 'string' || sessionOptions.password.length < 32) {
     throw new Error("IRON_SESSION_PASSWORD must be set to a strong value (>=32 chars)");
   }
   return getIronSession<ProSession>(await cookies(), sessionOptions);
