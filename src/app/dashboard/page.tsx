@@ -9,7 +9,8 @@ import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LogoutButton } from "@/components/logout-button";
 import Link from "next/link";
-import { Calendar, Mail, CreditCard, CheckCircle2, XCircle } from "lucide-react";
+import { Calendar, Mail, CreditCard, CheckCircle2, XCircle, Terminal } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Note: This page needs to be dynamic due to Stripe API calls
 export const dynamic = "force-dynamic";
@@ -157,7 +158,7 @@ export default async function DashboardPage() {
                       <p className="text-sm text-muted-foreground">Plan</p>
                       <p className="font-medium">MLOps Academy Pro</p>
                     </div>
-                    {subscription.current_period_end && (
+                    {subscription && typeof subscription === "object" && "current_period_end" in subscription && typeof subscription.current_period_end === "number" && (
                       <div>
                         <p className="text-sm text-muted-foreground">
                           {hasActiveSubscription ? "Renews on" : "Expired on"}
@@ -252,6 +253,149 @@ export default async function DashboardPage() {
               </>
             )}
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Essential Shell Commands */}
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Terminal className="h-5 w-5" />
+            Essential Shell Commands
+          </CardTitle>
+          <CardDescription>
+            Quick reference for common shell commands used in MLOps workflows
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="files" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="files">Files</TabsTrigger>
+              <TabsTrigger value="processes">Processes</TabsTrigger>
+              <TabsTrigger value="networking">Networking</TabsTrigger>
+              <TabsTrigger value="mlops">MLOps</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="files" className="mt-4">
+              <div className="space-y-3">
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">List files with details</div>
+                  <code>ls -lah</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Find files by name</div>
+                  <code>find . -name &quot;*.py&quot; -type f</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Search in files</div>
+                  <code>grep -r &quot;pattern&quot; /path/to/dir</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Watch file changes</div>
+                  <code>tail -f /path/to/logfile</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Copy recursively</div>
+                  <code>cp -r source/ destination/</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Disk usage</div>
+                  <code>du -sh * | sort -h</code>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="processes" className="mt-4">
+              <div className="space-y-3">
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Running processes</div>
+                  <code>ps aux | grep python</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Resource usage</div>
+                  <code>top -p $(pgrep -d,&quot;,&quot; python)</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Kill process by name</div>
+                  <code>pkill -f &quot;script_name.py&quot;</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Run in background</div>
+                  <code>nohup python script.py &gt; output.log 2&gt;&amp;1 &amp;</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Monitor GPU usage</div>
+                  <code>watch -n 1 nvidia-smi</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">CPU and memory</div>
+                  <code>htop</code>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="networking" className="mt-4">
+              <div className="space-y-3">
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Check port in use</div>
+                  <code>lsof -i :8000</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Test connection</div>
+                  <code>curl -I http://localhost:8000</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Download file</div>
+                  <code>wget https://example.com/file.zip</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">SSH to server</div>
+                  <code>ssh user@hostname</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Copy over network</div>
+                  <code>scp file.txt user@host:/path/</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Network interfaces</div>
+                  <code>ifconfig</code> or <code>ip addr</code>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="mlops" className="mt-4">
+              <div className="space-y-3">
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Activate virtual env</div>
+                  <code>source venv/bin/activate</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Install dependencies</div>
+                  <code>pip install -r requirements.txt</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Docker commands</div>
+                  <code>docker ps -a</code> | <code>docker logs &lt;container&gt;</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Environment variables</div>
+                  <code>export VAR=&quot;value&quot;</code> | <code>env | grep VAR</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Compress directory</div>
+                  <code>tar -czf archive.tar.gz directory/</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Monitor log file</div>
+                  <code>tail -n 100 -f /var/log/app.log</code>
+                </div>
+                <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                  <div className="font-semibold mb-1">Check Python version</div>
+                  <code>python --version</code> | <code>which python</code>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </CardContent>
       </Card>
 
