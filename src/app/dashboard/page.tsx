@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LogoutButton } from "@/components/logout-button";
 import Link from "next/link";
 import { Calendar, Mail, CreditCard, CheckCircle2, XCircle } from "lucide-react";
 
@@ -264,16 +265,7 @@ export default async function DashboardPage() {
             <Button variant="outline" className="w-full justify-start" asChild>
               <Link href="/login">Change Password</Link>
             </Button>
-            <Button 
-              variant="outline" 
-              className="w-full justify-start text-destructive hover:text-destructive"
-              onClick={async () => {
-                await fetch("/api/logout", { method: "POST" });
-                window.location.href = "/";
-              }}
-            >
-              Sign Out
-            </Button>
+            <LogoutButton />
           </div>
         </CardContent>
       </Card>
