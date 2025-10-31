@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Link from "next/link";
 
 export default async function ProPage() {
   const sess = await getSession();
@@ -13,7 +14,10 @@ export default async function ProPage() {
 
   return (
     <div className="container mx-auto max-w-5xl px-6 py-16">
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
+          Dashboard
+        </Link>
         <ThemeToggle />
       </div>
       <h1 className="text-4xl font-semibold tracking-tight">MLOps Academy Pro</h1>

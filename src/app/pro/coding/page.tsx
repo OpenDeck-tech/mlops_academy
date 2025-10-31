@@ -64,7 +64,10 @@ export default async function CodingPage() {
 
   return (
     <div className="container mx-auto max-w-6xl px-6 py-16">
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
+          Dashboard
+        </Link>
         <ThemeToggle />
       </div>
       <div className="mb-8">

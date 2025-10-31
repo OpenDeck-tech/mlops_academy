@@ -14,7 +14,10 @@ export default function Home() {
 
   return (
     <main>
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
+          Dashboard
+        </Link>
         <ThemeToggle />
       </div>
       <section className="container mx-auto max-w-5xl px-6 py-20 text-center">
