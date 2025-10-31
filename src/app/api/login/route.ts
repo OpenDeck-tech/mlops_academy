@@ -5,7 +5,7 @@ import { getSession } from "@/lib/session";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { email, password, rememberMe } = await request.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
@@ -91,11 +91,12 @@ export async function POST(request: Request) {
       }
     }
 
-    // Set session
-    const sess = await getSession();
+    // Set session with remember me preference
+    const sess = await getSession(rememberMe === true);
     sess.userId = user.id;
     sess.email = user.email;
     sess.isPro = hasActiveSubscription;
+    sess.rememberMe = rememberMe === true;
     if (hasActiveSubscription) {
       sess.upgradedAt = new Date().toISOString();
     }

@@ -4,12 +4,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
+import { Label } from "@/components/ui/label";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPasswordInput, setShowPasswordInput] = useState(true);
@@ -24,7 +27,7 @@ export default function LoginPage() {
       const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, rememberMe }),
       });
 
       const data = await res.json();
@@ -121,16 +124,32 @@ export default function LoginPage() {
                   />
                 </div>
                 {showPasswordInput && (
-                  <div>
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
+                  <>
+                    <div>
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="remember"
+                        checked={rememberMe}
+                        onCheckedChange={(checked) => setRememberMe(checked === true)}
+                        disabled={loading}
+                      />
+                      <Label
+                        htmlFor="remember"
+                        className="text-sm font-normal cursor-pointer"
+                      >
+                        Remember me for 30 days
+                      </Label>
+                    </div>
+                  </>
                 )}
                 {error && (
                   <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
