@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default async function CodingPage() {
   const sess = await getSession();
@@ -63,6 +64,9 @@ export default async function CodingPage() {
 
   return (
     <div className="container mx-auto max-w-6xl px-6 py-16">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div className="mb-8">
         <h1 className="text-4xl font-semibold tracking-tight">Coding Exercises</h1>
         <p className="text-muted-foreground mt-2">

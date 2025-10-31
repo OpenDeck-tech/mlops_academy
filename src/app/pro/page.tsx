@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default async function ProPage() {
   const sess = await getSession();
@@ -12,6 +13,9 @@ export default async function ProPage() {
 
   return (
     <div className="container mx-auto max-w-5xl px-6 py-16">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <h1 className="text-4xl font-semibold tracking-tight">MLOps Academy Pro</h1>
       <p className="text-muted-foreground mt-2">Deep, practical curriculum. Continuously updated.</p>
       <Separator className="my-8" />

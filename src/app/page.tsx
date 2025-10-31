@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   async function checkout() {
@@ -12,6 +13,9 @@ export default function Home() {
 
   return (
     <main>
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <section className="container mx-auto max-w-5xl px-6 py-20 text-center">
         <Badge className="mb-4" variant="secondary">MLOps Academy</Badge>
         <h1 className="text-5xl font-semibold tracking-tight">Master MLOps. Build production ML systems that last.</h1>
