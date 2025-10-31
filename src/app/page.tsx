@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ShellCommandsSection } from "@/components/shell-commands-section";
 import Link from "next/link";
 
 export default function Home() {
@@ -73,6 +74,7 @@ export default function Home() {
             </CardContent>
           </Card>
         </div>
+        <ShellCommandsSection />
       </section>
 
       <section id="pricing" className="container mx-auto max-w-4xl px-6 pb-32">
