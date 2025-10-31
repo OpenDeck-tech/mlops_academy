@@ -12,6 +12,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPasswordInput, setShowPasswordInput] = useState(true);
+  const [magicLinkSent, setMagicLinkSent] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -45,6 +47,32 @@ export default function LoginPage() {
     }
   }
 
+  async function handleMagicLink(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/magic-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMagicLinkSent(true);
+      } else {
+        setError(data.error || "Unable to send magic link. Please try again.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="absolute top-4 right-4">
@@ -54,46 +82,91 @@ export default function LoginPage() {
         <CardHeader>
           <CardTitle>Sign In</CardTitle>
           <CardDescription>
-            Enter your email and password to access your account
+            Use your password or get a magic link sent to your email
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={loading}
-              />
-            </div>
-            <div>
-              <Input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                disabled={loading}
-              />
-            </div>
-            {error && (
-              <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
-                {error}
+          {magicLinkSent ? (
+            <div className="space-y-4">
+              <div className="bg-green-50 dark:bg-green-950 p-4 rounded-md border border-green-200 dark:border-green-800">
+                <p className="text-sm text-green-800 dark:text-green-200 font-medium">
+                  Check your email!
+                </p>
+                <p className="text-sm text-green-700 dark:text-green-300 mt-1">
+                  We&apos;ve sent a sign-in link to <strong>{email}</strong>. Click the link in the email to sign in.
+                </p>
               </div>
-            )}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign In"}
-            </Button>
-          </form>
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-primary hover:underline">
-              Sign Up
-            </Link>
-          </div>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => {
+                  setMagicLinkSent(false);
+                  setEmail("");
+                }}
+              >
+                Send Another Link
+              </Button>
+            </div>
+          ) : (
+            <>
+              <form onSubmit={showPasswordInput ? handleLogin : handleMagicLink} className="space-y-4">
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    disabled={loading}
+                  />
+                </div>
+                {showPasswordInput && (
+                  <div>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                )}
+                {error && (
+                  <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
+                    {error}
+                  </div>
+                )}
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading 
+                    ? (showPasswordInput ? "Signing in..." : "Sending...") 
+                    : (showPasswordInput ? "Sign In" : "Send Magic Link")
+                  }
+                </Button>
+              </form>
+              <div className="mt-4 space-y-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowPasswordInput(!showPasswordInput);
+                    setPassword("");
+                    setError("");
+                  }}
+                  className="text-sm text-primary hover:underline w-full text-center"
+                >
+                  {showPasswordInput 
+                    ? "Use magic link instead" 
+                    : "Use password instead"}
+                </button>
+                <div className="text-center text-sm text-muted-foreground">
+                  Don&apos;t have an account?{" "}
+                  <Link href="/signup" className="text-primary hover:underline">
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
         </CardContent>
       </Card>
     </div>
