@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Link from "next/link";
 
 export default function Home() {
   async function checkout() {
@@ -24,6 +25,7 @@ export default function Home() {
         </p>
         <div className="mt-8 flex items-center justify-center gap-4">
           <Button size="lg" onClick={checkout}>Get Pro Access</Button>
+          <Link href="/login" className="text-sm underline">Sign In</Link>
           <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
         </div>
       </section>
