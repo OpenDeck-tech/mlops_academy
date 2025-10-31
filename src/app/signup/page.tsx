@@ -7,19 +7,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
 
+    // Validate
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters");
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -28,15 +42,10 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok) {
-        if (data.redirectTo) {
-          window.location.href = data.redirectTo;
-        } else if (data.message?.includes("create an account")) {
-          setError(data.message + ". You can continue using email-only login.");
-        } else {
-          window.location.href = "/pro";
-        }
+        // After signup, redirect to checkout
+        window.location.href = "/#pricing";
       } else {
-        setError(data.error || "Unable to log in. Please check your credentials.");
+        setError(data.error || "Unable to create account. Please try again.");
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
@@ -52,13 +61,13 @@ export default function LoginPage() {
       </div>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign In</CardTitle>
+          <CardTitle>Create Account</CardTitle>
           <CardDescription>
-            Enter your email and password to access your account
+            Sign up to access MLOps Academy Pro
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleSignup} className="space-y-4">
             <div>
               <Input
                 type="email"
@@ -72,10 +81,22 @@ export default function LoginPage() {
             <div>
               <Input
                 type="password"
-                placeholder="Password"
+                placeholder="Password (min 8 characters)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={8}
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <Input
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                minLength={8}
                 disabled={loading}
               />
             </div>
@@ -85,13 +106,13 @@ export default function LoginPage() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign In"}
+              {loading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
           <div className="mt-4 text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-primary hover:underline">
-              Sign Up
+            Already have an account?{" "}
+            <Link href="/login" className="text-primary hover:underline">
+              Sign In
             </Link>
           </div>
         </CardContent>

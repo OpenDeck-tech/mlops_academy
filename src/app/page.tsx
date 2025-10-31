@@ -25,6 +25,7 @@ export default function Home() {
         </p>
         <div className="mt-8 flex items-center justify-center gap-4">
           <Button size="lg" onClick={checkout}>Get Pro Access</Button>
+          <Link href="/signup" className="text-sm underline">Sign Up</Link>
           <Link href="/login" className="text-sm underline">Sign In</Link>
           <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
         </div>

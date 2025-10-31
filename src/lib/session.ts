@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { getIronSession, SessionOptions } from "iron-session";
 
 export type ProSession = {
+  userId?: string;
+  email?: string;
   isPro?: boolean;
   upgradedAt?: string;
 };
