@@ -228,6 +228,11 @@ export default async function DashboardPage() {
                   </Link>
                 </Button>
                 <Button variant="outline" className="justify-start" asChild>
+                  <Link href="/pro/book-call">
+                    Book 1:1 Call
+                  </Link>
+                </Button>
+                <Button variant="outline" className="justify-start" asChild>
                   <Link href="/">
                     Home
                   </Link>

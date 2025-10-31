@@ -2,6 +2,7 @@ import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
@@ -130,6 +131,24 @@ export default async function ProPage() {
           </Card>
         </TabsContent>
       </Tabs>
+      
+      <div className="mt-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Get Personalized Help</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Book a 1:1 call with an MLOps expert. Get architecture reviews, career guidance, and technical deep dives.
+            </p>
+            <Button asChild>
+              <Link href="/pro/book-call">
+                Book a 1:1 Call
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
