@@ -280,6 +280,78 @@ export function ShellCommandsSection() {
                   </div>
                 </div>
               </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Initialize Poetry project</div>
+                    <code>poetry init</code>
+                  </div>
+                  <CopyButton text="poetry init" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Create virtual environment</div>
+                    <code>poetry env use python3.11</code>
+                  </div>
+                  <CopyButton text="poetry env use python3.11" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Install dependencies</div>
+                    <code>poetry install</code>
+                  </div>
+                  <CopyButton text="poetry install" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Add new dependency</div>
+                    <code>poetry add package-name</code>
+                  </div>
+                  <CopyButton text="poetry add package-name" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Activate Poetry shell</div>
+                    <code>poetry shell</code>
+                  </div>
+                  <CopyButton text="poetry shell" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Run command in Poetry env</div>
+                    <code>poetry run python script.py</code>
+                  </div>
+                  <CopyButton text="poetry run python script.py" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Show Poetry environment info</div>
+                    <code>poetry env info</code>
+                  </div>
+                  <CopyButton text="poetry env info" />
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="font-semibold mb-1">Export to requirements.txt</div>
+                    <code>poetry export -f requirements.txt --output requirements.txt</code>
+                  </div>
+                  <CopyButton text="poetry export -f requirements.txt --output requirements.txt" />
+                </div>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
