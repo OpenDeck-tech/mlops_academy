@@ -3,6 +3,7 @@ import { getUserByEmail } from "@/lib/users";
 import { getSession } from "@/lib/session";
 import { stripe } from "@/lib/stripe";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -22,9 +23,9 @@ export default async function VerifyEmailPage(props: { searchParams: SearchParam
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Return to Sign In
-            </a>
+            </Link>
           </CardContent>
         </Card>
       </div>
@@ -44,9 +45,9 @@ export default async function VerifyEmailPage(props: { searchParams: SearchParam
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Request New Link
-            </a>
+            </Link>
           </CardContent>
         </Card>
       </div>
@@ -92,9 +93,9 @@ export default async function VerifyEmailPage(props: { searchParams: SearchParam
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/#pricing" className="text-primary hover:underline">
+            <Link href="/#pricing" className="text-primary hover:underline">
               Subscribe Now
-            </a>
+            </Link>
           </CardContent>
         </Card>
       </div>

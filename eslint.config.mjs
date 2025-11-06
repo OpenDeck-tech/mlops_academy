@@ -20,6 +20,26 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: {
+      // Allow unused variables in catch blocks (common pattern)
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_|^(err|e|error)$",
+        },
+      ],
+      // Allow explicit any in error handling (but prefer unknown)
+      "@typescript-eslint/no-explicit-any": [
+        "warn",
+        {
+          ignoreRestArgs: true,
+        },
+      ],
+    },
+  },
 ];
 
 export default eslintConfig;

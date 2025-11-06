@@ -27,8 +27,8 @@ export async function POST(request: Request) {
       await sess.save();
 
       return NextResponse.json({ success: true, userId: user.id });
-    } catch (error: any) {
-      if (error.message === "User already exists") {
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message === "User already exists") {
         return NextResponse.json(
           { error: "An account with this email already exists" },
           { status: 409 }
