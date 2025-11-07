@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
+import { LogoCarousel } from "@/components/logo-carousel";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -77,11 +78,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
+        <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Sign In</CardTitle>
           <CardDescription>
@@ -196,6 +198,8 @@ export default function LoginPage() {
           )}
         </CardContent>
       </Card>
+      </div>
+      <LogoCarousel />
     </div>
   );
 }
