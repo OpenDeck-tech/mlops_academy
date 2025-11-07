@@ -32,6 +32,7 @@ export default async function ProPage() {
           <TabsTrigger value="platform">Platform</TabsTrigger>
           <TabsTrigger value="operations">Operations</TabsTrigger>
           <TabsTrigger value="coding">Coding Exercises</TabsTrigger>
+          <TabsTrigger value="communication">Communication</TabsTrigger>
         </TabsList>
         <TabsContent value="foundations">
           <Card>
@@ -126,6 +127,49 @@ export default async function ProPage() {
                 <a href="/pro/coding" className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
                   Start Coding Exercises →
                 </a>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="communication">
+          <Card>
+            <CardHeader>
+              <CardTitle>Stakeholder Communication</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">
+                Master the art of communicating MLOps concepts to stakeholders, executives, and technical teams. Learn frameworks, templates, and strategies for effective presentations.
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Key Topics:</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Executive briefings & ROI frameworks</li>
+                    <li>• Technical deep-dives for engineers</li>
+                    <li>• Product manager alignment</li>
+                    <li>• Conference presentation strategies</li>
+                    <li>• Stakeholder-specific messaging</li>
+                    <li>• Common pitfalls & how to avoid them</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium">You&apos;ll Learn:</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• How to translate technical concepts</li>
+                    <li>• Building compelling narratives</li>
+                    <li>• Meeting preparation frameworks</li>
+                    <li>• Visual storytelling techniques</li>
+                    <li>• Handling difficult questions</li>
+                    <li>• Real-world templates & examples</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="pt-4">
+                <Button asChild>
+                  <Link href="/pro/communication">
+                    View Communication Guide →
+                  </Link>
+                </Button>
               </div>
             </CardContent>
           </Card>
