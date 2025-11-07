@@ -135,19 +135,27 @@ export default function LoginPage() {
                         disabled={loading}
                       />
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="remember"
-                        checked={rememberMe}
-                        onCheckedChange={(checked) => setRememberMe(checked === true)}
-                        disabled={loading}
-                      />
-                      <Label
-                        htmlFor="remember"
-                        className="text-sm font-normal cursor-pointer"
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="remember"
+                          checked={rememberMe}
+                          onCheckedChange={(checked) => setRememberMe(checked === true)}
+                          disabled={loading}
+                        />
+                        <Label
+                          htmlFor="remember"
+                          className="text-sm font-normal cursor-pointer"
+                        >
+                          Remember me for 30 days
+                        </Label>
+                      </div>
+                      <Link
+                        href="/forgot-password"
+                        className="text-sm text-primary hover:underline"
                       >
-                        Remember me for 30 days
-                      </Label>
+                        Forgot password?
+                      </Link>
                     </div>
                   </>
                 )}

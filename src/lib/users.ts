@@ -118,3 +118,18 @@ export async function getUserByStripeCustomerId(stripeCustomerId: string): Promi
   return users.find((u) => u.stripeCustomerId === stripeCustomerId) || null;
 }
 
+export async function updateUserPassword(email: string, newPassword: string): Promise<void> {
+  const users = await readUsers();
+  const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // Hash new password
+  const passwordHash = await bcrypt.hash(newPassword, 10);
+  user.passwordHash = passwordHash;
+  
+  await writeUsers(users);
+}
+
