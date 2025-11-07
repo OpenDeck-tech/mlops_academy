@@ -27,10 +27,11 @@ export default function Home() {
         <p className="text-muted-foreground mt-4 text-lg">
           Curated, no-fluff curriculum from real-world experience. Tools change, fundamentals don&apos;t.
         </p>
-        <div className="mt-8 flex items-center justify-center gap-4">
+        <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
           <Button size="lg" onClick={checkout}>Get Pro Access</Button>
           <Link href="/signup" className="text-sm underline">Sign Up</Link>
           <Link href="/login" className="text-sm underline">Sign In</Link>
+          <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
           <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
         </div>
       </section>
