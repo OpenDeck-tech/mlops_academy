@@ -9,30 +9,60 @@ export interface MagicLinkToken {
   used: boolean;
 }
 
+// Check if we're in a serverless environment (Vercel, etc.)
+const IS_SERVERLESS = process.env.VERCEL === "1" || process.env.AWS_LAMBDA_FUNCTION_NAME || !process.env.HOME;
+
+// In-memory storage for serverless environments
+let inMemoryTokens: MagicLinkToken[] = [];
+
 const TOKENS_FILE = path.join(process.cwd(), "data", "magic-link-tokens.json");
 
 async function ensureDataDir() {
+  if (IS_SERVERLESS) {
+    return; // Skip file operations in serverless
+  }
   const dataDir = path.join(process.cwd(), "data");
   try {
     await fs.access(dataDir);
   } catch {
-    await fs.mkdir(dataDir, { recursive: true });
+    try {
+      await fs.mkdir(dataDir, { recursive: true });
+    } catch (error) {
+      // If we can't create directory, we're likely in serverless - use in-memory
+      console.warn("Cannot create data directory, using in-memory storage");
+    }
   }
 }
 
 async function readTokens(): Promise<MagicLinkToken[]> {
+  if (IS_SERVERLESS) {
+    return inMemoryTokens;
+  }
+  
   try {
     await ensureDataDir();
     const data = await fs.readFile(TOKENS_FILE, "utf-8");
     return JSON.parse(data);
   } catch {
-    return [];
+    // Fallback to in-memory if file operations fail
+    return inMemoryTokens;
   }
 }
 
 async function writeTokens(tokens: MagicLinkToken[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(TOKENS_FILE, JSON.stringify(tokens, null, 2));
+  if (IS_SERVERLESS) {
+    inMemoryTokens = tokens;
+    return;
+  }
+  
+  try {
+    await ensureDataDir();
+    await fs.writeFile(TOKENS_FILE, JSON.stringify(tokens, null, 2));
+  } catch (error) {
+    // Fallback to in-memory if file operations fail
+    console.warn("Cannot write tokens to file, using in-memory storage", error);
+    inMemoryTokens = tokens;
+  }
 }
 
 export async function createMagicLinkToken(email: string): Promise<string> {

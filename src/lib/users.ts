@@ -10,30 +10,60 @@ export interface User {
   createdAt: string;
 }
 
+// Check if we're in a serverless environment (Vercel, etc.)
+const IS_SERVERLESS = process.env.VERCEL === "1" || process.env.AWS_LAMBDA_FUNCTION_NAME || !process.env.HOME;
+
+// In-memory storage for serverless environments
+let inMemoryUsers: User[] = [];
+
 const USERS_FILE = path.join(process.cwd(), "data", "users.json");
 
 async function ensureDataDir() {
+  if (IS_SERVERLESS) {
+    return; // Skip file operations in serverless
+  }
   const dataDir = path.join(process.cwd(), "data");
   try {
     await fs.access(dataDir);
   } catch {
-    await fs.mkdir(dataDir, { recursive: true });
+    try {
+      await fs.mkdir(dataDir, { recursive: true });
+    } catch (error) {
+      // If we can't create directory, we're likely in serverless - use in-memory
+      console.warn("Cannot create data directory, using in-memory storage");
+    }
   }
 }
 
 async function readUsers(): Promise<User[]> {
+  if (IS_SERVERLESS) {
+    return inMemoryUsers;
+  }
+  
   try {
     await ensureDataDir();
     const data = await fs.readFile(USERS_FILE, "utf-8");
     return JSON.parse(data);
   } catch {
-    return [];
+    // Fallback to in-memory if file operations fail
+    return inMemoryUsers;
   }
 }
 
 async function writeUsers(users: User[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
+  if (IS_SERVERLESS) {
+    inMemoryUsers = users;
+    return;
+  }
+  
+  try {
+    await ensureDataDir();
+    await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
+  } catch (error) {
+    // Fallback to in-memory if file operations fail
+    console.warn("Cannot write users to file, using in-memory storage", error);
+    inMemoryUsers = users;
+  }
 }
 
 export async function createUser(email: string, password: string): Promise<User> {
