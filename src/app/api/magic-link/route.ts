@@ -42,10 +42,22 @@ export async function POST(request: Request) {
     
     try {
       await sendMagicLinkEmail(email, token);
+      console.log("Magic link sent successfully to:", email);
     } catch (emailError) {
       console.error("Email sending failed", emailError);
+      
+      // Provide more helpful error message
+      let errorMessage = "Failed to send email. Please try again later.";
+      if (emailError instanceof Error) {
+        if (emailError.message.includes("RESEND_API_KEY") || emailError.message.includes("not configured")) {
+          errorMessage = "Email service is not configured. Please contact support.";
+        } else {
+          errorMessage = `Failed to send email: ${emailError.message}`;
+        }
+      }
+      
       return NextResponse.json(
-        { error: "Failed to send email. Please try again later." },
+        { error: errorMessage },
         { status: 500 }
       );
     }

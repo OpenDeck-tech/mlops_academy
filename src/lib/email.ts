@@ -1,18 +1,27 @@
 import { Resend } from "resend";
 
 if (!process.env.RESEND_API_KEY) {
-  throw new Error("RESEND_API_KEY is not set");
+  console.error("RESEND_API_KEY is not set in environment variables");
+  // Don't throw in production, but log the error
+  if (process.env.NODE_ENV === "production") {
+    console.error("Email functionality will not work without RESEND_API_KEY");
+  }
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const FROM_EMAIL = process.env.FROM_EMAIL || "MLOps Academy <onboarding@resend.dev>";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function sendMagicLinkEmail(email: string, token: string) {
+  if (!resend) {
+    console.error("Resend client not initialized. RESEND_API_KEY is missing.");
+    throw new Error("Email service is not configured. Please set RESEND_API_KEY in environment variables.");
+  }
+
   const magicLink = `${BASE_URL}/verify-email?token=${token}`;
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
       subject: "Sign in to MLOps Academy",
@@ -65,18 +74,29 @@ If you didn't request this link, you can safely ignore this email.
       `,
     });
 
+    console.log("Magic link email sent successfully to:", email);
     return { success: true };
   } catch (error) {
     console.error("Failed to send magic link email", error);
+    // Log more details about the error
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
     throw error;
   }
 }
 
 export async function sendPasswordResetEmail(email: string, token: string) {
+  if (!resend) {
+    console.error("Resend client not initialized. RESEND_API_KEY is missing.");
+    throw new Error("Email service is not configured. Please set RESEND_API_KEY in environment variables.");
+  }
+
   const resetLink = `${BASE_URL}/reset-password?token=${token}`;
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
       subject: "Reset your MLOps Academy password",
@@ -129,9 +149,13 @@ If you didn't request a password reset, you can safely ignore this email. Your p
       `,
     });
 
+    console.log("Password reset email sent successfully to:", email);
     return { success: true };
   } catch (error) {
     console.error("Failed to send password reset email", error);
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+    }
     throw error;
   }
 }

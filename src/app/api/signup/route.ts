@@ -24,9 +24,14 @@ export async function POST(request: Request) {
       const sess = await getSession();
       sess.userId = user.id;
       sess.email = user.email;
+      sess.isPro = false; // New users need to subscribe
       await sess.save();
 
-      return NextResponse.json({ success: true, userId: user.id });
+      return NextResponse.json({ 
+        success: true, 
+        userId: user.id,
+        redirectTo: "/dashboard" // Redirect to dashboard after signup
+      });
     } catch (error: unknown) {
       if (error instanceof Error && error.message === "User already exists") {
         return NextResponse.json(

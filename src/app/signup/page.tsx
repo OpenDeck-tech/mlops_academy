@@ -42,8 +42,12 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (res.ok) {
-        // After signup, redirect to checkout
-        window.location.href = "/#pricing";
+        // After signup, redirect to dashboard or pricing
+        if (data.redirectTo) {
+          window.location.href = data.redirectTo;
+        } else {
+          window.location.href = "/dashboard";
+        }
       } else {
         setError(data.error || "Unable to create account. Please try again.");
       }

@@ -13,7 +13,10 @@ export interface User {
 // Check if we're in a serverless environment (Vercel, etc.)
 const IS_SERVERLESS = process.env.VERCEL === "1" || process.env.AWS_LAMBDA_FUNCTION_NAME || !process.env.HOME;
 
-// In-memory storage for serverless environments
+// ⚠️ WARNING: In-memory storage for serverless environments
+// This is NOT suitable for production! Data is lost between function invocations.
+// You MUST migrate to a database (Postgres, MongoDB, etc.) for production use.
+// See PRODUCTION_SETUP.md for details.
 let inMemoryUsers: User[] = [];
 
 const USERS_FILE = path.join(process.cwd(), "data", "users.json");
