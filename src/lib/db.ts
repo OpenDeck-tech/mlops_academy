@@ -10,12 +10,16 @@ let pool: Pool | null = null;
 function getPool(): Pool {
   if (!pool) {
     // Vercel Postgres provides POSTGRES_URL automatically
-    // For local dev, use POSTGRES_URL or DATABASE_URL from .env.local
-    const connectionString = process.env.mlops_POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || process.env.mlops_PRISMA_DATABASE_URL;
+    // For local dev, use POSTGRES_URL, DATABASE_URL, or mlops_DATABASE_URL from .env.local
+    const connectionString = 
+      process.env.POSTGRES_URL || 
+      process.env.DATABASE_URL || 
+      process.env.mlops_DATABASE_URL ||
+      process.env.POSTGRES_PRISMA_URL;
     
     if (!connectionString) {
       throw new Error(
-        "POSTGRES_URL, POSTGRES_PRISMA_URL, or DATABASE_URL must be set. " +
+        "POSTGRES_URL, DATABASE_URL, or mlops_DATABASE_URL must be set. " +
         "For local: postgresql://user:password@localhost:5432/dbname\n" +
         "For Vercel: POSTGRES_URL is automatically set when you add Vercel Postgres"
       );
@@ -35,21 +39,48 @@ function getPool(): Pool {
   return pool;
 }
 
+// Track if we've tried to initialize
+let initializationAttempted = false;
+
 // Unified database query function
 export async function dbQuery<T = unknown>(
   query: string,
   params?: any[]
 ): Promise<T[]> {
   const dbPool = getPool();
-  const result = await dbPool.query(query, params || []);
-  return result.rows as T[];
+  
+  try {
+    const result = await dbPool.query(query, params || []);
+    return result.rows as T[];
+  } catch (error: any) {
+    // If table doesn't exist and we haven't tried to initialize, try auto-initialization
+    if (error?.code === '42P01' && !initializationAttempted) {
+      initializationAttempted = true;
+      console.log("Tables not found, attempting auto-initialization...");
+      try {
+        await initDatabase();
+        // Retry the query after initialization
+        const result = await dbPool.query(query, params || []);
+        return result.rows as T[];
+      } catch (initError) {
+        console.error("Auto-initialization failed:", initError);
+        throw new Error(
+          "Database tables not initialized. Please visit /api/init-db to initialize the database."
+        );
+      }
+    }
+    throw error;
+  }
 }
 
 // Initialize database tables
+// This function uses direct pool queries to avoid recursion with dbQuery
 export async function initDatabase() {
+  const dbPool = getPool();
+  
   try {
     // Create users table
-    await dbQuery(`
+    await dbPool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id TEXT PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
@@ -60,7 +91,7 @@ export async function initDatabase() {
     `);
 
     // Create magic_link_tokens table
-    await dbQuery(`
+    await dbPool.query(`
       CREATE TABLE IF NOT EXISTS magic_link_tokens (
         token TEXT PRIMARY KEY,
         email TEXT NOT NULL,
@@ -71,7 +102,7 @@ export async function initDatabase() {
     `);
 
     // Create password_reset_tokens table
-    await dbQuery(`
+    await dbPool.query(`
       CREATE TABLE IF NOT EXISTS password_reset_tokens (
         token TEXT PRIMARY KEY,
         email TEXT NOT NULL,
@@ -82,19 +113,19 @@ export async function initDatabase() {
     `);
 
     // Create indexes for better performance
-    await dbQuery(`
+    await dbPool.query(`
       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)
     `);
     
-    await dbQuery(`
+    await dbPool.query(`
       CREATE INDEX IF NOT EXISTS idx_users_stripe_customer_id ON users(stripe_customer_id)
     `);
 
-    await dbQuery(`
+    await dbPool.query(`
       CREATE INDEX IF NOT EXISTS idx_magic_link_tokens_email ON magic_link_tokens(email)
     `);
 
-    await dbQuery(`
+    await dbPool.query(`
       CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_email ON password_reset_tokens(email)
     `);
 
