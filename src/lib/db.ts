@@ -11,7 +11,7 @@ function getPool(): Pool {
   if (!pool) {
     // Vercel Postgres provides POSTGRES_URL automatically
     // For local dev, use POSTGRES_URL or DATABASE_URL from .env.local
-    const connectionString = process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
+    const connectionString = process.env.mlops_POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || process.env.mlops_PRISMA_DATABASE_URL;
     
     if (!connectionString) {
       throw new Error(
