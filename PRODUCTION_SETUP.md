@@ -13,13 +13,41 @@
 
 You need to migrate to a proper database. Recommended options:
 
-#### Option 1: Vercel Postgres (Recommended)
+#### Option 1: Vercel Postgres (Recommended) ✅ **IMPLEMENTED**
+
+The codebase now uses Postgres! Here's how to set it up:
+
+**1. Create Vercel Postgres Database:**
 ```bash
-# Install Vercel Postgres
-vercel postgres create mlops-academy-db
+# In your Vercel project dashboard:
+# 1. Go to Storage tab
+# 2. Click "Create Database"
+# 3. Select "Postgres"
+# 4. Choose a name (e.g., "mlops-academy-db")
+# 5. Select a region
+# 6. Click "Create"
 ```
 
-Then update `src/lib/users.ts` to use Postgres instead of file/in-memory storage.
+Vercel will automatically add `POSTGRES_URL` to your environment variables.
+
+**2. Initialize Database Tables:**
+After creating the database, visit this URL once to create the tables:
+```
+https://your-site.vercel.app/api/init-db
+```
+
+Or run locally (if you have POSTGRES_URL set):
+```bash
+curl http://localhost:3000/api/init-db
+```
+
+**3. For Local Development:**
+Add to your `.env.local`:
+```bash
+POSTGRES_URL=postgresql://user:password@localhost:5432/mlops_academy
+```
+
+Replace with your local Postgres credentials.
 
 #### Option 2: Supabase (Free tier available)
 - Sign up at https://supabase.com

@@ -1,6 +1,5 @@
 import { randomBytes } from "crypto";
-import { promises as fs } from "fs";
-import path from "path";
+import { dbQuery } from "./db";
 
 export interface MagicLinkToken {
   token: string;
@@ -9,71 +8,20 @@ export interface MagicLinkToken {
   used: boolean;
 }
 
-// Check if we're in a serverless environment (Vercel, etc.)
-const IS_SERVERLESS = process.env.VERCEL === "1" || process.env.AWS_LAMBDA_FUNCTION_NAME || !process.env.HOME;
-
-// In-memory storage for serverless environments
-let inMemoryTokens: MagicLinkToken[] = [];
-
-const TOKENS_FILE = path.join(process.cwd(), "data", "magic-link-tokens.json");
-
-async function ensureDataDir() {
-  if (IS_SERVERLESS) {
-    return; // Skip file operations in serverless
-  }
-  const dataDir = path.join(process.cwd(), "data");
-  try {
-    await fs.access(dataDir);
-  } catch {
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-    } catch (error) {
-      // If we can't create directory, we're likely in serverless - use in-memory
-      console.warn("Cannot create data directory, using in-memory storage");
-    }
-  }
-}
-
-async function readTokens(): Promise<MagicLinkToken[]> {
-  if (IS_SERVERLESS) {
-    return inMemoryTokens;
-  }
-  
-  try {
-    await ensureDataDir();
-    const data = await fs.readFile(TOKENS_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    // Fallback to in-memory if file operations fail
-    return inMemoryTokens;
-  }
-}
-
-async function writeTokens(tokens: MagicLinkToken[]): Promise<void> {
-  if (IS_SERVERLESS) {
-    inMemoryTokens = tokens;
-    return;
-  }
-  
-  try {
-    await ensureDataDir();
-    await fs.writeFile(TOKENS_FILE, JSON.stringify(tokens, null, 2));
-  } catch (error) {
-    // Fallback to in-memory if file operations fail
-    console.warn("Cannot write tokens to file, using in-memory storage", error);
-    inMemoryTokens = tokens;
-  }
+interface TokenRow {
+  token: string;
+  email: string;
+  expires_at: Date | string;
+  used: boolean;
 }
 
 export async function createMagicLinkToken(email: string): Promise<string> {
-  const tokens = await readTokens();
-  
   // Clean up expired tokens
   const now = new Date();
-  const validTokens = tokens.filter((t) => {
-    const expiresAt = new Date(t.expiresAt);
-    return expiresAt > now && !t.used;
-  });
+  await dbQuery(
+    `DELETE FROM magic_link_tokens WHERE expires_at < $1 OR used = true`,
+    [now]
+  );
 
   // Generate secure random token
   const token = randomBytes(32).toString("hex");
@@ -81,38 +29,42 @@ export async function createMagicLinkToken(email: string): Promise<string> {
   // Token expires in 1 hour
   const expiresAt = new Date(now.getTime() + 60 * 60 * 1000);
 
-  const magicToken: MagicLinkToken = {
-    token,
-    email: email.toLowerCase(),
-    expiresAt: expiresAt.toISOString(),
-    used: false,
-  };
-
-  validTokens.push(magicToken);
-  await writeTokens(validTokens);
+  // Insert token into database
+  await dbQuery(
+    `INSERT INTO magic_link_tokens (token, email, expires_at) VALUES ($1, $2, $3)`,
+    [token, email.toLowerCase(), expiresAt]
+  );
 
   return token;
 }
 
 export async function verifyMagicLinkToken(token: string): Promise<string | null> {
-  const tokens = await readTokens();
   const now = new Date();
   
-  const magicToken = tokens.find((t) => t.token === token && !t.used);
+  // Find token that hasn't been used and hasn't expired
+  const rows = await dbQuery<TokenRow>(
+    `SELECT * FROM magic_link_tokens WHERE token = $1 AND used = false AND expires_at > $2`,
+    [token, now]
+  );
 
-  if (!magicToken) {
-    return null; // Token not found or already used
+  if (rows.length === 0) {
+    return null; // Token not found, already used, or expired
   }
 
-  const expiresAt = new Date(magicToken.expiresAt);
+  const tokenRow = rows[0];
+  const expiresAt = typeof tokenRow.expires_at === "string" 
+    ? new Date(tokenRow.expires_at) 
+    : tokenRow.expires_at;
+
   if (expiresAt <= now) {
     return null; // Token expired
   }
 
   // Mark token as used
-  magicToken.used = true;
-  await writeTokens(tokens);
+  await dbQuery(
+    `UPDATE magic_link_tokens SET used = true WHERE token = $1`,
+    [token]
+  );
 
-  return magicToken.email;
+  return tokenRow.email;
 }
-

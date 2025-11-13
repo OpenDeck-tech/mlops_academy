@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
-import { promises as fs } from "fs";
-import path from "path";
+import { dbQuery } from "./db";
 
 export interface User {
   id: string;
@@ -10,97 +9,76 @@ export interface User {
   createdAt: string;
 }
 
-// Check if we're in a serverless environment (Vercel, etc.)
-const IS_SERVERLESS = process.env.VERCEL === "1" || process.env.AWS_LAMBDA_FUNCTION_NAME || !process.env.HOME;
-
-// ⚠️ WARNING: In-memory storage for serverless environments
-// This is NOT suitable for production! Data is lost between function invocations.
-// You MUST migrate to a database (Postgres, MongoDB, etc.) for production use.
-// See PRODUCTION_SETUP.md for details.
-let inMemoryUsers: User[] = [];
-
-const USERS_FILE = path.join(process.cwd(), "data", "users.json");
-
-async function ensureDataDir() {
-  if (IS_SERVERLESS) {
-    return; // Skip file operations in serverless
-  }
-  const dataDir = path.join(process.cwd(), "data");
-  try {
-    await fs.access(dataDir);
-  } catch {
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-    } catch (error) {
-      // If we can't create directory, we're likely in serverless - use in-memory
-      console.warn("Cannot create data directory, using in-memory storage");
-    }
-  }
+// Database row interface (snake_case from Postgres)
+interface UserRow {
+  id: string;
+  email: string;
+  password_hash: string;
+  stripe_customer_id: string | null;
+  created_at: Date | string;
 }
 
-async function readUsers(): Promise<User[]> {
-  if (IS_SERVERLESS) {
-    return inMemoryUsers;
-  }
-  
-  try {
-    await ensureDataDir();
-    const data = await fs.readFile(USERS_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    // Fallback to in-memory if file operations fail
-    return inMemoryUsers;
-  }
-}
-
-async function writeUsers(users: User[]): Promise<void> {
-  if (IS_SERVERLESS) {
-    inMemoryUsers = users;
-    return;
-  }
-  
-  try {
-    await ensureDataDir();
-    await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
-  } catch (error) {
-    // Fallback to in-memory if file operations fail
-    console.warn("Cannot write users to file, using in-memory storage", error);
-    inMemoryUsers = users;
-  }
+function rowToUser(row: UserRow): User {
+  return {
+    id: row.id,
+    email: row.email,
+    passwordHash: row.password_hash,
+    stripeCustomerId: row.stripe_customer_id || undefined,
+    createdAt: typeof row.created_at === "string" ? row.created_at : row.created_at.toISOString(),
+  };
 }
 
 export async function createUser(email: string, password: string): Promise<User> {
-  const users = await readUsers();
-  
   // Check if user already exists
-  if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
+  const existing = await getUserByEmail(email);
+  if (existing) {
     throw new Error("User already exists");
   }
 
   // Hash password
   const passwordHash = await bcrypt.hash(password, 10);
 
-  const user: User = {
-    id: `user_${Date.now()}_${Math.random().toString(36).substring(7)}`,
-    email: email.toLowerCase(),
+  const userId = `user_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+  const emailLower = email.toLowerCase();
+
+  // Insert user into database
+  await dbQuery(
+    `INSERT INTO users (id, email, password_hash) VALUES ($1, $2, $3)`,
+    [userId, emailLower, passwordHash]
+  );
+
+  return {
+    id: userId,
+    email: emailLower,
     passwordHash,
     createdAt: new Date().toISOString(),
   };
-
-  users.push(user);
-  await writeUsers(users);
-
-  return user;
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-  const users = await readUsers();
-  return users.find((u) => u.email.toLowerCase() === email.toLowerCase()) || null;
+  const rows = await dbQuery<UserRow>(
+    `SELECT * FROM users WHERE email = $1`,
+    [email.toLowerCase()]
+  );
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rowToUser(rows[0]);
 }
 
 export async function getUserById(id: string): Promise<User | null> {
-  const users = await readUsers();
-  return users.find((u) => u.id === id) || null;
+  const rows = await dbQuery<UserRow>(
+    `SELECT * FROM users WHERE id = $1`,
+    [id]
+  );
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rowToUser(rows[0]);
 }
 
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
@@ -108,31 +86,36 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 export async function linkStripeCustomer(userId: string, stripeCustomerId: string): Promise<void> {
-  const users = await readUsers();
-  const user = users.find((u) => u.id === userId);
-  if (user) {
-    user.stripeCustomerId = stripeCustomerId;
-    await writeUsers(users);
-  }
+  await dbQuery(
+    `UPDATE users SET stripe_customer_id = $1 WHERE id = $2`,
+    [stripeCustomerId, userId]
+  );
 }
 
 export async function getUserByStripeCustomerId(stripeCustomerId: string): Promise<User | null> {
-  const users = await readUsers();
-  return users.find((u) => u.stripeCustomerId === stripeCustomerId) || null;
+  const rows = await dbQuery<UserRow>(
+    `SELECT * FROM users WHERE stripe_customer_id = $1`,
+    [stripeCustomerId]
+  );
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rowToUser(rows[0]);
 }
 
 export async function updateUserPassword(email: string, newPassword: string): Promise<void> {
-  const users = await readUsers();
-  const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  const passwordHash = await bcrypt.hash(newPassword, 10);
   
+  const result = await dbQuery(
+    `UPDATE users SET password_hash = $1 WHERE email = $2`,
+    [passwordHash, email.toLowerCase()]
+  );
+
+  // Check if any rows were updated
+  const user = await getUserByEmail(email);
   if (!user) {
     throw new Error("User not found");
   }
-
-  // Hash new password
-  const passwordHash = await bcrypt.hash(newPassword, 10);
-  user.passwordHash = passwordHash;
-  
-  await writeUsers(users);
 }
-

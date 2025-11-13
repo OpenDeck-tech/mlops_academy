@@ -36,6 +36,52 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="container mx-auto max-w-5xl px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
+            The next generation of best-prepared innovators are MLOps engineers
+          </h2>
+        </div>
+        
+        <div className="max-w-3xl mx-auto">
+          <h3 className="text-xl font-medium mb-6 text-center text-muted-foreground">Why MLOps engineers?</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-semibold mb-2">Bridge theory and production</h4>
+                <p className="text-sm text-muted-foreground">
+                  MLOps engineers uniquely combine machine learning expertise with systems engineering, turning research into real-world impact.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-semibold mb-2">Master complexity at scale</h4>
+                <p className="text-sm text-muted-foreground">
+                  They navigate the full ML lifecycle—from data pipelines to model deployment—building systems that work reliably at scale.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-semibold mb-2">Drive business outcomes</h4>
+                <p className="text-sm text-muted-foreground">
+                  By ensuring models perform in production, MLOps engineers directly connect technical work to measurable business value.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-semibold mb-2">Future-proof skills</h4>
+                <p className="text-sm text-muted-foreground">
+                  As AI adoption accelerates, the demand for engineers who can operationalize ML systems continues to grow exponentially.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section id="curriculum" className="container mx-auto max-w-5xl px-6 pb-24">
         <div className="grid gap-6 md:grid-cols-3">
           <Card>
