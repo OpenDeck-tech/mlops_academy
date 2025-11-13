@@ -19,9 +19,13 @@ function getPool(): Pool {
     
     if (!connectionString) {
       throw new Error(
-        "POSTGRES_URL, DATABASE_URL, or mlops_DATABASE_URL must be set. " +
-        "For local: postgresql://user:password@localhost:5432/dbname\n" +
-        "For Vercel: POSTGRES_URL is automatically set when you add Vercel Postgres"
+        "Database connection string not found. Please set one of:\n" +
+        "  - POSTGRES_URL\n" +
+        "  - DATABASE_URL\n" +
+        "  - mlops_DATABASE_URL\n\n" +
+        "Create a .env.local file with:\n" +
+        "  POSTGRES_URL=postgresql://username@localhost:5432/database_name\n\n" +
+        "See .env.local.example for a template."
       );
     }
 
