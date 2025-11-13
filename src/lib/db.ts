@@ -12,7 +12,7 @@ function getPool(): Pool {
     // Vercel Postgres provides POSTGRES_URL automatically
     // For local dev, use POSTGRES_URL, DATABASE_URL, or mlops_DATABASE_URL from .env.local
     const connectionString = 
-      process.env.POSTGRES_URL || 
+      process.env.mlops_POSTGRES_URL || 
       process.env.DATABASE_URL || 
       process.env.mlops_DATABASE_URL ||
       process.env.POSTGRES_PRISMA_URL;
