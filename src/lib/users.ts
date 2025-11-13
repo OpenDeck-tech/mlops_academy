@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { dbQuery } from "./db";
+import prisma from "./prisma";
 
 export interface User {
   id: string;
@@ -41,31 +42,41 @@ export async function createUser(email: string, password: string): Promise<User>
   const userId = `user_${Date.now()}_${Math.random().toString(36).substring(7)}`;
   const emailLower = email.toLowerCase();
 
-  // Insert user into database
-  await dbQuery(
-    `INSERT INTO users (id, email, password_hash) VALUES ($1, $2, $3)`,
-    [userId, emailLower, passwordHash]
-  );
+  // Insert user into database using Prisma
+  const user = await prisma.user.create({
+    data: {
+      id: userId,
+      email: emailLower,
+      passwordHash: passwordHash,
+    }
+  });
 
   return {
-    id: userId,
-    email: emailLower,
-    passwordHash,
-    createdAt: new Date().toISOString(),
+    id: user.id,
+    email: user.email,
+    passwordHash: user.passwordHash,
+    stripeCustomerId: user.stripeCustomerId || undefined,
+    createdAt: user.createdAt.toISOString(),
   };
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-  const rows = await dbQuery<UserRow>(
-    `SELECT * FROM users WHERE email = $1`,
-    [email.toLowerCase()]
-  );
+  // Using Prisma instead of raw SQL
+  const user = await prisma.user.findUnique({
+    where: { email: email.toLowerCase() }
+  });
 
-  if (rows.length === 0) {
+  if (!user) {
     return null;
   }
 
-  return rowToUser(rows[0]);
+  return {
+    id: user.id,
+    email: user.email,
+    passwordHash: user.passwordHash,
+    stripeCustomerId: user.stripeCustomerId || undefined,
+    createdAt: user.createdAt.toISOString(),
+  };
 }
 
 export async function getUserById(id: string): Promise<User | null> {
