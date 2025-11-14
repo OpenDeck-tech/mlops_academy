@@ -5,9 +5,10 @@ datasource db {
 }
 
 // Define custom output path for generated Prisma Client
+// Using 'generated' folder to avoid conflict with Next.js 'app' directory
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated-prisma-client"
+  output   = "../generated/prisma-client"
 }
 
 // User model
