@@ -10,11 +10,11 @@ let pool: Pool | null = null;
 function getPool(): Pool {
   if (!pool) {
     // Vercel Postgres provides POSTGRES_URL automatically
-    // For local dev, use POSTGRES_URL, DATABASE_URL, or mlops_DATABASE_URL from .env.local
+    // For local dev, use POSTGRES_URL, DATABASE_URL, or mlops_PRISMA_DATABASE_URL from .env.local
     const connectionString = 
       process.env.mlops_POSTGRES_URL || 
       process.env.DATABASE_URL || 
-      process.env.mlops_DATABASE_URL ||
+      process.env.mlops_PRISMA_DATABASE_URL ||
       process.env.POSTGRES_PRISMA_URL;
     
     if (!connectionString) {
@@ -22,7 +22,7 @@ function getPool(): Pool {
         "Database connection string not found. Please set one of:\n" +
         "  - POSTGRES_URL\n" +
         "  - DATABASE_URL\n" +
-        "  - mlops_DATABASE_URL\n\n" +
+        "  - mlops_PRISMA_DATABASE_URL\n\n" +
         "Create a .env.local file with:\n" +
         "  POSTGRES_URL=postgresql://username@localhost:5432/database_name\n\n" +
         "See .env.local.example for a template."
