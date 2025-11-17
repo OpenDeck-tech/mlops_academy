@@ -1,0 +1,49 @@
+// Define database connection via the `DATABASE_URL` env var
+datasource db {
+  provider = "postgresql"
+  url      = env("mlops_PRISMA_DATABASE_URL")
+}
+
+// Define custom output path for generated Prisma Client
+// Using 'generated' folder to avoid conflict with Next.js 'app' directory
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma-client"
+}
+
+// User model
+// Note: Currently using String id to match existing implementation
+// You can change to Int @id @default(autoincrement()) if you prefer
+model User {
+  id               String   @id
+  email            String   @unique
+  passwordHash     String   @map("password_hash")
+  stripeCustomerId String?  @map("stripe_customer_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+// Magic link tokens for passwordless authentication
+model MagicLinkToken {
+  token     String   @id
+  email     String
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([email])
+  @@map("magic_link_tokens")
+}
+
+// Password reset tokens
+model PasswordResetToken {
+  token     String   @id
+  email     String
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([email])
+  @@map("password_reset_tokens")
+}
