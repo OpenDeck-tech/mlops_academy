@@ -107,13 +107,16 @@ export async function POST(request: Request) {
         { 
           success: true,
           message: "Account verified. Please subscribe to access Pro content.",
-          redirectTo: "/#pricing"
+          redirectTo: "/blank"
         },
         { status: 200 }
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ 
+      success: true,
+      redirectTo: "/blank"
+    });
   } catch (error) {
     console.error("Login error", error);
     return NextResponse.json(

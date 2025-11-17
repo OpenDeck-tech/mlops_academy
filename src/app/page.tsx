@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ShellCommandsSection } from "@/components/shell-commands-section";
+import { LogoCarousel } from "@/components/logo-carousel";
 import Link from "next/link";
 
 export default function Home() {
@@ -15,6 +16,14 @@ export default function Home() {
 
   return (
     <main>
+      <div className="absolute top-4 left-4 flex items-center gap-3">
+        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
+          <Link href="/signup" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign Up</Link>
+        </div>
+        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
+          <Link href="/login" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign In</Link>
+        </div>
+      </div>
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
           Dashboard
@@ -29,8 +38,6 @@ export default function Home() {
         </p>
         <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
           <Button size="lg" onClick={checkout}>Get Pro Access</Button>
-          <Link href="/signup" className="text-sm underline">Sign Up</Link>
-          <Link href="/login" className="text-sm underline">Sign In</Link>
           <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
           <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
         </div>
@@ -136,6 +143,7 @@ export default function Home() {
           </CardContent>
         </Card>
       </section>
+      <LogoCarousel />
     </main>
   );
 }

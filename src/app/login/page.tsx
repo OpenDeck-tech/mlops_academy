@@ -39,7 +39,7 @@ export default function LoginPage() {
         } else if (data.message?.includes("create an account")) {
           setError(data.message + ". You can continue using email-only login.");
         } else {
-          window.location.href = "/pro";
+          window.location.href = "/blank";
         }
       } else {
         setError(data.error || "Unable to log in. Please check your credentials.");
