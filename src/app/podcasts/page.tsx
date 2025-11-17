@@ -8,17 +8,24 @@ export default function PodcastsPage() {
   const podcasts = [
     {
       id: 1,
-      title: "MLOps Podcast",
-      description: "Discussions about machine learning operations, best practices, and industry insights",
-      url: "https://example.com/mlops-podcast",
-      episode: "Episode 1: Getting Started with MLOps",
+      title: "MLOps London On Air",
+      description: "A podcast spin-off from the MLOps London quarterly meetups, diving into the evolving strategy and market landscape of ML and AI. Each episode explores how emerging technologies and industry shifts are shaping real-world applications across sectors.",
+      url: "https://open.spotify.com/show/7tdDbryfI1kzRloVvCyuqR?si=6337ddc640714759",
+      episode: "Latest: The Invisible Work Behind Responsible AI with Raluca Crisan",
     },
     {
       id: 2,
-      title: "The MLOps Community Podcast",
-      description: "Conversations with MLOps practitioners and thought leaders",
-      url: "https://example.com/mlops-community",
-      episode: "Episode 5: Production ML Systems",
+      title: "MLOps.community",
+      description: "Relaxed Conversations around getting AI into production, whatever shape that may come in (agentic, traditional ML, LLMs, Vibes, etc)",
+      url: "https://open.spotify.com/show/7wZygk3mUUqBaRbBGB1lgh?si=c8c932c14c4c4ae1",
+      episode: "Latest: The Future of AI Operations: Insights from PwC AI Managed Services",
+    },
+    {
+      id: 3,
+      title: "MLOps Weekly Podcast",
+      description: "Join each week as we talk to MLOps operators, practitioners, and professionals about the current state of MLOps",
+      url: "https://open.spotify.com/show/0RZiV4zf2GKu1rp1rtNPRZ?si=a100b86c93684e77",
+      episode: "Latest: MLOps and Feature Stores in 2025 with Ben Epstein",
     },
     // Add more podcasts here as needed
   ];
