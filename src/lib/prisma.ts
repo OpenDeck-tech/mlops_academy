@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
 // Get the connection string that Prisma will use (from schema: mlops_PRISMA_DATABASE_URL)
 // Prisma reads from mlops_PRISMA_DATABASE_URL as specified in schema.prisma
@@ -15,14 +16,13 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('[Prisma] Using Accelerate:', isAccelerate);
 }
 
-// Only import and use Accelerate if we have an Accelerate connection string
+// Only use Accelerate if we have an Accelerate connection string
 // This prevents errors when using regular postgres:// URLs
 let prisma: any;
 
 if (isAccelerate && connectionString) {
   // Use Accelerate only when we have an Accelerate connection string
   try {
-    const { withAccelerate } = require('@prisma/extension-accelerate');
     const basePrisma = new PrismaClient({
       datasources: {
         db: {
