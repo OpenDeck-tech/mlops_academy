@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../generated/prisma-client'
+import { PrismaClient } from '@prisma/client'
 
 // Get the connection string that Prisma will use (from schema: mlops_PRISMA_DATABASE_URL)
 // Prisma reads from mlops_PRISMA_DATABASE_URL as specified in schema.prisma

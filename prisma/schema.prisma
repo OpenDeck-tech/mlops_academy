@@ -4,11 +4,10 @@ datasource db {
   url      = env("mlops_PRISMA_DATABASE_URL")
 }
 
-// Define custom output path for generated Prisma Client
-// Using 'generated' folder to avoid conflict with Next.js 'app' directory
+// Use default Prisma Client location (node_modules/.prisma/client)
+// This works better with Next.js builds and production deployments
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma-client"
 }
 
 // User model
