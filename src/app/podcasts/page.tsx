@@ -56,27 +56,90 @@ export default function PodcastsPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {podcasts.map((podcast) => (
-            <Card key={podcast.id} className="h-full transition-all hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl mb-2">{podcast.title}</CardTitle>
-                <CardDescription>{podcast.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium mb-1">Featured Episode:</p>
-                  <p className="text-sm text-muted-foreground">{podcast.episode}</p>
-                </div>
-                <Button asChild className="w-full" variant="outline">
-                  <a href={podcast.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    Listen Now
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-8">
+          {/* Embedded Podcast Players */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* MLOps London On Air with embedded player */}
+            {podcasts.find(p => p.id === 1) && (
+              <Card className="transition-all hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl mb-2">MLOps London On Air</CardTitle>
+                  <CardDescription>
+                    A podcast spin-off from the MLOps London quarterly meetups, diving into the evolving strategy and market landscape of ML and AI
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mt-4">
+                    <iframe
+                      data-testid="embed-iframe"
+                      style={{ borderRadius: '12px' }}
+                      src="https://open.spotify.com/embed/show/7tdDbryfI1kzRloVvCyuqR?utm_source=generator"
+                      width="100%"
+                      height="352"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* MLOps.community with embedded player */}
+            {podcasts.find(p => p.id === 2) && (
+              <Card className="transition-all hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl mb-2">MLOps.community</CardTitle>
+                  <CardDescription>
+                    Relaxed Conversations around getting AI into production, whatever shape that may come in (agentic, traditional ML, LLMs, Vibes, etc)
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mt-4">
+                    <iframe
+                      data-testid="embed-iframe"
+                      style={{ borderRadius: '12px' }}
+                      src="https://open.spotify.com/embed/show/7wZygk3mUUqBaRbBGB1lgh/video?utm_source=generator"
+                      width="100%"
+                      height="351"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* MLOps Weekly Podcast with embedded player */}
+            {podcasts.find(p => p.id === 3) && (
+              <Card className="transition-all hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl mb-2">MLOps Weekly Podcast</CardTitle>
+                  <CardDescription>
+                    Join each week as we talk to MLOps operators, practitioners, and professionals about the current state of MLOps
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mt-4">
+                    <iframe
+                      data-testid="embed-iframe"
+                      style={{ borderRadius: '12px' }}
+                      src="https://open.spotify.com/embed/show/0RZiV4zf2GKu1rp1rtNPRZ?utm_source=generator"
+                      width="100%"
+                      height="352"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
       )}
     </div>
