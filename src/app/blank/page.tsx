@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Server, Code, Layers, Rocket, Headphones } from "lucide-react";
+import { Server, Code, Layers, Rocket, Headphones, LogOut } from "lucide-react";
 
 export default function BlankPage() {
+  async function handleLogout() {
+    await fetch("/api/logout", { method: "POST" });
+    window.location.href = "/";
+  }
   const environments = [
     {
       id: "local",
@@ -41,7 +47,18 @@ export default function BlankPage() {
   ];
 
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
+    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
+      {/* Sign Out Button - Circular */}
+      <div className="absolute top-4 right-4 z-10">
+        <button
+          onClick={handleLogout}
+          className="w-12 h-12 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+          title="Sign Out"
+        >
+          <LogOut className="h-5 w-5" />
+        </button>
+      </div>
+
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-semibold mb-2">MLOps Environments</h1>
         <p className="text-muted-foreground text-lg mb-6">
