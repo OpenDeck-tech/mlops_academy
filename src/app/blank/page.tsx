@@ -48,8 +48,15 @@ export default function BlankPage() {
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
-      {/* Sign Out Button - Circular */}
-      <div className="absolute top-4 right-4 z-10">
+      {/* Sign Up and Sign In Buttons - Top Right */}
+      <div className="absolute top-4 right-4 flex items-center gap-3 z-10">
+        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
+          <Link href="/signup" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign Up</Link>
+        </div>
+        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
+          <Link href="/login" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign In</Link>
+        </div>
+        {/* Sign Out Button - Circular */}
         <button
           onClick={handleLogout}
           className="w-12 h-12 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center transition-all hover:scale-110 shadow-sm"
