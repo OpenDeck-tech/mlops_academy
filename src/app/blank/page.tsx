@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Server, Code, Layers, Rocket, Headphones, LogOut } from "lucide-react";
+import { MLOpsSidebar } from "@/components/mlops-sidebar";
 
 export default function BlankPage() {
   async function handleLogout() {
@@ -47,9 +48,11 @@ export default function BlankPage() {
   ];
 
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
-      {/* Sign Out Button - Circular */}
-      <div className="absolute top-4 right-4 z-10">
+    <div className="flex min-h-screen">
+      <MLOpsSidebar />
+      <div className="flex-1 ml-64 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
+        {/* Sign Out Button - Circular */}
+        <div className="absolute top-4 right-4 z-10">
         <button
           onClick={handleLogout}
           className="w-12 h-12 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center transition-all hover:scale-110 shadow-sm"
@@ -71,25 +74,8 @@ export default function BlankPage() {
           </Link>
         </Button>
       </div>
-
-      {/* The MLOps Engineer Venn Diagram */}
-      <div className="mb-12 flex justify-center">
-        <Card className="max-w-4xl w-full">
-          <CardContent className="p-6">
-            <div className="relative w-full aspect-square max-w-3xl mx-auto">
-              <Image
-                src="/mlops-engineer-venn.png"
-                alt="The MLOps Engineer - Venn diagram showing the intersection of Infrastructure, Software, and Machine Learning"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
       
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
         {environments.map((env) => {
           const Icon = env.icon;
           return (
@@ -110,6 +96,24 @@ export default function BlankPage() {
             </Link>
           );
         })}
+      </div>
+
+      {/* The MLOps Engineer Venn Diagram */}
+      <div className="mt-12 flex justify-center">
+        <Card className="max-w-4xl w-full">
+          <CardContent className="p-6">
+            <div className="relative w-full aspect-square max-w-3xl mx-auto">
+              <Image
+                src="/mlops-engineer-venn.png"
+                alt="The MLOps Engineer - Venn diagram showing the intersection of Infrastructure, Software, and Machine Learning"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
       </div>
     </div>
   );
