@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ArrowLeft, TestTube, Container, Terminal, Settings } from "lucide-react";
+import { ArrowLeft, TestTube, Container, Terminal, Settings, Code2 } from "lucide-react";
 
 export default function LocalEnvironmentPage() {
   const topics = [
@@ -32,6 +32,13 @@ export default function LocalEnvironmentPage() {
       icon: Settings,
       content: "Learn environment setup, virtual environments, dependency management, IDE configuration, and tools for productive local ML development.",
     },
+    {
+      id: "programming",
+      title: "Programming",
+      description: "LeetCode questions and answers on data structures and software engineering",
+      icon: Code2,
+      content: "Practice coding with LeetCode problems covering data structures, algorithms, and software engineering principles essential for MLOps development.",
+    },
   ];
 
   return (
@@ -51,8 +58,9 @@ export default function LocalEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          return (
-            <Card key={topic.id} className="h-full transition-all hover:shadow-lg">
+          const href = topic.id === "programming" ? "/environments/local/programming" : undefined;
+          const cardContent = (
+            <>
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/20">
@@ -65,6 +73,21 @@ export default function LocalEnvironmentPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">{topic.content}</p>
               </CardContent>
+            </>
+          );
+          
+          return (
+            <Card 
+              key={topic.id} 
+              className={`h-full transition-all hover:shadow-lg ${href ? "cursor-pointer" : ""}`}
+            >
+              {href ? (
+                <Link href={href} className="block h-full">
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
             </Card>
           );
         })}

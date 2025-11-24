@@ -101,6 +101,17 @@ export default function LoginPage() {
                   We&apos;ve sent a sign-in link to <strong>{email}</strong>. Click the link in the email to sign in.
                 </p>
               </div>
+              {email.toLowerCase().endsWith("@gmail.com") && (
+                <Button
+                  variant="default"
+                  className="w-full"
+                  onClick={() => {
+                    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
+                  }}
+                >
+                  Open Gmail
+                </Button>
+              )}
               <Button
                 variant="outline"
                 className="w-full"

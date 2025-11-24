@@ -100,9 +100,9 @@ export default function BlankPage() {
 
       {/* The MLOps Engineer Venn Diagram */}
       <div className="mt-12 flex justify-center">
-        <Card className="max-w-4xl w-full">
+        <Card className="max-w-xl w-full">
           <CardContent className="p-6">
-            <div className="relative w-full aspect-square max-w-3xl mx-auto">
+            <div className="relative w-full aspect-square max-w-md mx-auto">
               <Image
                 src="/mlops-engineer-venn.png"
                 alt="The MLOps Engineer - Venn diagram showing the intersection of Infrastructure, Software, and Machine Learning"

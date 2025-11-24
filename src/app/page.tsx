@@ -34,9 +34,11 @@ export default function Home() {
         <p className="text-muted-foreground mt-4 text-lg">
           Curated, no-fluff curriculum from real-world experience. Tools change, fundamentals don&apos;t.
         </p>
-        <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
-          <Button size="lg" onClick={checkout}>Get Pro Access</Button>
-          <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
+        <div className="mt-8 flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center gap-3">
+            <Button size="lg" onClick={checkout}>Get Pro Access</Button>
+            <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
+          </div>
           <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
         </div>
       </section>
@@ -136,7 +138,7 @@ export default function Home() {
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-muted-foreground mb-6">All current and future content. One subscription.</p>
-            <div className="text-5xl font-semibold">$19<span className="text-lg font-normal text-muted-foreground">/mo</span></div>
+            <div className="text-5xl font-semibold">$10.99<span className="text-lg font-normal text-muted-foreground">/mo</span></div>
             <Button size="lg" className="mt-6" onClick={checkout}>Subscribe</Button>
           </CardContent>
         </Card>
