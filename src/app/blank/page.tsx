@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Server, Code, Layers, Rocket, Headphones, LogOut } from "lucide-react";
+import { Server, Code, Layers, Rocket, LogOut } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 
 export default function BlankPage() {
@@ -64,15 +63,9 @@ export default function BlankPage() {
 
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-semibold mb-2">MLOps Environments</h1>
-        <p className="text-muted-foreground text-lg mb-6">
+        <p className="text-muted-foreground text-lg">
           Explore best practices, tricks, and concepts for each environment
         </p>
-        <Button asChild size="lg" className="bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0]">
-          <Link href="/podcasts" className="flex items-center gap-2">
-            <Headphones className="h-5 w-5" />
-            MLOps Podcasts
-          </Link>
-        </Button>
       </div>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
