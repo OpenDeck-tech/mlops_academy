@@ -66,8 +66,8 @@ const sidebarSections = [
     id: "roadmap",
     title: "MLOps Roadmap",
     icon: Map,
-    href: "https://roadmap.sh/mlops",
-    external: true,
+    href: "/roadmap",
+    external: false,
   },
 ];
 
