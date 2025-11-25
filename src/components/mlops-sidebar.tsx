@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map } from "lucide-react";
+import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 const sidebarSections = [
   {
@@ -71,10 +72,33 @@ const sidebarSections = [
 ];
 
 export function MLOpsSidebar() {
+  const [isPro, setIsPro] = useState(false);
+
+  useEffect(() => {
+    // Check Pro status from session
+    fetch("/api/check-pro-status")
+      .then((res) => res.json())
+      .then((data) => setIsPro(data.isPro || false))
+      .catch(() => setIsPro(false));
+  }, []);
+
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 pt-20">
       <nav className="space-y-2">
         <h2 className="mb-6 px-3 text-lg font-semibold">Resources</h2>
+        {isPro && (
+          <Link
+            href="/pro"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              "hover:bg-accent hover:text-accent-foreground",
+              "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/20 mb-4"
+            )}
+          >
+            <Crown className="h-5 w-5" />
+            <span>Pro Content</span>
+          </Link>
+        )}
         {sidebarSections.map((section) => {
           const Icon = section.icon;
           const linkClassName = cn(

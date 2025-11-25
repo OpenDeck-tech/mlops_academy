@@ -1,16 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Server, Code, Layers, Rocket, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Server, Code, Layers, Rocket, Crown, CheckCircle2 } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
+import { LogoutButtonClient } from "@/components/logout-button-client";
+import { getSession } from "@/lib/session";
 
-export default function BlankPage() {
-  async function handleLogout() {
-    await fetch("/api/logout", { method: "POST" });
-    window.location.href = "/";
-  }
+export default async function BlankPage() {
+  const sess = await getSession();
   const environments = [
     {
       id: "local",
@@ -52,20 +51,38 @@ export default function BlankPage() {
       <div className="flex-1 ml-64 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
         {/* Sign Out Button - Circular */}
         <div className="absolute top-4 right-4 z-10">
-        <button
-          onClick={handleLogout}
-          className="w-12 h-12 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center transition-all hover:scale-110 shadow-sm"
-          title="Sign Out"
-        >
-          <LogOut className="h-5 w-5" />
-        </button>
-      </div>
+          <LogoutButtonClient />
+        </div>
 
       <div className="mb-12 text-center">
-        <h1 className="text-4xl font-semibold mb-2">MLOps Environments</h1>
-        <p className="text-muted-foreground text-lg">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <h1 className="text-4xl font-semibold">MLOps Environments</h1>
+          {sess.isPro && (
+            <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0 px-3 py-1 flex items-center gap-1.5">
+              <Crown className="h-3.5 w-3.5" />
+              <span>Pro</span>
+            </Badge>
+          )}
+        </div>
+        <p className="text-muted-foreground text-lg mb-4">
           Explore best practices, tricks, and concepts for each environment
         </p>
+        {sess.isPro && (
+          <div className="flex items-center justify-center gap-3">
+            <Button asChild size="lg" className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white">
+              <Link href="/pro" className="flex items-center gap-2">
+                <Crown className="h-4 w-4" />
+                Access Pro Content
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4" />
+                Dashboard
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
