@@ -822,7 +822,7 @@ tfsec --format junit`}
                   <li><strong>aws cloudformation validate-template:</strong> Syntax validation</li>
                   <li><strong>cfn-lint:</strong> Linter for CloudFormation templates</li>
                   <li><strong>taskcat:</strong> Functional testing framework</li>
-                  <li><strong>cfn-nag:</strong> Security and compliance scanner</strong></li>
+                  <li><strong>cfn-nag:</strong> Security and compliance scanner</li>
                   <li><strong>cfripper:</strong> Security analysis tool</li>
                 </ul>
               </div>
