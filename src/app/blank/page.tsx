@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Server, Code, Layers, Rocket, Crown, CheckCircle2 } from "lucide-react";
+import { Server, Code, Layers, Rocket, CheckCircle2 } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 import { LogoutButtonClient } from "@/components/logout-button-client";
 import { getSession } from "@/lib/session";
@@ -58,8 +58,7 @@ export default async function BlankPage() {
         <div className="flex items-center justify-center gap-3 mb-2">
           <h1 className="text-4xl font-semibold">MLOps Environments</h1>
           {sess.isPro && (
-            <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0 px-3 py-1 flex items-center gap-1.5">
-              <Crown className="h-3.5 w-3.5" />
+            <Badge className="bg-[#39ff14] text-black border-0 px-4 py-1.5 rounded-full flex items-center font-semibold shadow-[0_0_10px_rgba(57,255,20,0.5)]">
               <span>Pro</span>
             </Badge>
           )}
@@ -69,9 +68,8 @@ export default async function BlankPage() {
         </p>
         {sess.isPro && (
           <div className="flex items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white">
+            <Button asChild size="lg" className="bg-[#39ff14] hover:bg-[#32e612] text-black rounded-full font-semibold shadow-[0_0_10px_rgba(57,255,20,0.5)]">
               <Link href="/pro" className="flex items-center gap-2">
-                <Crown className="h-4 w-4" />
                 Access Pro Content
               </Link>
             </Button>

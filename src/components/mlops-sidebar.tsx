@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, Crown } from "lucide-react";
+import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
@@ -90,12 +90,11 @@ export function MLOpsSidebar() {
           <Link
             href="/pro"
             className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-              "hover:bg-accent hover:text-accent-foreground",
-              "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/20 mb-4"
+              "flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors mb-4",
+              "bg-[#39ff14] hover:bg-[#32e612] text-black",
+              "shadow-[0_0_10px_rgba(57,255,20,0.5)]"
             )}
           >
-            <Crown className="h-5 w-5" />
             <span>Pro Content</span>
           </Link>
         )}
