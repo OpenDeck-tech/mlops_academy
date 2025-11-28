@@ -548,7 +548,7 @@ exclude_lines = [
                 <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
                   <li><strong>terraform validate:</strong> Syntax and configuration validation</li>
                   <li><strong>terraform plan:</strong> Preview changes before apply</li>
-                  <li><strong>terratest:</strong> Go-based testing framework</strong></li>
+                  <li><strong>terratest:</strong> Go-based testing framework</li>
                   <li><strong>terraform-compliance:</strong> BDD-style testing</li>
                   <li><strong>checkov:</strong> Static analysis for security and compliance</li>
                   <li><strong>tfsec:</strong> Security scanner for Terraform</li>
