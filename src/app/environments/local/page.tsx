@@ -58,7 +58,11 @@ export default function LocalEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          const href = topic.id === "programming" ? "/environments/local/programming" : undefined;
+          const href = topic.id === "programming" 
+            ? "/environments/local/programming" 
+            : topic.id === "testing"
+            ? "/environments/local/testing"
+            : undefined;
           const cardContent = (
             <>
               <CardHeader>
