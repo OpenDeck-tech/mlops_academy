@@ -699,7 +699,7 @@ func TestEC2Instance(t *testing.T) {
 pip install terraform-compliance
 
 # Or via Docker
-docker run --rm -v ${PWD}:/target -it \
+docker run --rm -v \${PWD}:/target -it \
     eerkunt/terraform-compliance`}
                 </pre>
               </div>
