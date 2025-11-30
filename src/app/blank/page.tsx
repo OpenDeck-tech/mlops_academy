@@ -84,11 +84,6 @@ export default async function BlankPage() {
         )}
       </div>
       
-      {/* Scrolling Quotes */}
-      <div className="mb-8">
-        <ScrollingQuotes />
-      </div>
-      
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
         {environments.map((env) => {
           const Icon = env.icon;
@@ -127,6 +122,11 @@ export default async function BlankPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Scrolling Quotes */}
+      <div className="mt-12">
+        <ScrollingQuotes />
       </div>
       </div>
     </div>
