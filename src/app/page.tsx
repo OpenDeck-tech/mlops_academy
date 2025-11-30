@@ -39,7 +39,7 @@ export default function Home() {
             <Button size="lg" onClick={checkout}>Get Pro Access</Button>
             <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
           </div>
-          <a href="#curriculum" className="text-sm underline">Preview curriculum</a>
+          <Link href="/environments/local" className="text-sm underline">Preview curriculum</Link>
         </div>
       </section>
 
