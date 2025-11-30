@@ -4,7 +4,6 @@ import { Quote } from "lucide-react";
 
 const quotes = [
   "Loose couple systems are always mostly better",
-  "If it works, don't touch it",
   "Premature optimization is the root of all evil",
   "Make it work, make it right, make it fast",
   "Code is read more often than it's written",

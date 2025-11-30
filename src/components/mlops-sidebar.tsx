@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map } from "lucide-react";
+import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
@@ -67,6 +67,13 @@ const sidebarSections = [
     title: "MLOps Roadmap",
     icon: Map,
     href: "/roadmap",
+    external: false,
+  },
+  {
+    id: "abbreviations",
+    title: "Abbreviations",
+    icon: FileText,
+    href: "/abbreviations",
     external: false,
   },
 ];
