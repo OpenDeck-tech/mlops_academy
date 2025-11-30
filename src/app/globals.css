@@ -131,10 +131,23 @@
     }
   }
   
+  @keyframes scroll-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+  
   .animate-scroll {
     animation: scroll 30s linear infinite;
     display: flex;
     width: fit-content;
+  }
+  
+  .animate-scroll-up {
+    animation: scroll-up 40s linear infinite;
   }
   
   .hover\:pause-animation:hover {

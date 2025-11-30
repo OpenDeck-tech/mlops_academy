@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Server, Code, Layers, Rocket, CheckCircle2 } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 import { LogoutButtonClient } from "@/components/logout-button-client";
+import { ScrollingQuotes } from "@/components/scrolling-quotes";
 import { getSession } from "@/lib/session";
 
 export default async function BlankPage() {
@@ -81,6 +82,11 @@ export default async function BlankPage() {
             </Button>
           </div>
         )}
+      </div>
+      
+      {/* Scrolling Quotes */}
+      <div className="mb-8">
+        <ScrollingQuotes />
       </div>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
