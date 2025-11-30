@@ -66,6 +66,8 @@ export default function LocalEnvironmentPage() {
             ? "/environments/local/docker"
             : topic.id === "local-setup"
             ? "/environments/local/local-setup"
+            : topic.id === "shell-commands"
+            ? "/environments/local/shell-commands"
             : undefined;
           const cardContent = (
             <>
