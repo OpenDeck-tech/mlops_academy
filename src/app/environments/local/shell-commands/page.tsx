@@ -146,7 +146,7 @@ export default function ShellCommandsPage() {
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1">
                     <div className="font-semibold mb-1">Create directory structure</div>
-                    <code>mkdir -p project/{src,tests,docs}</code>
+                    <code>{'mkdir -p project/{src,tests,docs}'}</code>
                   </div>
                   <CopyButton text="mkdir -p project/{src,tests,docs}" />
                 </div>
