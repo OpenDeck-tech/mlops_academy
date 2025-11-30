@@ -62,6 +62,8 @@ export default function LocalEnvironmentPage() {
             ? "/environments/local/programming" 
             : topic.id === "testing"
             ? "/environments/local/testing"
+            : topic.id === "docker"
+            ? "/environments/local/docker"
             : undefined;
           const cardContent = (
             <>
