@@ -443,23 +443,83 @@ code --install-extension eamodio.gitlens`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Using tfenv (Recommended)</h3>
-                <p className="text-sm text-muted-foreground mb-2">tfenv allows you to manage multiple Terraform versions.</p>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# macOS
+                <p className="text-sm text-muted-foreground mb-2">tfenv allows you to manage multiple Terraform versions easily, similar to pyenv for Python.</p>
+                
+                <div className="mb-4">
+                  <h4 className="font-semibold text-sm mb-2">Installation</h4>
+                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
+{`# macOS (Homebrew - Recommended)
 brew install tfenv
 
 # Linux
 git clone https://github.com/tfutils/tfenv.git ~/.tfenv
 echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+# Or for bash: echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bashrc
+source ~/.zshrc  # or source ~/.bashrc
 
-# Install Terraform
+# Verify installation
+tfenv --version`}
+                  </pre>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-semibold text-sm mb-2">Basic Usage</h4>
+                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
+{`# List available Terraform versions
+tfenv list-remote
+
+# Install a specific version
+tfenv install 1.6.0
+tfenv install 1.5.0
+
+# Install latest version
 tfenv install latest
-tfenv use latest
 
-# Verify
+# List installed versions
+tfenv list
+
+# Use a specific version (local to directory)
+tfenv use 1.6.0
+
+# Set global default version
+tfenv use 1.6.0 --set-default
+
+# Uninstall a version
+tfenv uninstall 1.5.0
+
+# Verify current version
 terraform version`}
-                </pre>
+                  </pre>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-semibold text-sm mb-2">Version Files</h4>
+                  <p className="text-sm text-muted-foreground mb-2">tfenv respects version files in your project directory:</p>
+                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
+{`# Create .terraform-version file in your project
+echo "1.6.0" > .terraform-version
+
+# tfenv will automatically use this version when you cd into the directory
+# This ensures all team members use the same Terraform version`}
+                  </pre>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-sm mb-2">Advanced Usage</h4>
+                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
+{`# Install min-required version (reads from required_version in terraform block)
+tfenv install min-required
+
+# Use min-required version
+tfenv use min-required
+
+# Check which version would be used
+tfenv version-name
+
+# Show installation path
+tfenv which`}
+                  </pre>
+                </div>
               </div>
 
               <div>
