@@ -43,9 +43,12 @@ export default function LocalEnvironmentPage() {
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+      <Link 
+        href="/blank" 
+        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
+      >
         <ArrowLeft className="h-4 w-4" />
-        Back to Environments
+        <span>Back to Environments</span>
       </Link>
 
       <div className="mb-12">
