@@ -109,7 +109,11 @@ export default function SignupPage() {
                 {error}
               </div>
             )}
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button 
+              type="submit" 
+              className="w-full bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold" 
+              disabled={loading}
+            >
               {loading ? "Creating account..." : "Create Account"}
             </Button>
           </form>

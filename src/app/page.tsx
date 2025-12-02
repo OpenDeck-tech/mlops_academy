@@ -17,12 +17,18 @@ export default function Home() {
   return (
     <main>
       <div className="absolute top-4 right-4 flex items-center gap-3">
-        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
-          <Link href="/signup" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign Up</Link>
-        </div>
-        <div className="bg-[#f5f5dc] px-4 py-2 rounded-lg">
-          <Link href="/login" className="text-sm font-medium text-gray-900 dark:text-gray-900">Sign In</Link>
-        </div>
+        <Link 
+          href="/signup" 
+          className="px-4 py-2 rounded-lg text-sm font-medium bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black transition-colors shadow-sm"
+        >
+          Sign Up
+        </Link>
+        <Link 
+          href="/login" 
+          className="px-4 py-2 rounded-lg text-sm font-medium bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black transition-colors shadow-sm"
+        >
+          Sign In
+        </Link>
         <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
           Dashboard
         </Link>

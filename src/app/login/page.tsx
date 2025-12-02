@@ -103,8 +103,7 @@ export default function LoginPage() {
               </div>
               {email.toLowerCase().endsWith("@gmail.com") && (
                 <Button
-                  variant="default"
-                  className="w-full"
+                  className="w-full bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold"
                   onClick={() => {
                     window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
                   }}
@@ -177,7 +176,11 @@ export default function LoginPage() {
                     {error}
                   </div>
                 )}
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold" 
+                  disabled={loading}
+                >
                   {loading 
                     ? (showPasswordInput ? "Signing in..." : "Sending...") 
                     : (showPasswordInput ? "Sign In" : "Send Magic Link")
