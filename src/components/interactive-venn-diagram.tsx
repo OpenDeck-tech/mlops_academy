@@ -186,7 +186,7 @@ export function InteractiveVennDiagram() {
                 
                 <text
                   x="200"
-                  y="250"
+                  y="275"
                   fontSize="16"
                   textAnchor="middle"
                   dominantBaseline="middle"
