@@ -51,8 +51,11 @@ export default function DevelopmentEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          return (
-            <Card key={topic.id} className="h-full transition-all hover:shadow-lg">
+          const href = topic.id === "collaboration" 
+            ? "/environments/development/collaboration"
+            : undefined;
+          const cardContent = (
+            <>
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="p-2 rounded-lg bg-green-50 dark:bg-green-950/20">
@@ -65,6 +68,21 @@ export default function DevelopmentEnvironmentPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">{topic.content}</p>
               </CardContent>
+            </>
+          );
+          
+          return (
+            <Card 
+              key={topic.id} 
+              className={`h-full transition-all hover:shadow-lg ${href ? "cursor-pointer" : ""}`}
+            >
+              {href ? (
+                <Link href={href} className="block h-full">
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
             </Card>
           );
         })}
