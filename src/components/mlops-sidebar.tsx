@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText } from "lucide-react";
+import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,14 +17,14 @@ const sidebarSections = [
   {
     id: "tweets",
     title: "Tweets on MLOps",
-    icon: Twitter,
+    icon: TwitterIcon,
     href: "https://x.com/search?q=%23mlops&src=typed_query&f=top",
     external: true,
   },
   {
     id: "practitioners",
     title: "MLOps Practitioners on LinkedIn",
-    icon: Linkedin,
+    icon: LinkedinIcon,
     href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL",
     external: true,
   },
