@@ -149,7 +149,7 @@ export function MLOpsSidebar() {
       <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
         <nav className="space-y-2 flex-1">
           {!isCollapsed && (
-            <h2 className="mb-6 px-3 text-lg font-semibold text-[#39ff14]">Resources</h2>
+            <h2 className="mb-6 px-3 text-lg font-semibold text-foreground">Resources</h2>
           )}
           {isPro && (
             <TooltipProvider>

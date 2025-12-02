@@ -131,12 +131,10 @@ export default async function BlankPage() {
       <div className="mt-12">
         <InteractiveVennDiagram />
       </div>
-
-      {/* Scrolling Quotes */}
-      <div className="mt-12">
-        <ScrollingQuotes />
       </div>
-      </div>
+      
+      {/* Footer with Scrolling Quotes */}
+      <ScrollingQuotes />
     </div>
   );
 }
