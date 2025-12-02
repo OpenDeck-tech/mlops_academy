@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Headphones, Twitter, Linkedin, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const sidebarSections = [
   {
@@ -90,8 +91,8 @@ export function MLOpsSidebar() {
   }, []);
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 pt-20">
-      <nav className="space-y-2">
+    <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 pt-20 flex flex-col">
+      <nav className="space-y-2 flex-1">
         <h2 className="mb-6 px-3 text-lg font-semibold">Resources</h2>
         {isPro && (
           <Link
@@ -140,6 +141,11 @@ export function MLOpsSidebar() {
           );
         })}
       </nav>
+      <div className="mt-auto pt-4 border-t">
+        <div className="px-3">
+          <ThemeToggle />
+        </div>
+      </div>
     </aside>
   );
 }

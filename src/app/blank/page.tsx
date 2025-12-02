@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Server, Code, Layers, Rocket, CheckCircle2 } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 import { LogoutButtonClient } from "@/components/logout-button-client";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ScrollingQuotes } from "@/components/scrolling-quotes";
 import { InteractiveVennDiagram } from "@/components/interactive-venn-diagram";
 import { getSession } from "@/lib/session";
@@ -51,8 +52,9 @@ export default async function BlankPage() {
     <div className="flex min-h-screen">
       <MLOpsSidebar />
       <div className="flex-1 ml-64 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative">
-        {/* Sign Out Button - Circular */}
-        <div className="absolute top-4 right-4 z-10">
+        {/* Sign Out Button and Theme Toggle */}
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-3">
+          <ThemeToggle />
           <LogoutButtonClient />
         </div>
 
