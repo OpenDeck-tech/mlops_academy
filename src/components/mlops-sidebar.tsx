@@ -159,8 +159,8 @@ export function MLOpsSidebar() {
                     href="/pro"
                     className={cn(
                       "flex items-center gap-2 rounded-full text-sm font-semibold transition-colors mb-4",
-                      "bg-[#39ff14] hover:bg-[#32e612] text-black",
-                      "shadow-[0_0_10px_rgba(57,255,20,0.5)]",
+                      "bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black",
+                      "shadow-[0_0_10px_rgba(173,255,47,0.5)]",
                       isCollapsed ? "justify-center px-2 py-2" : "justify-center px-4 py-2"
                     )}
                   >
@@ -184,8 +184,8 @@ export function MLOpsSidebar() {
               const Icon = section.icon;
               const linkClassName = cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                "hover:bg-accent/50 hover:text-[#39ff14]",
-                "text-[#39ff14]",
+                "hover:bg-accent/50 hover:text-[#ADFF2F]",
+                "text-[#ADFF2F]",
                 isCollapsed && "justify-center px-2"
               );
 

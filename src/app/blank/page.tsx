@@ -63,7 +63,7 @@ export default async function BlankPage() {
         <div className="flex items-center justify-center gap-3 mb-2">
           <h1 className="text-4xl font-semibold">MLOps Environments</h1>
           {sess.isPro && (
-            <Badge className="bg-[#39ff14] text-black border-0 px-4 py-1.5 rounded-full flex items-center font-semibold shadow-[0_0_10px_rgba(57,255,20,0.5)]">
+            <Badge className="bg-[#ADFF2F] text-black border-0 px-4 py-1.5 rounded-full flex items-center font-semibold shadow-[0_0_10px_rgba(173,255,47,0.5)]">
               <span>Pro</span>
             </Badge>
           )}
@@ -73,7 +73,7 @@ export default async function BlankPage() {
         </p>
         {sess.isPro && (
           <div className="flex items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-[#39ff14] hover:bg-[#32e612] text-black rounded-full font-semibold shadow-[0_0_10px_rgba(57,255,20,0.5)]">
+            <Button asChild size="lg" className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black rounded-full font-semibold shadow-[0_0_10px_rgba(173,255,47,0.5)]">
               <Link href="/pro" className="flex items-center gap-2">
                 Access Pro Content
               </Link>
