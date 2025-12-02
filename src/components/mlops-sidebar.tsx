@@ -1,10 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText } from "lucide-react";
+import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText, ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const sidebarSections = [
   {
@@ -81,6 +88,7 @@ const sidebarSections = [
 
 export function MLOpsSidebar() {
   const [isPro, setIsPro] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     // Check Pro status from session
@@ -88,62 +96,145 @@ export function MLOpsSidebar() {
       .then((res) => res.json())
       .then((data) => setIsPro(data.isPro || false))
       .catch(() => setIsPro(false));
+
+    // Load sidebar state from localStorage
+    const savedState = localStorage.getItem("sidebar-collapsed");
+    if (savedState !== null) {
+      setIsCollapsed(savedState === "true");
+    }
   }, []);
 
+  useEffect(() => {
+    // Save sidebar state to localStorage
+    localStorage.setItem("sidebar-collapsed", isCollapsed.toString());
+    // Update CSS variable for main content margin
+    document.documentElement.style.setProperty(
+      "--sidebar-width",
+      isCollapsed ? "80px" : "256px"
+    );
+  }, [isCollapsed]);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 pt-20 flex flex-col">
-      <nav className="space-y-2 flex-1">
-        <h2 className="mb-6 px-3 text-lg font-semibold">Resources</h2>
-        {isPro && (
-          <Link
-            href="/pro"
-            className={cn(
-              "flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors mb-4",
-              "bg-[#39ff14] hover:bg-[#32e612] text-black",
-              "shadow-[0_0_10px_rgba(57,255,20,0.5)]"
-            )}
-          >
-            <span>Pro Content</span>
-          </Link>
-        )}
-        {sidebarSections.map((section) => {
-          const Icon = section.icon;
-          const linkClassName = cn(
-            "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-            "hover:bg-accent hover:text-accent-foreground",
-            "text-muted-foreground"
-          );
-          
-          if (section.external) {
-            return (
-              <a
-                key={section.id}
-                href={section.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClassName}
-              >
-                <Icon className="h-5 w-5" />
-                <span>{section.title}</span>
-              </a>
-            );
-          }
-          
-          return (
-            <Link
-              key={section.id}
-              href={section.href}
-              className={linkClassName}
-            >
-              <Icon className="h-5 w-5" />
-              <span>{section.title}</span>
-            </Link>
-          );
-        })}
-      </nav>
-      <div className="mt-auto pt-4 border-t">
-        <div className="px-3">
-          <ThemeToggle />
+    <aside
+      className={cn(
+        "fixed left-0 top-0 h-screen border-r bg-background flex flex-col transition-all duration-300 z-40",
+        isCollapsed ? "w-20" : "w-64"
+      )}
+    >
+      {/* Toggle Button */}
+      <div className="absolute top-4 right-0 translate-x-1/2 z-50">
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-8 w-8 rounded-full bg-background border-2 shadow-md hover:shadow-lg"
+          onClick={toggleSidebar}
+          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {isCollapsed ? (
+            <ChevronRight className="h-4 w-4" />
+          ) : (
+            <ChevronLeft className="h-4 w-4" />
+          )}
+        </Button>
+      </div>
+
+      <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
+        <nav className="space-y-2 flex-1">
+          {!isCollapsed && (
+            <h2 className="mb-6 px-3 text-lg font-semibold">Resources</h2>
+          )}
+          {isPro && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href="/pro"
+                    className={cn(
+                      "flex items-center gap-2 rounded-full text-sm font-semibold transition-colors mb-4",
+                      "bg-[#39ff14] hover:bg-[#32e612] text-black",
+                      "shadow-[0_0_10px_rgba(57,255,20,0.5)]",
+                      isCollapsed ? "justify-center px-2 py-2" : "justify-center px-4 py-2"
+                    )}
+                  >
+                    {isCollapsed ? (
+                      <Menu className="h-5 w-5" />
+                    ) : (
+                      <span>Pro Content</span>
+                    )}
+                  </Link>
+                </TooltipTrigger>
+                {isCollapsed && (
+                  <TooltipContent side="right">
+                    <p>Pro Content</p>
+                  </TooltipContent>
+                )}
+              </Tooltip>
+            </TooltipProvider>
+          )}
+          <TooltipProvider>
+            {sidebarSections.map((section) => {
+              const Icon = section.icon;
+              const linkClassName = cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                "hover:bg-accent hover:text-accent-foreground",
+                "text-muted-foreground",
+                isCollapsed && "justify-center px-2"
+              );
+
+              const linkContent = (
+                <>
+                  <Icon className="h-5 w-5 flex-shrink-0" />
+                  {!isCollapsed && <span>{section.title}</span>}
+                </>
+              );
+
+              if (section.external) {
+                return (
+                  <Tooltip key={section.id}>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={section.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClassName}
+                      >
+                        {linkContent}
+                      </a>
+                    </TooltipTrigger>
+                    {isCollapsed && (
+                      <TooltipContent side="right">
+                        <p>{section.title}</p>
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                );
+              }
+
+              return (
+                <Tooltip key={section.id}>
+                  <TooltipTrigger asChild>
+                    <Link href={section.href} className={linkClassName}>
+                      {linkContent}
+                    </Link>
+                  </TooltipTrigger>
+                  {isCollapsed && (
+                    <TooltipContent side="right">
+                      <p>{section.title}</p>
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              );
+            })}
+          </TooltipProvider>
+        </nav>
+        <div className={cn("mt-auto pt-4 border-t", isCollapsed && "px-2")}>
+          <div className={cn("px-3", isCollapsed && "px-0 flex justify-center")}>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </aside>
