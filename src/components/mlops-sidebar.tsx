@@ -99,15 +99,19 @@ export function MLOpsSidebar() {
 
     // Load sidebar state from localStorage
     const savedState = localStorage.getItem("sidebar-collapsed");
-    if (savedState !== null) {
-      setIsCollapsed(savedState === "true");
-    }
+    const initialCollapsed = savedState === "true";
+    setIsCollapsed(initialCollapsed);
+    
+    // Set initial CSS variable
+    document.documentElement.style.setProperty(
+      "--sidebar-width",
+      initialCollapsed ? "80px" : "256px"
+    );
   }, []);
 
   useEffect(() => {
-    // Save sidebar state to localStorage
+    // Save sidebar state to localStorage and update CSS variable
     localStorage.setItem("sidebar-collapsed", isCollapsed.toString());
-    // Update CSS variable for main content margin
     document.documentElement.style.setProperty(
       "--sidebar-width",
       isCollapsed ? "80px" : "256px"
