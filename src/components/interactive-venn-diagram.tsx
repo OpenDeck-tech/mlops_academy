@@ -199,8 +199,18 @@ export function InteractiveVennDiagram() {
                   onMouseEnter={() => setHoveredSection("mlops-engineer")}
                   onMouseLeave={() => setHoveredSection(null)}
                 >
-                  <circle cx="200" cy="183" r="20" fill="rgba(249, 115, 22, 0.3)" />
-                  <text x="170" y="190" className="text-xs font-bold fill-orange-600 dark:fill-orange-400">
+                  <circle 
+                    cx="200" 
+                    cy="183" 
+                    r="25" 
+                    fill={activeSection === "mlops-engineer" 
+                      ? "rgba(249, 115, 22, 0.5)" 
+                      : "rgba(249, 115, 22, 0.3)"}
+                    stroke="rgb(249, 115, 22)"
+                    strokeWidth="2"
+                    className="transition-all"
+                  />
+                  <text x="165" y="190" className="text-xs font-bold fill-orange-600 dark:fill-orange-400">
                     MLOps Engineer
                   </text>
                 </g>
