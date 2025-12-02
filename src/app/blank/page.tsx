@@ -49,16 +49,17 @@ export default async function BlankPage() {
   ];
 
   return (
-    <div className="flex min-h-screen">
-      <MLOpsSidebar />
-      <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 256px)' }}>
-        {/* Sign Out Button and Theme Toggle */}
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-3">
-          <ThemeToggle />
-          <LogoutButtonClient />
-        </div>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex flex-1">
+        <MLOpsSidebar />
+        <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 256px)' }}>
+          {/* Sign Out Button and Theme Toggle */}
+          <div className="absolute top-4 right-4 z-10 flex items-center gap-3">
+            <ThemeToggle />
+            <LogoutButtonClient />
+          </div>
 
-      <div className="mb-12 text-center">
+        <div className="mb-12 text-center">
         <div className="flex items-center justify-center gap-3 mb-2">
           <h1 className="text-4xl font-semibold">MLOps Environments</h1>
           {sess.isPro && (
@@ -131,6 +132,7 @@ export default async function BlankPage() {
       <div className="mt-12">
         <InteractiveVennDiagram />
       </div>
+        </div>
       </div>
       
       {/* Footer with Scrolling Quotes */}
