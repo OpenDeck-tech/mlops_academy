@@ -207,6 +207,14 @@ export default function LoginPage() {
                     Sign Up
                   </Link>
                 </div>
+                <div className="text-center pt-2 border-t">
+                  <Link 
+                    href="/dashboard" 
+                    className="text-sm text-primary hover:underline font-medium"
+                  >
+                    Go to Dashboard
+                  </Link>
+                </div>
               </div>
             </>
           )}

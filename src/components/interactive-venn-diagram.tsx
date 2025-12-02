@@ -39,7 +39,7 @@ const sectionInfo: Record<Exclude<SectionType, null>, SectionInfo> = {
     title: "Software Engineering in MLOps",
     description: "Software engineering practices applied to ML systems: APIs, versioning, testing, and deployment",
     icon: Code,
-    color: "text-green-600 dark:text-green-400",
+    color: "text-gray-600 dark:text-gray-400",
     topics: [
       "ML Model APIs (REST, gRPC for model serving)",
       "Model Versioning Systems (MLflow, DVC, Weights & Biases)",
@@ -53,7 +53,7 @@ const sectionInfo: Record<Exclude<SectionType, null>, SectionInfo> = {
     title: "Machine Learning in MLOps",
     description: "MLOps-focused machine learning: model development, training, monitoring, and operations",
     icon: Brain,
-    color: "text-purple-600 dark:text-purple-400",
+    color: "text-green-600 dark:text-green-400",
     topics: [
       "ML Frameworks for Production (TensorFlow, PyTorch)",
       "Model Training Pipelines and Experiment Tracking",
@@ -127,15 +127,15 @@ export function InteractiveVennDiagram() {
                   onMouseLeave={() => setHoveredSection(null)}
                 />
                 
-                {/* Software Circle (Green) */}
+                {/* Software Circle (Grey) */}
                 <circle
                   cx="250"
                   cy="150"
                   r="100"
                   fill={activeSection === "software" || activeSection === "mlops-engineer"
-                    ? "rgba(34, 197, 94, 0.3)"
-                    : "rgba(34, 197, 94, 0.1)"}
-                  stroke="rgb(34, 197, 94)"
+                    ? "rgba(107, 114, 128, 0.3)"
+                    : "rgba(107, 114, 128, 0.1)"}
+                  stroke="rgb(107, 114, 128)"
                   strokeWidth="2"
                   className="cursor-pointer transition-all hover:opacity-80"
                   onClick={() => handleSectionClick("software")}
@@ -143,15 +143,15 @@ export function InteractiveVennDiagram() {
                   onMouseLeave={() => setHoveredSection(null)}
                 />
                 
-                {/* Machine Learning Circle (Purple) */}
+                {/* Machine Learning Circle (Green) */}
                 <circle
                   cx="200"
                   cy="250"
                   r="100"
                   fill={activeSection === "machine-learning" || activeSection === "mlops-engineer"
-                    ? "rgba(168, 85, 247, 0.3)"
-                    : "rgba(168, 85, 247, 0.1)"}
-                  stroke="rgb(168, 85, 247)"
+                    ? "rgba(34, 197, 94, 0.3)"
+                    : "rgba(34, 197, 94, 0.1)"}
+                  stroke="rgb(34, 197, 94)"
                   strokeWidth="2"
                   className="cursor-pointer transition-all hover:opacity-80"
                   onClick={() => handleSectionClick("machine-learning")}
@@ -176,7 +176,7 @@ export function InteractiveVennDiagram() {
                   x="260"
                   y="120"
                   fontSize="16"
-                  className="font-semibold fill-green-600 dark:fill-green-400 cursor-pointer"
+                  className="font-semibold fill-gray-600 dark:fill-gray-400 cursor-pointer"
                   onClick={() => handleSectionClick("software")}
                   onMouseEnter={() => setHoveredSection("software")}
                   onMouseLeave={() => setHoveredSection(null)}
@@ -185,10 +185,12 @@ export function InteractiveVennDiagram() {
                 </text>
                 
                 <text
-                  x="170"
-                  y="320"
+                  x="200"
+                  y="250"
                   fontSize="16"
-                  className="font-semibold fill-purple-600 dark:fill-purple-400 cursor-pointer"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="font-semibold fill-green-600 dark:fill-green-400 cursor-pointer"
                   onClick={() => handleSectionClick("machine-learning")}
                   onMouseEnter={() => setHoveredSection("machine-learning")}
                   onMouseLeave={() => setHoveredSection(null)}
