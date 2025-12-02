@@ -7,6 +7,7 @@ import { Server, Code, Layers, Rocket, CheckCircle2 } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 import { LogoutButtonClient } from "@/components/logout-button-client";
 import { ScrollingQuotes } from "@/components/scrolling-quotes";
+import { InteractiveVennDiagram } from "@/components/interactive-venn-diagram";
 import { getSession } from "@/lib/session";
 
 export default async function BlankPage() {
@@ -107,7 +108,7 @@ export default async function BlankPage() {
         })}
       </div>
 
-      {/* The MLOps Engineer Venn Diagram */}
+      {/* The MLOps Engineer Venn Diagram - Static */}
       <div className="mt-12 flex justify-center">
         <Card className="max-w-xl w-full">
           <CardContent className="p-6">
@@ -122,6 +123,11 @@ export default async function BlankPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Interactive Venn Diagram */}
+      <div className="mt-12">
+        <InteractiveVennDiagram />
       </div>
 
       {/* Scrolling Quotes */}
