@@ -53,6 +53,8 @@ export default function DevelopmentEnvironmentPage() {
           const Icon = topic.icon;
           const href = topic.id === "collaboration" 
             ? "/environments/development/collaboration"
+            : topic.id === "code-practices"
+            ? "/environments/development/code-practices"
             : undefined;
           const cardContent = (
             <>
