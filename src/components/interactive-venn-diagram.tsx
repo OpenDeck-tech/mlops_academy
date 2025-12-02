@@ -104,11 +104,12 @@ export function InteractiveVennDiagram() {
         <CardContent>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
             {/* SVG Venn Diagram */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-full lg:w-auto">
               <svg
                 viewBox="0 0 400 400"
-                className="w-full max-w-md h-auto"
-                style={{ maxHeight: "400px" }}
+                className="w-full max-w-xl h-auto"
+                style={{ maxHeight: "600px", minHeight: "500px" }}
+                preserveAspectRatio="xMidYMid meet"
               >
                 {/* Infrastructure Circle (Blue) */}
                 <circle
@@ -162,7 +163,8 @@ export function InteractiveVennDiagram() {
                 <text
                   x="100"
                   y="120"
-                  className="text-sm font-semibold fill-blue-600 dark:fill-blue-400 cursor-pointer"
+                  fontSize="16"
+                  className="font-semibold fill-blue-600 dark:fill-blue-400 cursor-pointer"
                   onClick={() => handleSectionClick("infrastructure")}
                   onMouseEnter={() => setHoveredSection("infrastructure")}
                   onMouseLeave={() => setHoveredSection(null)}
@@ -173,7 +175,8 @@ export function InteractiveVennDiagram() {
                 <text
                   x="260"
                   y="120"
-                  className="text-sm font-semibold fill-green-600 dark:fill-green-400 cursor-pointer"
+                  fontSize="16"
+                  className="font-semibold fill-green-600 dark:fill-green-400 cursor-pointer"
                   onClick={() => handleSectionClick("software")}
                   onMouseEnter={() => setHoveredSection("software")}
                   onMouseLeave={() => setHoveredSection(null)}
@@ -184,7 +187,8 @@ export function InteractiveVennDiagram() {
                 <text
                   x="170"
                   y="320"
-                  className="text-sm font-semibold fill-purple-600 dark:fill-purple-400 cursor-pointer"
+                  fontSize="16"
+                  className="font-semibold fill-purple-600 dark:fill-purple-400 cursor-pointer"
                   onClick={() => handleSectionClick("machine-learning")}
                   onMouseEnter={() => setHoveredSection("machine-learning")}
                   onMouseLeave={() => setHoveredSection(null)}
@@ -210,7 +214,7 @@ export function InteractiveVennDiagram() {
                     strokeWidth="2"
                     className="transition-all"
                   />
-                  <text x="165" y="190" className="text-xs font-bold fill-orange-600 dark:fill-orange-400">
+                  <text x="165" y="190" fontSize="14" className="font-bold fill-orange-600 dark:fill-orange-400">
                     MLOps Engineer
                   </text>
                 </g>
