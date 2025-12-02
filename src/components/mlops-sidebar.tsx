@@ -149,7 +149,7 @@ export function MLOpsSidebar() {
       <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
         <nav className="space-y-2 flex-1">
           {!isCollapsed && (
-            <h2 className="mb-6 px-3 text-lg font-semibold">Resources</h2>
+            <h2 className="mb-6 px-3 text-lg font-semibold text-[#39ff14]">Resources</h2>
           )}
           {isPro && (
             <TooltipProvider>
@@ -184,8 +184,8 @@ export function MLOpsSidebar() {
               const Icon = section.icon;
               const linkClassName = cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                "hover:bg-accent hover:text-accent-foreground",
-                "text-muted-foreground",
+                "hover:bg-accent/50 hover:text-[#39ff14]",
+                "text-[#39ff14]",
                 isCollapsed && "justify-center px-2"
               );
 
