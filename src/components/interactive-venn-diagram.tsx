@@ -192,46 +192,6 @@ export function InteractiveVennDiagram() {
                   Machine Learning
                 </text>
 
-                {/* Intersection Labels - Clickable areas */}
-                {/* Infrastructure + Software (DevOps) */}
-                <g
-                  className="cursor-pointer"
-                  onClick={() => handleSectionClick("infrastructure-software")}
-                  onMouseEnter={() => setHoveredSection("infrastructure-software")}
-                  onMouseLeave={() => setHoveredSection(null)}
-                >
-                  <circle cx="200" cy="150" r="15" fill="rgba(6, 182, 212, 0.2)" />
-                  <text x="185" y="155" className="text-xs font-medium fill-cyan-600 dark:fill-cyan-400">
-                    DevOps
-                  </text>
-                </g>
-
-                {/* Software + ML (ML Engineering) */}
-                <g
-                  className="cursor-pointer"
-                  onClick={() => handleSectionClick("software-ml")}
-                  onMouseEnter={() => setHoveredSection("software-ml")}
-                  onMouseLeave={() => setHoveredSection(null)}
-                >
-                  <circle cx="250" cy="200" r="15" fill="rgba(234, 179, 8, 0.2)" />
-                  <text x="220" y="205" className="text-xs font-medium fill-yellow-600 dark:fill-yellow-400">
-                    ML Engineering
-                  </text>
-                </g>
-
-                {/* Infrastructure + ML (ML Infrastructure) */}
-                <g
-                  className="cursor-pointer"
-                  onClick={() => handleSectionClick("infrastructure-ml")}
-                  onMouseEnter={() => setHoveredSection("infrastructure-ml")}
-                  onMouseLeave={() => setHoveredSection(null)}
-                >
-                  <circle cx="150" cy="200" r="15" fill="rgba(236, 72, 153, 0.2)" />
-                  <text x="120" y="205" className="text-xs font-medium fill-pink-600 dark:fill-pink-400">
-                    ML Infrastructure
-                  </text>
-                </g>
-
                 {/* Center: MLOps Engineer */}
                 <g
                   className="cursor-pointer"
