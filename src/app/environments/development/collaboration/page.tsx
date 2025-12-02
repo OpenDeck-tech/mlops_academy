@@ -4,10 +4,13 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Users, MessageSquare, GitBranch, CheckCircle2, AlertCircle, Clock, Target } from "lucide-react";
+import { MLOpsSidebar } from "@/components/mlops-sidebar";
 
 export default function TeamCollaborationPage() {
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
+    <div className="flex min-h-screen">
+      <MLOpsSidebar />
+      <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 256px)' }}>
       <Link 
         href="/environments/development" 
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
@@ -431,6 +434,7 @@ export default function TeamCollaborationPage() {
           </Card>
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 }
