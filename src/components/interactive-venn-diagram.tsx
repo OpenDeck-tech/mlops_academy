@@ -3,15 +3,12 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Server, Code, Brain, Zap, Layers, Rocket, Database } from "lucide-react";
+import { Server, Code, Brain, Rocket } from "lucide-react";
 
 type SectionType = 
   | "infrastructure" 
   | "software" 
   | "machine-learning"
-  | "infrastructure-software"
-  | "software-ml"
-  | "infrastructure-ml"
   | "mlops-engineer"
   | null;
 
@@ -25,98 +22,59 @@ interface SectionInfo {
 
 const sectionInfo: Record<Exclude<SectionType, null>, SectionInfo> = {
   infrastructure: {
-    title: "Infrastructure",
-    description: "Cloud platforms, containers, orchestration, and infrastructure management",
+    title: "Infrastructure in MLOps",
+    description: "MLOps infrastructure: cloud platforms, containers, orchestration, and ML-specific infrastructure management",
     icon: Server,
     color: "text-blue-600 dark:text-blue-400",
     topics: [
-      "Cloud Platforms (AWS, GCP, Azure)",
-      "Containerization (Docker)",
-      "Orchestration (Kubernetes)",
-      "Infrastructure as Code (Terraform, CloudFormation)",
-      "Networking & Security",
-      "Monitoring & Observability"
+      "ML Infrastructure on Cloud (AWS SageMaker, GCP Vertex AI, Azure ML)",
+      "Containerization for ML (Docker, ML containers)",
+      "Kubernetes for ML workloads and model serving",
+      "Infrastructure as Code for ML (Terraform, CloudFormation)",
+      "ML Pipeline Infrastructure (Airflow, Kubeflow)",
+      "Model Serving Infrastructure (KServe, Seldon, Triton)"
     ]
   },
   software: {
-    title: "Software Engineering",
-    description: "Programming, APIs, databases, and software development practices",
+    title: "Software Engineering in MLOps",
+    description: "Software engineering practices applied to ML systems: APIs, versioning, testing, and deployment",
     icon: Code,
     color: "text-green-600 dark:text-green-400",
     topics: [
-      "Programming Languages (Python, Go, Java)",
-      "API Development (REST, gRPC)",
-      "Databases (SQL, NoSQL)",
-      "Version Control (Git)",
-      "CI/CD Pipelines",
-      "Testing & Quality Assurance"
+      "ML Model APIs (REST, gRPC for model serving)",
+      "Model Versioning Systems (MLflow, DVC, Weights & Biases)",
+      "CI/CD for ML Pipelines",
+      "Testing ML Systems (model tests, integration tests)",
+      "Feature Stores and Data Engineering",
+      "ML System Architecture and Design Patterns"
     ]
   },
   "machine-learning": {
-    title: "Machine Learning",
-    description: "ML models, data science, algorithms, and model training",
+    title: "Machine Learning in MLOps",
+    description: "MLOps-focused machine learning: model development, training, monitoring, and operations",
     icon: Brain,
     color: "text-purple-600 dark:text-purple-400",
     topics: [
-      "ML Frameworks (TensorFlow, PyTorch)",
-      "Model Training & Evaluation",
-      "Feature Engineering",
-      "Data Preprocessing",
-      "Model Architecture Design",
-      "Hyperparameter Tuning"
-    ]
-  },
-  "infrastructure-software": {
-    title: "DevOps",
-    description: "The intersection of Infrastructure and Software Engineering",
-    icon: Zap,
-    color: "text-cyan-600 dark:text-cyan-400",
-    topics: [
-      "CI/CD Automation",
-      "Infrastructure Automation",
-      "Configuration Management",
-      "Deployment Strategies",
-      "System Reliability"
-    ]
-  },
-  "software-ml": {
-    title: "ML Engineering",
-    description: "The intersection of Software Engineering and Machine Learning",
-    icon: Layers,
-    color: "text-yellow-600 dark:text-yellow-400",
-    topics: [
-      "ML Model APIs",
-      "Model Serving Infrastructure",
-      "Feature Stores",
-      "ML Pipelines",
-      "Model Versioning"
-    ]
-  },
-  "infrastructure-ml": {
-    title: "ML Infrastructure",
-    description: "The intersection of Infrastructure and Machine Learning",
-    icon: Database,
-    color: "text-pink-600 dark:text-pink-400",
-    topics: [
-      "GPU/TPU Management",
-      "Distributed Training",
-      "Model Deployment Infrastructure",
-      "ML Data Pipelines",
-      "ML Monitoring Infrastructure"
+      "ML Frameworks for Production (TensorFlow, PyTorch)",
+      "Model Training Pipelines and Experiment Tracking",
+      "Model Monitoring and Drift Detection",
+      "Model Deployment and A/B Testing",
+      "ML Model Lifecycle Management",
+      "Production ML Best Practices"
     ]
   },
   "mlops-engineer": {
     title: "MLOps Engineer",
-    description: "The complete intersection: Infrastructure + Software + Machine Learning",
+    description: "The complete intersection: Combining Infrastructure + Software Engineering + Machine Learning for production ML systems",
     icon: Rocket,
     color: "text-orange-600 dark:text-orange-400",
     topics: [
-      "End-to-end ML Lifecycle",
-      "Production ML Systems",
-      "Model Operations",
-      "ML Observability",
-      "Scalable ML Infrastructure",
-      "ML Best Practices"
+      "End-to-end ML Lifecycle Management",
+      "Production ML Systems Architecture",
+      "Model Operations (ModelOps)",
+      "ML Observability and Monitoring",
+      "Scalable ML Infrastructure Design",
+      "MLOps Best Practices and Patterns"
     ]
   }
 };
@@ -157,7 +115,7 @@ export function InteractiveVennDiagram() {
                   cx="150"
                   cy="150"
                   r="100"
-                  fill={activeSection === "infrastructure" || activeSection === "infrastructure-software" || activeSection === "infrastructure-ml" || activeSection === "mlops-engineer" 
+                  fill={activeSection === "infrastructure" || activeSection === "mlops-engineer" 
                     ? "rgba(59, 130, 246, 0.3)" 
                     : "rgba(59, 130, 246, 0.1)"}
                   stroke="rgb(59, 130, 246)"
@@ -173,7 +131,7 @@ export function InteractiveVennDiagram() {
                   cx="250"
                   cy="150"
                   r="100"
-                  fill={activeSection === "software" || activeSection === "infrastructure-software" || activeSection === "software-ml" || activeSection === "mlops-engineer"
+                  fill={activeSection === "software" || activeSection === "mlops-engineer"
                     ? "rgba(34, 197, 94, 0.3)"
                     : "rgba(34, 197, 94, 0.1)"}
                   stroke="rgb(34, 197, 94)"
@@ -189,7 +147,7 @@ export function InteractiveVennDiagram() {
                   cx="200"
                   cy="250"
                   r="100"
-                  fill={activeSection === "machine-learning" || activeSection === "software-ml" || activeSection === "infrastructure-ml" || activeSection === "mlops-engineer"
+                  fill={activeSection === "machine-learning" || activeSection === "mlops-engineer"
                     ? "rgba(168, 85, 247, 0.3)"
                     : "rgba(168, 85, 247, 0.1)"}
                   stroke="rgb(168, 85, 247)"

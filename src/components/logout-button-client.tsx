@@ -11,10 +11,11 @@ export function LogoutButtonClient() {
   return (
     <button
       onClick={handleLogout}
-      className="w-12 h-12 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+      className="px-4 py-2 rounded-full bg-[#f5f5dc] text-gray-900 dark:text-gray-900 hover:bg-[#e8e8d0] flex items-center justify-center gap-2 transition-all hover:scale-105 shadow-sm text-sm font-medium"
       title="Sign Out"
     >
-      <LogOut className="h-5 w-5" />
+      <LogOut className="h-4 w-4" />
+      <span>Sign out</span>
     </button>
   );
 }
