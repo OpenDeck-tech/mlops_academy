@@ -7,7 +7,8 @@ const quotes = [
   "Premature optimization is the root of all evil",
   "Make it work, make it right, make it fast",
   "Code is read more often than it's written",
-  "Simplicity is the ultimate sophistication"
+  "Simplicity is the ultimate sophistication",
+  "Check your dashboards first, in-between, and last",
 ];
 
 // Duplicate quotes for seamless loop
