@@ -3,7 +3,7 @@
 import { Quote } from "lucide-react";
 
 const quotes = [
-  "Loose coupled systems are always mostly better",
+  "Loose-coupled systems are always mostly better",
   "Premature optimization is the root of all evil",
   "Make it work, make it right, make it fast",
   "Code is read more often than it's written",

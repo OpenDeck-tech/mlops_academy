@@ -184,8 +184,8 @@ export function MLOpsSidebar() {
               const Icon = section.icon;
               const linkClassName = cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                "hover:bg-accent/50 hover:text-[#ADFF2F]",
-                "text-[#ADFF2F]",
+                "hover:bg-accent/50 hover:text-foreground",
+                "text-muted-foreground",
                 isCollapsed && "justify-center px-2"
               );
 
