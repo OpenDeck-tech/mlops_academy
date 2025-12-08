@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ArrowLeft, GitBranch, Code, Users, Database } from "lucide-react";
+import { ArrowLeft, GitBranch, Code, Users, Database, Network } from "lucide-react";
 
 export default function DevelopmentEnvironmentPage() {
   const topics = [
@@ -32,6 +32,13 @@ export default function DevelopmentEnvironmentPage() {
       icon: Database,
       content: "Learn data versioning, synthetic data, data pipelines, feature stores, and data management practices for development.",
     },
+    {
+      id: "mcp",
+      title: "Model Context Protocol",
+      description: "Standardized integration protocol for AI models and external tools",
+      icon: Network,
+      content: "Explore MCP for connecting AI models to data sources, MLOps tools, and external services in a standardized way.",
+    },
   ];
 
   return (
@@ -55,6 +62,8 @@ export default function DevelopmentEnvironmentPage() {
             ? "/environments/development/collaboration"
             : topic.id === "code-practices"
             ? "/environments/development/code-practices"
+            : topic.id === "mcp"
+            ? "/environments/development/mcp"
             : undefined;
           const cardContent = (
             <>
