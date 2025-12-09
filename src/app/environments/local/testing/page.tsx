@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, TestTube, Lightbulb, Code, Cloud, FileCode } from "lucide-react";
 import { useState, useEffect } from "react";
+import { CodeBlock } from "@/components/code-block";
 
 export default function TestingPage() {
   const [mounted, setMounted] = useState(false);
@@ -81,8 +82,8 @@ export default function TestingPage() {
 
               <div>
                 <h3 className="font-semibold mb-2">TDD Example Workflow</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Step 1: Write a failing test
+                <CodeBlock 
+                  code={`# Step 1: Write a failing test
 def test_calculate_total():
     assert calculate_total([10, 20, 30]) == 60
 
@@ -94,7 +95,8 @@ def calculate_total(items):
 # Step 4: Run test (it passes - Green)
 # Step 5: Refactor if needed
 # Step 6: Repeat for next feature`}
-                </pre>
+                  language="python"
+                />
               </div>
             </CardContent>
           </Card>
@@ -124,8 +126,8 @@ assert user.id == 123  # Public behavior`}</pre>
                 <p className="text-sm text-muted-foreground mb-2">
                   Structure tests clearly: set up data, perform action, verify result.
                 </p>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`def test_user_registration():
+                <CodeBlock 
+                  code={`def test_user_registration():
     # Arrange: Set up test data
     email = "test@example.com"
     password = "secure123"
@@ -136,7 +138,8 @@ assert user.id == 123  # Public behavior`}</pre>
     # Assert: Verify the result
     assert user.email == email
     assert user.is_active is True`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
@@ -232,19 +235,20 @@ assert user.id == 123  # Public behavior`}</pre>
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install pytest
+                <CodeBlock 
+                  code={`# Install pytest
 pip install pytest
 
 # Install with common plugins
 pip install pytest pytest-cov pytest-mock pytest-asyncio`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Basic Test Structure</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# test_calculator.py
+                <CodeBlock 
+                  code={`# test_calculator.py
 def test_add():
     assert add(2, 3) == 5
 
@@ -255,13 +259,14 @@ def test_subtract():
 # pytest test_calculator.py
 # pytest -v  # verbose output
 # pytest -k "add"  # run tests matching pattern`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Test Organization</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Project structure
+                <CodeBlock 
+                  code={`# Project structure
 project/
   src/
     calculator.py
@@ -275,7 +280,8 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]`}
-                </pre>
+                  language="toml"
+                />
               </div>
             </CardContent>
           </Card>
@@ -288,8 +294,8 @@ python_functions = ["test_*"]`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Basic Fixtures</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`import pytest
+                <CodeBlock 
+                  code={`import pytest
 
 @pytest.fixture
 def sample_user():
@@ -306,7 +312,8 @@ def database():
     db.connect()
     yield db  # Provide to test
     db.disconnect()  # Cleanup after test`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
@@ -317,8 +324,8 @@ def database():
                   <li><strong>module:</strong> Runs once per test module</li>
                   <li><strong>session:</strong> Runs once per test session</li>
                 </ul>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@pytest.fixture(scope="module")
+                <CodeBlock 
+                  code={`@pytest.fixture(scope="module")
 def expensive_setup():
     # This runs once for all tests in the module
     return setup_expensive_resource()
@@ -327,20 +334,22 @@ def expensive_setup():
 @pytest.fixture(scope="session")
 def api_client():
     return APIClient(base_url="http://localhost:8000")`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Parametrized Fixtures</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@pytest.fixture(params=["sqlite", "postgres", "mysql"])
+                <CodeBlock 
+                  code={`@pytest.fixture(params=["sqlite", "postgres", "mysql"])
 def database(request):
     return create_database(request.param)
 
 def test_query(database):
     result = database.query("SELECT 1")
     assert result is not None`}
-                </pre>
+                  language="python"
+                />
               </div>
             </CardContent>
           </Card>
@@ -353,8 +362,8 @@ def test_query(database):
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Using unittest.mock</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`from unittest.mock import Mock, patch, MagicMock
+                <CodeBlock 
+                  code={`from unittest.mock import Mock, patch, MagicMock
 
 def test_api_call():
     # Create a mock object
@@ -374,13 +383,14 @@ def test_api_call(mocker):
     
     result = fetch_data()
     assert result["data"] == "test"`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Common Mocking Patterns</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Mock external API calls
+                <CodeBlock 
+                  code={`# Mock external API calls
 @patch('requests.post')
 def test_send_notification(mock_post):
     mock_post.return_value.status_code = 200
@@ -398,7 +408,8 @@ def test_read_file():
 def test_timestamp(mock_datetime):
     mock_datetime.now.return_value = datetime(2024, 1, 1)
     assert get_timestamp() == "2024-01-01"`}
-                </pre>
+                  language="python"
+                />
               </div>
             </CardContent>
           </Card>
@@ -411,8 +422,8 @@ def test_timestamp(mock_datetime):
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Basic Parametrization</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@pytest.mark.parametrize("input,expected", [
+                <CodeBlock 
+                  code={`@pytest.mark.parametrize("input,expected", [
     (2, 4),
     (3, 9),
     (4, 16),
@@ -428,13 +439,14 @@ def test_square(input, expected):
 ])
 def test_add(a, b, expected):
     assert add(a, b) == expected`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Parametrize with IDs</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@pytest.mark.parametrize(
+                <CodeBlock 
+                  code={`@pytest.mark.parametrize(
     "input,expected",
     [(2, 4), (3, 9), (4, 16)],
     ids=["two", "three", "four"]
@@ -443,7 +455,8 @@ def test_square(input, expected):
     assert square(input) == expected
 
 # Output: test_square[two], test_square[three], test_square[four]`}
-                </pre>
+                  language="python"
+                />
               </div>
             </CardContent>
           </Card>
@@ -456,8 +469,8 @@ def test_square(input, expected):
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Test Naming</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Good: Descriptive names
+                <CodeBlock 
+                  code={`# Good: Descriptive names
 def test_user_registration_creates_active_user():
     ...
 
@@ -473,13 +486,14 @@ def test_user():
 
 def test_calc():
     ...`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">One Assertion Per Test (Usually)</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Good: Focused test
+                <CodeBlock 
+                  code={`# Good: Focused test
 def test_user_has_email():
     user = create_user("test@example.com")
     assert user.email == "test@example.com"
@@ -494,13 +508,14 @@ def test_user_creation():
     assert user.email == "test@example.com"
     assert user.is_active is True
     assert user.created_at is not None`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Test Coverage</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Run with coverage
+                <CodeBlock 
+                  code={`# Run with coverage
 pytest --cov=src --cov-report=html
 
 # Coverage configuration in pyproject.toml
@@ -515,7 +530,8 @@ exclude_lines = [
     "def __repr__",
     "raise AssertionError",
 ]`}
-                </pre>
+                  language="toml"
+                />
               </div>
             </CardContent>
           </Card>
