@@ -542,8 +542,8 @@ async def get_model_explanations(model_name: str, prediction_id: str):
                   <p className="text-sm text-muted-foreground mb-3">
                     Use MCP to enable AI-driven analysis of experiment results:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@server.tool()
+                  <CodeBlock 
+                    code={`@server.tool()
 async def analyze_experiment(experiment_id: str):
     """Analyze an experiment and provide insights."""
     runs = await get_experiment_runs(experiment_id)
@@ -566,7 +566,8 @@ async def analyze_experiment(experiment_id: str):
         "overfitting_detected": overfitting,
         "recommendations": generate_recommendations(runs)
     }`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
@@ -574,8 +575,8 @@ async def analyze_experiment(experiment_id: str):
                   <p className="text-sm text-muted-foreground mb-3">
                     Integrate MCP with data pipelines for AI-driven orchestration:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@server.tool()
+                  <CodeBlock 
+                    code={`@server.tool()
 async def trigger_data_pipeline(pipeline_name: str, config: dict):
     """Trigger a data pipeline with specific configuration."""
     pipeline = get_pipeline(pipeline_name)
@@ -599,7 +600,8 @@ async def check_data_quality(dataset_name: str):
         "issues": issues,
         "metrics": quality_metrics
     }`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
               </CardContent>
             </Card>
