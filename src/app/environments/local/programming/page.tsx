@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Code2, Database, Lightbulb } from "lucide-react";
 import { useState, useEffect } from "react";
+import { CodeBlock } from "@/components/code-block";
 
 interface LeetCodeQuestion {
   id: number;
@@ -517,9 +518,10 @@ export default function ProgrammingPage() {
 
               <div>
                 <h3 className="font-semibold mb-2">Solution</h3>
-                <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
-                  <code>{selectedQuestion.solution}</code>
-                </pre>
+                <CodeBlock 
+                  code={selectedQuestion.solution}
+                  language="typescript"
+                />
               </div>
 
               <div>
