@@ -448,8 +448,8 @@ export default function CodeBestPracticesPage() {
 
                 <div>
                   <h3 className="font-semibold mb-2">4. .gitignore for ML Projects</h3>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Python
+                  <CodeBlock 
+                    code={`# Python
 __pycache__/
 *.py[cod]
 *.so
@@ -486,7 +486,8 @@ wandb/
 # OS
 .DS_Store
 Thumbs.db`}
-                  </pre>
+                    language="gitignore"
+                  />
                 </div>
               </CardContent>
             </Card>

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Container, Lightbulb, Settings, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
+import { CodeBlock } from "@/components/code-block";
 
 export default function DockerPage() {
   const [mounted, setMounted] = useState(false);
@@ -215,9 +216,7 @@ export default function DockerPage() {
                     <li>Follow the setup wizard to complete installation</li>
                   </ol>
                   <p className="text-sm text-muted-foreground mt-4 mb-2">Option 2: Homebrew</p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`brew install --cask docker`}
-                  </pre>
+                  <CodeBlock code="brew install --cask docker" language="bash" />
                 </div>
               </div>
 
