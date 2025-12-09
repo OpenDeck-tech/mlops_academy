@@ -11,6 +11,7 @@ import { LogoutButton } from "@/components/logout-button";
 import { ShellCommandsSection } from "@/components/shell-commands-section";
 import Link from "next/link";
 import { Calendar, Mail, CreditCard, CheckCircle2, XCircle } from "lucide-react";
+import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 
 // Note: This page needs to be dynamic due to Stripe API calls
 export const dynamic = "force-dynamic";
@@ -184,15 +185,7 @@ export default async function DashboardPage() {
             {hasActiveSubscription && (
               <>
                 <Separator />
-                <Button variant="outline" className="w-full" asChild>
-                  <a
-                    href="https://billing.stripe.com/p/login/test"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Manage Subscription
-                  </a>
-                </Button>
+                <ManageSubscriptionButton />
               </>
             )}
             {!hasActiveSubscription && (
