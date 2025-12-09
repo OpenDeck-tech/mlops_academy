@@ -581,8 +581,8 @@ exclude_lines = [
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">terraform fmt</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Format Terraform files
+                <CodeBlock 
+                  code={`# Format Terraform files
 terraform fmt
 
 # Check formatting without modifying
@@ -590,13 +590,14 @@ terraform fmt -check
 
 # Recursive formatting
 terraform fmt -recursive`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">terraform validate</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Validate configuration syntax and references
+                <CodeBlock 
+                  code={`# Validate configuration syntax and references
 terraform validate
 
 # Example output for errors:
@@ -605,13 +606,14 @@ terraform validate
 #    5:   instance_type = var.instance_type
 # 
 # An input variable with the name "instance_type" has not been declared.`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">terraform plan</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Preview changes (dry run)
+                <CodeBlock 
+                  code={`# Preview changes (dry run)
 terraform plan
 
 # Save plan for later apply
@@ -619,7 +621,8 @@ terraform plan -out=tfplan
 
 # Validate plan file
 terraform show -json tfplan | jq .`}
-                </pre>
+                  language="bash"
+                />
               </div>
             </CardContent>
           </Card>
@@ -632,18 +635,19 @@ terraform show -json tfplan | jq .`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install Go (if not already installed)
+                <CodeBlock 
+                  code={`# Install Go (if not already installed)
 # Then install terratest
 go get github.com/gruntwork-io/terratest/modules/terraform
 go get github.com/stretchr/testify/assert`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Basic Test Structure</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`package test
+                <CodeBlock 
+                  code={`package test
 
 import (
     "testing"
@@ -669,13 +673,14 @@ func TestTerraformExample(t *testing.T) {
     // Assertions
     assert.NotEmpty(t, instanceId)
 }`}
-                </pre>
+                  language="go"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Testing Resource Properties</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`import (
+                <CodeBlock 
+                  code={`import (
     "github.com/aws/aws-sdk-go/aws"
     "github.com/aws/aws-sdk-go/service/ec2"
     "github.com/gruntwork-io/terratest/modules/aws"
@@ -697,7 +702,8 @@ func TestEC2Instance(t *testing.T) {
     assert.Equal(t, "t3.micro", aws.StringValue(instance.InstanceType))
     assert.Equal(t, "running", aws.StringValue(instance.State.Name))
 }`}
-                </pre>
+                  language="go"
+                />
               </div>
             </CardContent>
           </Card>
@@ -710,20 +716,21 @@ func TestEC2Instance(t *testing.T) {
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install via pip
+                <CodeBlock 
+                  code={`# Install via pip
 pip install terraform-compliance
 
 # Or via Docker
-docker run --rm -v \${PWD}:/target -it \
+docker run --rm -v \${PWD}:/target -it \\
     eerkunt/terraform-compliance`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Writing Compliance Tests</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# features/security.feature
+                <CodeBlock 
+                  code={`# features/security.feature
 Feature: Security compliance
   Scenario: Ensure all resources have tags
     Given I have resource that contains tags
@@ -737,13 +744,14 @@ Feature: Security compliance
 
 # Run tests
 terraform-compliance -f features/ -p plan.out`}
-                </pre>
+                  language="gherkin"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Example Test Scenarios</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# features/cost.feature
+                <CodeBlock 
+                  code={`# features/cost.feature
 Feature: Cost optimization
   Scenario: EC2 instances should use appropriate instance types
     Given I have aws_instance defined
@@ -756,7 +764,8 @@ Feature: Naming conventions
     Given I have resource that supports tags
     Then it must contain Name
     And its value must match the ".*-prod-.*" regex`}
-                </pre>
+                  language="gherkin"
+                />
               </div>
             </CardContent>
           </Card>
