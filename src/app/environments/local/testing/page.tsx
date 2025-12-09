@@ -1052,8 +1052,8 @@ docker run -v $(pwd):/scan \\
 
               <div>
                 <h3 className="font-semibold mb-2">Usage</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Scan template
+                <CodeBlock 
+                  code={`# Scan template
 cfn_nag_scan --input-path template.yaml
 
 # Output format
@@ -1064,7 +1064,8 @@ cfn_nag_scan --input-path template.yaml --fail-on-warnings
 
 # Custom rule directory
 cfn_nag_scan --input-path template.yaml --rule-directory custom-rules/`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
@@ -1088,14 +1089,15 @@ cfn_nag_scan --input-path template.yaml --rule-directory custom-rules/`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">1. Validate Before Deploy</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Always validate templates before deployment
-aws cloudformation validate-template \
+                <CodeBlock 
+                  code={`# Always validate templates before deployment
+aws cloudformation validate-template \\
     --template-body file://template.yaml
 
 # Use cfn-lint for additional checks
 cfn-lint template.yaml`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
@@ -1109,8 +1111,8 @@ cfn-lint template.yaml`}
 
               <div>
                 <h3 className="font-semibold mb-2">3. Test Stack Updates</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Test update scenarios
+                <CodeBlock 
+                  code={`# Test update scenarios
 # 1. Create initial stack
 aws cloudformation create-stack --stack-name test-stack ...
 
@@ -1119,13 +1121,14 @@ aws cloudformation update-stack --stack-name test-stack ...
 
 # 3. Verify no unexpected changes
 aws cloudformation describe-stack-events --stack-name test-stack`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">4. Automate Testing in CI/CD</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Example GitHub Actions workflow
+                <CodeBlock 
+                  code={`# Example GitHub Actions workflow
 name: Test CloudFormation
 on: [push, pull_request]
 jobs:
@@ -1140,10 +1143,11 @@ jobs:
       - name: Validate templates
         run: |
           for template in templates/*.yaml; do
-            aws cloudformation validate-template \
+            aws cloudformation validate-template \\
               --template-body file://$template
           done`}
-                </pre>
+                  language="yaml"
+                />
               </div>
             </CardContent>
           </Card>
