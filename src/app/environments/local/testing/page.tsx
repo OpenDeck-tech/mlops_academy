@@ -778,8 +778,8 @@ Feature: Naming conventions
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Checkov</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install
+                <CodeBlock 
+                  code={`# Install
 pip install checkov
 
 # Scan Terraform files
@@ -793,13 +793,14 @@ checkov -d . --check CKV_AWS_79
 
 # Output in JSON
 checkov -d . -o json`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">tfsec</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install
+                <CodeBlock 
+                  code={`# Install
 brew install tfsec  # macOS
 # or
 go install github.com/aquasecurity/tfsec/cmd/tfsec@latest
@@ -813,7 +814,8 @@ tfsec --exclude AWS002,AWS003
 # Output formats
 tfsec --format json
 tfsec --format junit`}
-                </pre>
+                  language="bash"
+                />
               </div>
             </CardContent>
           </Card>
@@ -862,27 +864,28 @@ tfsec --format junit`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">validate-template</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Validate template syntax
-aws cloudformation validate-template \
+                <CodeBlock 
+                  code={`# Validate template syntax
+aws cloudformation validate-template \\
     --template-body file://template.yaml
 
 # Validate from S3
-aws cloudformation validate-template \
+aws cloudformation validate-template \\
     --template-url https://s3.amazonaws.com/bucket/template.yaml
 
 # Example output for errors:
 # An error occurred (ValidationError) when calling the 
 # ValidateTemplate operation: Template format error: 
 # JSON not well-formed`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">get-template-summary</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Get template summary (parameters, resources, etc.)
-aws cloudformation get-template-summary \
+                <CodeBlock 
+                  code={`# Get template summary (parameters, resources, etc.)
+aws cloudformation get-template-summary \\
     --template-body file://template.yaml
 
 # Output includes:
@@ -890,7 +893,8 @@ aws cloudformation get-template-summary \
 # - Resource types
 # - Capabilities required
 # - Metadata`}
-                </pre>
+                  language="bash"
+                />
               </div>
             </CardContent>
           </Card>
@@ -903,19 +907,20 @@ aws cloudformation get-template-summary \
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install via pip
+                <CodeBlock 
+                  code={`# Install via pip
 pip install cfn-lint
 
 # Or via Homebrew (macOS)
 brew install cfn-lint`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Basic Usage</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Lint a template
+                <CodeBlock 
+                  code={`# Lint a template
 cfn-lint template.yaml
 
 # Lint all templates in directory
@@ -926,7 +931,8 @@ cfn-lint template.yaml --format json
 
 # Include informational rules
 cfn-lint template.yaml --include-checks I`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
