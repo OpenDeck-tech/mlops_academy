@@ -222,8 +222,8 @@ export default function DockerPage() {
 
               <div>
                 <h3 className="font-semibold mb-2">Linux (Ubuntu/Debian)</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Update package index
+                <CodeBlock 
+                  code={`# Update package index
 sudo apt-get update
 
 # Install prerequisites
@@ -250,7 +250,8 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 sudo usermod -aG docker $USER
 
 # Log out and back in for group changes to take effect`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
@@ -265,8 +266,8 @@ sudo usermod -aG docker $USER
 
               <div>
                 <h3 className="font-semibold mb-2">Verify Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Check Docker version
+                <CodeBlock 
+                  code={`# Check Docker version
 docker --version
 
 # Check Docker Compose version
@@ -274,7 +275,8 @@ docker compose version
 
 # Run a test container
 docker run hello-world`}
-                </pre>
+                  language="bash"
+                />
               </div>
             </CardContent>
           </Card>
@@ -287,8 +289,8 @@ docker run hello-world`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Image Management</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# List all images
+                <CodeBlock 
+                  code={`# List all images
 docker images
 
 # Pull an image from registry
@@ -299,13 +301,14 @@ docker rmi <image_id>
 
 # Remove all unused images
 docker image prune -a`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Container Management</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# List running containers
+                <CodeBlock 
+                  code={`# List running containers
 docker ps
 
 # List all containers (including stopped)
@@ -325,13 +328,14 @@ docker logs <container_id>
 
 # Execute command in running container
 docker exec -it <container_id> /bin/bash`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Building Images</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Build an image from Dockerfile
+                <CodeBlock 
+                  code={`# Build an image from Dockerfile
 docker build -t myapp:latest .
 
 # Build with specific Dockerfile
@@ -339,13 +343,14 @@ docker build -f Dockerfile.prod -t myapp:prod .
 
 # Build without cache
 docker build --no-cache -t myapp:latest .`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Running Containers</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Run a container
+                <CodeBlock 
+                  code={`# Run a container
 docker run <image_name>
 
 # Run with port mapping
@@ -366,7 +371,8 @@ docker run -d -p 8000:8000 \\
   -v /host/path:/container/path \\
   --name mycontainer \\
   <image_name>`}
-                </pre>
+                  language="bash"
+                />
               </div>
             </CardContent>
           </Card>
@@ -385,8 +391,8 @@ docker run -d -p 8000:8000 \\
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Project Structure</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`fastapi-docker/
+                <CodeBlock 
+                  code={`fastapi-docker/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py
@@ -394,14 +400,15 @@ docker run -d -p 8000:8000 \\
 ├── requirements.txt
 ├── Dockerfile
 └── docker-compose.yml`}
-                </pre>
+                  language="text"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">1. Create the FastAPI Application</h3>
                 <p className="text-sm text-muted-foreground mb-2">Create <code className="bg-muted px-1 rounded">app/main.py</code>:</p>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`from fastapi import FastAPI, HTTPException
+                <CodeBlock 
+                  code={`from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List
 
@@ -453,22 +460,24 @@ async def get_item(item_id: int):
         if item.id == item_id:
             return item
     raise HTTPException(status_code=404, detail="Item not found")`}
-                </pre>
+                  language="python"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">2. Create requirements.txt</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`fastapi==0.104.1
+                <CodeBlock 
+                  code={`fastapi==0.104.1
 uvicorn[standard]==0.24.0
 pydantic==2.5.0`}
-                </pre>
+                  language="text"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">3. Create Dockerfile</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Use Python 3.11 slim image as base
+                <CodeBlock 
+                  code={`# Use Python 3.11 slim image as base
 FROM python:3.11-slim
 
 # Set working directory
@@ -502,13 +511,14 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \\
 
 # Run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]`}
-                </pre>
+                  language="dockerfile"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">4. Create docker-compose.yml (Optional)</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`version: '3.8'
+                <CodeBlock 
+                  code={`version: '3.8'
 
 services:
   api:
@@ -526,14 +536,15 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3`}
-                </pre>
+                  language="yaml"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">5. Build and Run</h3>
                 <p className="text-sm text-muted-foreground mb-2">Using Docker directly:</p>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Build the image
+                <CodeBlock 
+                  code={`# Build the image
 docker build -t fastapi-service:latest .
 
 # Run the container
@@ -547,10 +558,11 @@ docker stop fastapi-app
 
 # Remove the container
 docker rm fastapi-app`}
-                </pre>
+                  language="bash"
+                />
                 <p className="text-sm text-muted-foreground mt-4 mb-2">Using Docker Compose:</p>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Build and start
+                <CodeBlock 
+                  code={`# Build and start
 docker compose up -d
 
 # View logs
@@ -561,13 +573,14 @@ docker compose down
 
 # Rebuild after changes
 docker compose up -d --build`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">6. Test the API</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Health check
+                <CodeBlock 
+                  code={`# Health check
 curl http://localhost:8000/health
 
 # Get all items
@@ -583,7 +596,8 @@ curl http://localhost:8000/items/1
 
 # Interactive API docs
 # Open in browser: http://localhost:8000/docs`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
@@ -601,8 +615,8 @@ curl http://localhost:8000/items/1
 
               <div>
                 <h3 className="font-semibold mb-2">Advanced: Multi-stage Dockerfile</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Stage 1: Builder
+                <CodeBlock 
+                  code={`# Stage 1: Builder
 FROM python:3.11-slim as builder
 
 WORKDIR /app
@@ -633,7 +647,8 @@ USER appuser
 EXPOSE 8000
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]`}
-                </pre>
+                  language="dockerfile"
+                />
               </div>
             </CardContent>
           </Card>

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Settings, Container, Code, Package, FileCode, Cloud, Terminal, CheckCircle2 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { CodeBlock } from "@/components/code-block";
 
 export default function LocalSetupPage() {
   const [mounted, setMounted] = useState(false);
@@ -88,13 +89,14 @@ export default function LocalSetupPage() {
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">macOS</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Using Homebrew (Recommended)
+                <CodeBlock 
+                  code={`# Using Homebrew (Recommended)
 brew install --cask docker
 
 # Or download from docker.com
 # Visit: https://www.docker.com/products/docker-desktop`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
