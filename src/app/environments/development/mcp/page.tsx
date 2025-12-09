@@ -462,8 +462,8 @@ async def get_feature(feature_name: str, entity_id: str):
                   <p className="text-sm text-muted-foreground mb-3">
                     Expose database queries as MCP tools:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`import asyncpg
+                  <CodeBlock 
+                    code={`import asyncpg
 from mcp import Server, Tool
 
 server = Server("database-mcp")
@@ -483,7 +483,8 @@ async def query_model_metrics(
             AND timestamp BETWEEN $2 AND $3
         """, model_name, start_date, end_date)
         return [dict(row) for row in rows]`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -505,8 +506,8 @@ async def query_model_metrics(
                   <p className="text-sm text-muted-foreground mb-3">
                     An AI assistant that helps ML engineers monitor and debug production models:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# MCP Server exposing monitoring tools
+                  <CodeBlock 
+                    code={`# MCP Server exposing monitoring tools
 @server.tool()
 async def check_model_health(model_name: str):
     """Check if a model is healthy based on recent metrics."""
@@ -532,7 +533,8 @@ async def get_model_explanations(model_name: str, prediction_id: str):
     """Get feature importance and explanations for a prediction."""
     explanation = await generate_shap_explanation(model_name, prediction_id)
     return explanation`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
