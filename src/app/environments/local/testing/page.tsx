@@ -956,19 +956,20 @@ cfn-lint template.yaml --include-checks I`}
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install via pip
+                <CodeBlock 
+                  code={`# Install via pip
 pip install taskcat
 
 # Or via Homebrew
 brew install taskcat`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Configuration</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# .taskcat.yml
+                <CodeBlock 
+                  code={`# .taskcat.yml
 project:
   name: my-cloudformation-project
   regions:
@@ -983,13 +984,14 @@ tests:
       KeyName: test-key
     regions:
       - us-east-1`}
-                </pre>
+                  language="yaml"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Running Tests</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Run all tests
+                <CodeBlock 
+                  code={`# Run all tests
 taskcat test run
 
 # Run specific test
@@ -1000,13 +1002,14 @@ taskcat test run --cleanup
 
 # Generate report
 taskcat test run --report`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Test Structure</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# tests/test_template.py
+                <CodeBlock 
+                  code={`# tests/test_template.py
 import taskcat
 import boto3
 
@@ -1021,7 +1024,8 @@ def test_resources_exist():
     cf = boto3.client('cloudformation')
     stacks = cf.list_stacks()
     # Assertions on stack resources`}
-                </pre>
+                  language="python"
+                />
               </div>
             </CardContent>
           </Card>
@@ -1034,15 +1038,16 @@ def test_resources_exist():
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Installation</h3>
-                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`# Install Ruby gem
+                <CodeBlock 
+                  code={`# Install Ruby gem
 gem install cfn-nag
 
 # Or via Docker
-docker run -v $(pwd):/scan \
-    stelligent/cfn_nag_scan \
+docker run -v $(pwd):/scan \\
+    stelligent/cfn_nag_scan \\
     template.yaml`}
-                </pre>
+                  language="bash"
+                />
               </div>
 
               <div>
