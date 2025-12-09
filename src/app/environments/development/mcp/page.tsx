@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Network, Zap, Database, Code, CheckCircle2, AlertCircle, Plug, Server, Shield } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
+import { CodeBlock } from "@/components/code-block";
 
 export default function MCPPage() {
   return (
@@ -305,15 +306,11 @@ export default function MCPPage() {
                   <div className="space-y-2">
                     <div>
                       <h4 className="font-medium mb-1 text-sm">Python</h4>
-                      <pre className="bg-muted p-3 rounded-lg text-xs overflow-x-auto">
-{`pip install mcp`}
-                      </pre>
+                      <CodeBlock code="pip install mcp" language="bash" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1 text-sm">TypeScript/Node.js</h4>
-                      <pre className="bg-muted p-3 rounded-lg text-xs overflow-x-auto">
-{`npm install @modelcontextprotocol/sdk`}
-                      </pre>
+                      <CodeBlock code="npm install @modelcontextprotocol/sdk" language="bash" />
                     </div>
                   </div>
                 </div>
@@ -323,8 +320,8 @@ export default function MCPPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     MCP servers expose tools, resources, and prompts. Here's a simple Python example:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`from mcp import Server, Tool
+                  <CodeBlock 
+                    code={`from mcp import Server, Tool
 
 # Create an MCP server
 server = Server("mlops-tools")
@@ -349,7 +346,8 @@ async def get_model_metrics(model_name: str, version: str):
 # Start the server
 if __name__ == "__main__":
     server.run()`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
