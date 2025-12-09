@@ -1,7 +1,5 @@
 "use client";
 
-import { Quote } from "lucide-react";
-
 const quotes = [
   "Loose-coupled systems are always mostly better",
   "Premature optimization is the root of all evil",
@@ -25,8 +23,7 @@ export function ScrollingQuotes() {
         {/* Scrolling container */}
         <div className="flex animate-scroll hover:pause-animation">
           {duplicatedQuotes.map((quote, index) => (
-            <div key={index} className="flex items-center gap-3 flex-shrink-0 mx-8 whitespace-nowrap">
-              <Quote className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+            <div key={index} className="flex items-center flex-shrink-0 mx-8 whitespace-nowrap">
               <p className="text-sm font-medium text-foreground">
                 {quote}
               </p>
