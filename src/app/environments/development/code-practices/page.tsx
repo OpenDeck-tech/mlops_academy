@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Code, FileCode, GitBranch, BookOpen, CheckCircle2, AlertCircle, Zap, Layers, Database } from "lucide-react";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
+import { CodeBlock } from "@/components/code-block";
 
 export default function CodeBestPracticesPage() {
   return (
@@ -54,8 +55,8 @@ export default function CodeBestPracticesPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     Keep data processing, model training, evaluation, and inference in separate modules:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`project/
+                  <CodeBlock 
+                    code={`project/
 ├── data/
 │   ├── preprocessing.py
 │   ├── feature_engineering.py
@@ -69,7 +70,8 @@ export default function CodeBestPracticesPage() {
 │   └── validation.py
 └── config/
     └── config.yaml`}
-                  </pre>
+                    language="text"
+                  />
                 </div>
 
                 <div>
@@ -212,8 +214,8 @@ export default function CodeBestPracticesPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     Follow a consistent project structure:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`ml_project/
+                  <CodeBlock 
+                    code={`ml_project/
 ├── src/
 │   ├── __init__.py
 │   ├── data/
@@ -235,7 +237,8 @@ export default function CodeBestPracticesPage() {
 ├── requirements.txt
 ├── README.md
 └── .gitignore`}
-                  </pre>
+                    language="text"
+                  />
                 </div>
 
                 <div>
@@ -330,8 +333,8 @@ export default function CodeBestPracticesPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     Use Google or NumPy style docstrings for all public functions and classes:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`def train_model(
+                  <CodeBlock 
+                    code={`def train_model(
     data: pd.DataFrame,
     config: Dict[str, Any],
     epochs: int = 10
@@ -356,7 +359,8 @@ export default function CodeBestPracticesPage() {
         >>> model = train_model(train_data, config, epochs=20)
     """
     ...`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
