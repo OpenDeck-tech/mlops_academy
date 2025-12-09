@@ -438,8 +438,8 @@ async def register_model(run_id: str, model_name: str):
                   <p className="text-sm text-muted-foreground mb-3">
                     Connect to feature stores for real-time feature access:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`from feast import FeatureStore
+                  <CodeBlock 
+                    code={`from feast import FeatureStore
 from mcp import Server, Resource
 
 fs = FeatureStore(repo_path="./feature_repo")
@@ -453,7 +453,8 @@ async def get_feature(feature_name: str, entity_id: str):
         entity_rows=[{"entity_id": entity_id}]
     )
     return features.to_dict()`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
