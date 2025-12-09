@@ -355,8 +355,8 @@ if __name__ == "__main__":
                   <p className="text-sm text-muted-foreground mb-3">
                     Connect your AI application to the MCP server:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`from mcp import Client
+                  <CodeBlock 
+                    code={`from mcp import Client
 
 # Create a client and connect to the server
 client = Client("http://localhost:8000")
@@ -371,7 +371,8 @@ metrics = await client.call_tool(
     {"model_name": "fraud-detection", "version": "v1.2.3"}
 )
 print(f"Model metrics: {metrics}")`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
@@ -379,8 +380,8 @@ print(f"Model metrics: {metrics}")`}
                   <p className="text-sm text-muted-foreground mb-3">
                     Expose data sources as MCP resources:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`@server.resource("model-registry://models/{model_name}")
+                  <CodeBlock 
+                    code={`@server.resource("model-registry://models/{model_name}")
 async def get_model_info(model_name: str):
     """
     Get information about a model from the registry.
@@ -392,7 +393,8 @@ async def get_model_info(model_name: str):
         "metrics": model_info.metrics,
         "created_at": model_info.created_at.isoformat()
     }`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -410,8 +412,8 @@ async def get_model_info(model_name: str):
                   <p className="text-sm text-muted-foreground mb-3">
                     Create an MCP server that exposes MLflow functionality:
                   </p>
-                  <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
-{`import mlflow
+                  <CodeBlock 
+                    code={`import mlflow
 from mcp import Server, Tool
 
 server = Server("mlflow-mcp")
@@ -427,7 +429,8 @@ async def register_model(run_id: str, model_name: str):
     """Register a model from an MLflow run."""
     mlflow.register_model(f"runs:/{run_id}/model", model_name)
     return {"status": "registered", "model_name": model_name}`}
-                  </pre>
+                    language="python"
+                  />
                 </div>
 
                 <div>
