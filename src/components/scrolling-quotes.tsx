@@ -7,6 +7,7 @@ const quotes = [
   "Code is read more often than it's written",
   "Simplicity is the ultimate sophistication",
   "Check your dashboards first, in-between, and last",
+  "Debugging mode is better than guessing mode",
 ];
 
 // Duplicate quotes for seamless loop
