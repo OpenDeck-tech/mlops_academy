@@ -43,11 +43,11 @@ const sidebarSections = [
     external: true,
   },
   {
-    id: "events",
-    title: "MLOps Events",
+    id: "community",
+    title: "MLOps Community",
     icon: Calendar,
-    href: "/events",
-    external: false,
+    href: "https://mlops.community/",
+    external: true,
   },
   {
     id: "reddit",
