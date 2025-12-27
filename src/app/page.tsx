@@ -43,7 +43,7 @@ export default function Home() {
         <div className="mt-8 flex flex-col items-center justify-center gap-4">
           <div className="flex flex-col items-center gap-3">
             <Button size="lg" onClick={checkout}>Get Pro Access</Button>
-            <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Kids 🚀</Link>
+            <Link href="/mlops-for-starters" className="text-sm underline">MLOps for Starters!</Link>
           </div>
           <Link href="/environments/local" className="text-sm underline">Preview curriculum</Link>
         </div>

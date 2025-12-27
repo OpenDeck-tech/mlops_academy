@@ -24,7 +24,7 @@ export default function MLOpsForKidsPage() {
             Free Content
           </Badge>
           <h1 className="text-5xl font-bold tracking-tight mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            MLOps for Kids! 🚀
+            MLOps for Starters! 
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Learn how AI models work in the real world! Just like training a pet, we need to teach computers to be smart and helpful.
