@@ -137,6 +137,99 @@ export default function Home() {
         <ShellCommandsSection />
       </section>
 
+      <section id="microservices" className="container mx-auto max-w-5xl px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
+            Building Robust Microservices for Data-Intensive Applications
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            Learn to architect and deploy microservices that efficiently handle large-scale data processing, 
+            ensuring scalability, reliability, and performance.
+          </p>
+        </div>
+        
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Data Pipeline Architecture</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Streaming vs batch processing</li>
+                <li>Event-driven architectures</li>
+                <li>Data partitioning strategies</li>
+                <li>Message queue patterns</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Scalability & Performance</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Horizontal scaling patterns</li>
+                <li>Caching strategies</li>
+                <li>Database optimization</li>
+                <li>Load balancing & routing</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Reliability & Resilience</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Circuit breakers & retries</li>
+                <li>Fault tolerance patterns</li>
+                <li>Distributed tracing</li>
+                <li>Graceful degradation</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Data Storage & Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Polyglot persistence</li>
+                <li>Data consistency models</li>
+                <li>Schema evolution</li>
+                <li>Data lifecycle management</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Monitoring & Observability</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Metrics & alerting</li>
+                <li>Log aggregation</li>
+                <li>Performance profiling</li>
+                <li>Data quality monitoring</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Security & Governance</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                <li>Data encryption at rest & in transit</li>
+                <li>Access control & authentication</li>
+                <li>Compliance & audit trails</li>
+                <li>Data privacy patterns</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <section id="pricing" className="container mx-auto max-w-4xl px-6 pb-32">
         <Card>
           <CardHeader>
