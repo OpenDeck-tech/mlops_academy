@@ -12,6 +12,7 @@ import {
   Map,
   FileText,
   Network,
+  ClipboardList,
   type LucideIcon,
 } from "lucide-react";
 
@@ -41,6 +42,8 @@ export const sidebarSections: SidebarSection[] = [
   },
   // Learning & journeys
   { id: "journeys", title: "Learning Paths", icon: BookOpen, href: "/journeys", external: false },
+  { id: "playbooks", title: "Playbooks", icon: ClipboardList, href: "/playbooks", external: false },
+  { id: "readiness", title: "Readiness", icon: ClipboardList, href: "/readiness", external: false },
   { id: "roles", title: "Roles", icon: Briefcase, href: "/roles", external: false },
   { id: "community", title: "MLOps Community", icon: Calendar, href: "https://mlops.community/", external: true },
   { id: "reddit", title: "Reddit", icon: MessageSquare, href: "https://www.reddit.com/r/mlops/", external: true },
