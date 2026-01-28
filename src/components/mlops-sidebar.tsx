@@ -1,97 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText, ChevronLeft, ChevronRight, Menu, Network } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-const sidebarSections = [
-  {
-    id: "podcasts",
-    title: "Podcasts",
-    icon: Headphones,
-    href: "/podcasts",
-    external: false,
-  },
-  {
-    id: "tweets",
-    title: "Tweets",
-    icon: TwitterIcon,
-    href: "https://x.com/search?q=%23mlops&src=typed_query&f=top",
-    external: true,
-  },
-  {
-    id: "practitioners",
-    title: "Practitioners on LinkedIn",
-    icon: LinkedinIcon,
-    href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL",
-    external: true,
-  },
-  {
-    id: "roles",
-    title: "Roles",
-    icon: Briefcase,
-    href: "/roles",
-    external: false,
-  },
-  {
-    id: "community",
-    title: "MLOps Community",
-    icon: Calendar,
-    href: "https://mlops.community/",
-    external: true,
-  },
-  {
-    id: "reddit",
-    title: "Reddit",
-    icon: MessageSquare,
-    href: "https://www.reddit.com/r/mlops/",
-    external: true,
-  },
-  {
-    id: "blog",
-    title: "Blog",
-    icon: BookOpen,
-    href: "/blog",
-    external: false,
-  },
-  {
-    id: "mcp",
-    title: "MCP",
-    icon: Network,
-    href: "/environments/development/mcp",
-    external: false,
-  },
-  {
-    id: "recruiters",
-    title: "Recruiters",
-    icon: UserSearch,
-    href: "/recruiters",
-    external: false,
-  },
-  {
-    id: "roadmap",
-    title: "MLOps Roadmap",
-    icon: Map,
-    href: "/roadmap",
-    external: false,
-  },
-  {
-    id: "abbreviations",
-    title: "Abbreviations",
-    icon: FileText,
-    href: "/abbreviations",
-    external: false,
-  },
-];
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { sidebarSections } from "@/components/sidebar/sections";
+import { SidebarNav } from "@/components/sidebar/sidebar-nav";
 
 export function MLOpsSidebar() {
   const [isPro, setIsPro] = useState(false);
@@ -169,10 +86,8 @@ export function MLOpsSidebar() {
       </div>
 
       <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
-        <nav className="space-y-2 flex-1">
-          {!isCollapsed && (
-            <h2 className="mb-6 px-3 text-lg font-semibold text-foreground">Resources</h2>
-          )}
+        <div className="flex-1">
+          {!isCollapsed && <h2 className="mb-6 px-3 text-lg font-semibold text-foreground">Resources</h2>}
           {isPro && (
             <TooltipProvider>
               <Tooltip>
@@ -201,62 +116,8 @@ export function MLOpsSidebar() {
               </Tooltip>
             </TooltipProvider>
           )}
-          <TooltipProvider>
-            {sidebarSections.map((section) => {
-              const Icon = section.icon;
-              const linkClassName = cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                "hover:bg-accent/50 hover:text-foreground",
-                "text-muted-foreground",
-                isCollapsed && "justify-center px-2"
-              );
-
-              const linkContent = (
-                <>
-                  <Icon className="h-5 w-5 flex-shrink-0" />
-                  {!isCollapsed && <span>{section.title}</span>}
-                </>
-              );
-
-              if (section.external) {
-                return (
-                  <Tooltip key={section.id}>
-                    <TooltipTrigger asChild>
-                      <a
-                        href={section.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={linkClassName}
-                      >
-                        {linkContent}
-                      </a>
-                    </TooltipTrigger>
-                    {isCollapsed && (
-                      <TooltipContent side="right">
-                        <p>{section.title}</p>
-                      </TooltipContent>
-                    )}
-                  </Tooltip>
-                );
-              }
-
-              return (
-                <Tooltip key={section.id}>
-                  <TooltipTrigger asChild>
-                    <Link href={section.href} className={linkClassName}>
-                      {linkContent}
-                    </Link>
-                  </TooltipTrigger>
-                  {isCollapsed && (
-                    <TooltipContent side="right">
-                      <p>{section.title}</p>
-                    </TooltipContent>
-                  )}
-                </Tooltip>
-              );
-            })}
-          </TooltipProvider>
-        </nav>
+          <SidebarNav sections={sidebarSections} isCollapsed={isCollapsed} />
+        </div>
         <div className={cn("mt-auto pt-4 border-t", isCollapsed && "px-2")}>
           <div className={cn("px-3", isCollapsed && "px-0 flex justify-center")}>
             <ThemeToggle />

@@ -2,13 +2,11 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Map, ExternalLink } from "lucide-react";
-import { MLOpsSidebar } from "@/components/mlops-sidebar";
+import { AppShell } from "@/components/app-shell";
 
 export default function RoadmapPage() {
   return (
-    <div className="flex min-h-screen">
-      <MLOpsSidebar />
-      <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 transition-all duration-300" style={{ marginLeft: "var(--sidebar-width)" }}>
+    <AppShell title="Roadmap">
         <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
           <ArrowLeft className="h-4 w-4" />
           Back to Environments
@@ -105,8 +103,7 @@ export default function RoadmapPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
-    </div>
+    </AppShell>
   );
 }
 
