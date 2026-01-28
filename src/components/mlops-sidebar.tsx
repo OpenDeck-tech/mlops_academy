@@ -102,20 +102,35 @@ export function MLOpsSidebar() {
     const initialCollapsed = savedState === "true";
     setIsCollapsed(initialCollapsed);
     
+    const applySidebarWidthVar = (collapsed: boolean) => {
+      // On mobile, keep content full-width; sidebar behaves like an overlay.
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        document.documentElement.style.setProperty("--sidebar-width", "0px");
+        return;
+      }
+      document.documentElement.style.setProperty(
+        "--sidebar-width",
+        collapsed ? "80px" : "256px"
+      );
+    };
+
     // Set initial CSS variable
-    document.documentElement.style.setProperty(
-      "--sidebar-width",
-      initialCollapsed ? "80px" : "256px"
-    );
+    applySidebarWidthVar(initialCollapsed);
+
+    // Keep in sync on viewport changes
+    const onResize = () => applySidebarWidthVar(initialCollapsed);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   useEffect(() => {
     // Save sidebar state to localStorage and update CSS variable
     localStorage.setItem("sidebar-collapsed", isCollapsed.toString());
-    document.documentElement.style.setProperty(
-      "--sidebar-width",
-      isCollapsed ? "80px" : "256px"
-    );
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      document.documentElement.style.setProperty("--sidebar-width", "0px");
+      return;
+    }
+    document.documentElement.style.setProperty("--sidebar-width", isCollapsed ? "80px" : "256px");
   }, [isCollapsed]);
 
   const toggleSidebar = () => {

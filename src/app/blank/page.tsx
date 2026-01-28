@@ -52,7 +52,7 @@ export default async function BlankPage() {
     <div className="flex flex-col min-h-screen">
       <div className="flex flex-1">
         <MLOpsSidebar />
-        <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 256px)' }}>
+        <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 relative transition-all duration-300" style={{ marginLeft: "var(--sidebar-width)" }}>
           {/* Sign Out Button and Theme Toggle */}
           <div className="absolute top-4 right-4 z-10 flex items-center gap-3">
             <ThemeToggle />

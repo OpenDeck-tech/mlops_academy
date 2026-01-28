@@ -10,7 +10,7 @@ export default function TeamCollaborationPage() {
   return (
     <div className="flex min-h-screen">
       <MLOpsSidebar />
-      <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 transition-all duration-300" style={{ marginLeft: 'var(--sidebar-width, 256px)' }}>
+      <div className="flex-1 min-h-screen container mx-auto max-w-7xl px-6 py-12 transition-all duration-300" style={{ marginLeft: "var(--sidebar-width)" }}>
       <Link 
         href="/environments/development" 
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
