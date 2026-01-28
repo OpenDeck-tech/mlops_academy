@@ -38,7 +38,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
       <Link
-        href="/"
+        href="/blank"
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
       >
         <ArrowLeft className="h-4 w-4" />
