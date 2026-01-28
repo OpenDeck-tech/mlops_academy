@@ -12,6 +12,13 @@ export default function RecruitersPage() {
       linkedinUrl: "https://www.linkedin.com/in/cody-middlebrook/",
       description: "Specialized in connecting MLOps talent with top opportunities in machine learning operations.",
     },
+    {
+      id: 2,
+      name: "Olivia Hanson",
+      title: "Tech Recruiter",
+      linkedinUrl: "https://www.linkedin.com/in/olivia-hanson-tech/",
+      description: "Recruiter focused on connecting top technical talent with high-impact roles.",
+    },
     // Add more recruiters here as needed
   ];
 

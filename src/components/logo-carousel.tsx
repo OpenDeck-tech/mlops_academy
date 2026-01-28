@@ -4,7 +4,7 @@ export function LogoCarousel() {
   const companies = [
     { name: "Seldon", logo: "Seldon" },
     { name: "Google", logo: "Google" },
-    { name: "OpenDeck", logo: "OpenDeck" },
+    { name: "Anthropic", logo: "Anthropic" },
     { name: "OpenAI", logo: "OpenAI" },
     { name: "Instagram", logo: "Instagram" },
     { name: "Meta", logo: "Meta" },

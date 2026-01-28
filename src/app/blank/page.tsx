@@ -71,21 +71,25 @@ export default async function BlankPage() {
         <p className="text-muted-foreground text-lg mb-4">
           Explore best practices, tricks, and concepts for each environment
         </p>
-        {sess.isPro && (
-          <div className="flex items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black rounded-full font-semibold shadow-[0_0_10px_rgba(173,255,47,0.5)]">
+        <div className="flex items-center justify-center gap-3 flex-wrap">
+          {sess.isPro && (
+            <Button
+              asChild
+              size="lg"
+              className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black rounded-full font-semibold shadow-[0_0_10px_rgba(173,255,47,0.5)]"
+            >
               <Link href="/pro" className="flex items-center gap-2">
                 Access Pro Content
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/dashboard" className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4" />
-                Dashboard
-              </Link>
-            </Button>
-          </div>
-        )}
+          )}
+          <Button asChild variant="outline" size="lg">
+            <Link href="/dashboard" className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4" />
+              Dashboard
+            </Link>
+          </Button>
+        </div>
       </div>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
