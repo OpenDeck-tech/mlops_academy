@@ -2,8 +2,18 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, BookOpen, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/lib/session";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  let isSignedIn = false;
+  try {
+    const sess = await getSession();
+    isSignedIn = Boolean(sess.userId || sess.email);
+  } catch {
+    // If session isn't configured (e.g. missing IRON_SESSION_PASSWORD), keep blog public.
+    isSignedIn = false;
+  }
+
   const blogPosts = [
     {
       id: 1,
@@ -46,6 +56,35 @@ export default function BlogPage() {
           Curated articles and resources about machine learning operations, best practices, and industry insights
         </p>
       </div>
+
+      <Card className="mb-10">
+        <CardHeader>
+          <CardTitle className="text-xl">
+            {isSignedIn ? "You’re browsing as a signed-in user" : "Want to save your progress?"}
+          </CardTitle>
+          <CardDescription>
+            {isSignedIn
+              ? "Head to your dashboard for subscription and account settings."
+              : "Create an account (or sign in) to access personalized features and Pro content."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-3">
+          {isSignedIn ? (
+            <Button asChild>
+              <Link href="/dashboard">Go to Dashboard</Link>
+            </Button>
+          ) : (
+            <>
+              <Button asChild className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold">
+                <Link href="/signup">Create account</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/login">Sign in</Link>
+              </Button>
+            </>
+          )}
+        </CardContent>
+      </Card>
 
       {blogPosts.length === 0 ? (
         <Card>
