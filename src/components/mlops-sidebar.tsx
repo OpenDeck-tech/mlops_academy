@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText, ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import { Headphones, TwitterIcon, LinkedinIcon, Briefcase, Calendar, MessageSquare, BookOpen, UserSearch, Map, FileText, ChevronLeft, ChevronRight, Menu, Network } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -61,6 +61,13 @@ const sidebarSections = [
     title: "Blog",
     icon: BookOpen,
     href: "/blog",
+    external: false,
+  },
+  {
+    id: "mcp",
+    title: "MCP",
+    icon: Network,
+    href: "/environments/development/mcp",
     external: false,
   },
   {
