@@ -19,12 +19,19 @@ export default function RecruitersPage() {
       linkedinUrl: "https://www.linkedin.com/in/olivia-hanson-tech/",
       description: "Recruiter focused on connecting top technical talent with high-impact roles.",
     },
+    {
+      id: 3,
+      name: "Takveen Bashir",
+      title: "Tech Recruiter",
+      linkedinUrl: "https://www.linkedin.com/in/takveen-bashir-59335398/",
+      description: "Recruiter connecting technical talent with roles across data, ML, and software.",
+    },
     // Add more recruiters here as needed
   ];
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+      <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
         <ArrowLeft className="h-4 w-4" />
         Back to Home
       </Link>
