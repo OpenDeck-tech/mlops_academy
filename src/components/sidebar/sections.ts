@@ -39,6 +39,8 @@ export const sidebarSections: SidebarSection[] = [
     href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL",
     external: true,
   },
+  // Learning & journeys
+  { id: "journeys", title: "Learning Paths", icon: BookOpen, href: "/journeys", external: false },
   { id: "roles", title: "Roles", icon: Briefcase, href: "/roles", external: false },
   { id: "community", title: "MLOps Community", icon: Calendar, href: "https://mlops.community/", external: true },
   { id: "reddit", title: "Reddit", icon: MessageSquare, href: "https://www.reddit.com/r/mlops/", external: true },
