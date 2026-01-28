@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import Link from "next/link";
 
 export default async function ProPage() {
@@ -190,6 +191,20 @@ export default async function ProPage() {
                 Book a 1:1 Call
               </Link>
             </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="mt-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Subscription</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Manage billing details or cancel your subscription.
+            </p>
+            <ManageSubscriptionButton />
           </CardContent>
         </Card>
       </div>

@@ -43,7 +43,7 @@ export function ManageSubscriptionButton() {
           Loading...
         </>
       ) : (
-        "Manage Subscription"
+        "Manage / Unsubscribe"
       )}
     </Button>
   );
