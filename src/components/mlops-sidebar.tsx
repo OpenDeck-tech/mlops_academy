@@ -23,14 +23,14 @@ const sidebarSections = [
   },
   {
     id: "tweets",
-    title: "Tweets on MLOps",
+    title: "Tweets",
     icon: TwitterIcon,
     href: "https://x.com/search?q=%23mlops&src=typed_query&f=top",
     external: true,
   },
   {
     id: "practitioners",
-    title: "MLOps Practitioners on LinkedIn",
+    title: "Practitioners on LinkedIn",
     icon: LinkedinIcon,
     href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL",
     external: true,
@@ -51,14 +51,14 @@ const sidebarSections = [
   },
   {
     id: "reddit",
-    title: "Reddit - MLOps",
+    title: "Reddit",
     icon: MessageSquare,
     href: "https://www.reddit.com/r/mlops/",
     external: true,
   },
   {
     id: "blog",
-    title: "MLOps Blog",
+    title: "Blog",
     icon: BookOpen,
     href: "/blog",
     external: false,
