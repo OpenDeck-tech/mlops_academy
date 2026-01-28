@@ -32,6 +32,15 @@ export default async function BlogPage() {
       author: "Algomox",
       category: "Careers",
     },
+    {
+      id: 3,
+      title: "Learning MLOps Gradually (for Free) Through Blog Posts & Podcasts",
+      description:
+        "A curated path of blog posts and podcasts that help you ramp up MLOps skills over time without paying for courses.",
+      url: "https://medium.com/kitchen-sink-data-science/learning-mlops-gradually-for-free-through-blog-posts-podcasts-f83d7621a65c",
+      author: "Kitchen Sink Data Science (Medium)",
+      category: "Learning Path",
+    },
     // Add more blog posts here as needed
   ];
 
