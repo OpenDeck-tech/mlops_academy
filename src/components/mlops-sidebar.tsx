@@ -39,8 +39,8 @@ const sidebarSections = [
     id: "roles",
     title: "Roles",
     icon: Briefcase,
-    href: "https://www.linkedin.com/jobs/search-results/?keywords=mlops&origin=BLENDED_SEARCH_RESULT_NAVIGATION_SEE_ALL&originToLandingJobPostings=4336034565%2C4300953237%2C4316361058",
-    external: true,
+    href: "/roles",
+    external: false,
   },
   {
     id: "community",
