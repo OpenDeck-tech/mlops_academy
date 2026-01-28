@@ -13,12 +13,24 @@ export default function BlogPage() {
       author: "MLOps.org",
       category: "Principles & Best Practices",
     },
+    {
+      id: 2,
+      title: "MLOps Engineer and What You Need to Become One?",
+      description:
+        "An overview of what MLOps engineers do day-to-day, how the role differs from adjacent roles, and what skills/tools are commonly expected.",
+      url: "https://neptune.ai/blog/mlops-engineer",
+      author: "Neptune.ai",
+      category: "Careers",
+    },
     // Add more blog posts here as needed
   ];
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+      <Link
+        href="/"
+        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
+      >
         <ArrowLeft className="h-4 w-4" />
         Back to Home
       </Link>
