@@ -6,12 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { LogoutButton } from "@/components/logout-button";
 import { ShellCommandsSection } from "@/components/shell-commands-section";
 import Link from "next/link";
 import { Calendar, Mail, CreditCard, CheckCircle2, XCircle } from "lucide-react";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
+import { AppShell } from "@/components/app-shell";
 
 // Note: This page needs to be dynamic due to Stripe API calls
 export const dynamic = "force-dynamic";
@@ -80,18 +80,129 @@ export default async function DashboardPage() {
       })
     : "N/A";
 
+  const isPro = Boolean(sess.isPro || hasActiveSubscription);
+
   return (
-    <div className="container mx-auto max-w-5xl px-6 py-16">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-      
-      <div className="mb-8">
-        <h1 className="text-4xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground mt-2">Manage your account and subscription</p>
+    <AppShell title="Dashboard" actions={<LogoutButton />}>
+      <div className="mb-8 space-y-4">
+        <div>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground mt-2">
+            Your MLOps command center — account, learning, and career in one place.
+          </p>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">
+          <Card>
+            <CardHeader>
+              <CardTitle>Skills overview</CardTitle>
+              <CardDescription>
+                High-level view of the areas this app can help you grow.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {[
+                { label: "Environments & infra", value: 70 },
+                { label: "CI/CD & testing", value: 60 },
+                { label: "Monitoring & reliability", value: 40 },
+                { label: "LLM / MCP & tools", value: 35 },
+                { label: "Career & interviewing", value: 50 },
+              ].map((skill) => (
+                <div key={skill.label}>
+                  <div className="flex items-center justify-between text-sm mb-1">
+                    <span>{skill.label}</span>
+                    <span className="text-muted-foreground">{skill.value}%</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: `${skill.value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+              <p className="text-xs text-muted-foreground">
+                This is a simple guide, not a formal assessment. Use it to decide where to focus next.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Next best actions</CardTitle>
+              <CardDescription>
+                A few high-leverage things you can do in the next hour.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-start gap-3 text-sm">
+                <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                <div className="space-y-1">
+                  <p className="font-medium">Explore your environments</p>
+                  <p className="text-muted-foreground">
+                    Review Local, Development, Staging, and Production environment guides to make your current setup more production-like.
+                  </p>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href="/blank">Open environments hub</Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 text-sm">
+                <div className="mt-1 h-2 w-2 rounded-full bg-primary/80" />
+                <div className="space-y-1">
+                  <p className="font-medium">Tighten your CI pipeline</p>
+                  <p className="text-muted-foreground">
+                    Use the Continuous Integration page to add or refine linting, typechecking, and tests in your current project.
+                  </p>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href="/environments/development/continuous-integration">
+                      View CI playbook
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 text-sm">
+                <div className="mt-1 h-2 w-2 rounded-full bg-primary/60" />
+                <div className="space-y-1">
+                  <p className="font-medium">
+                    {isPro ? "Go deeper with Pro content" : "Plan your path into MLOps"}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {isPro
+                      ? "Use the Pro curriculum and coding exercises to simulate real MLOps scenarios."
+                      : "Browse the curriculum and roles page to understand the skills your next role will expect."}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {isPro ? (
+                      <>
+                        <Button asChild size="sm">
+                          <Link href="/pro">Open Pro curriculum</Link>
+                        </Button>
+                        <Button asChild size="sm" variant="outline">
+                          <Link href="/pro/coding">Do a coding exercise</Link>
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button asChild size="sm">
+                          <Link href="/#curriculum">View curriculum</Link>
+                        </Button>
+                        <Button asChild size="sm" variant="outline">
+                          <Link href="/roles">See current roles</Link>
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 mt-6">
         {/* Account Information */}
         <Card>
           <CardHeader>
@@ -271,7 +382,7 @@ export default async function DashboardPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </AppShell>
   );
 }
 
