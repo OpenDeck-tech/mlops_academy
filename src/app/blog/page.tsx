@@ -25,11 +25,11 @@ export default async function BlogPage() {
     },
     {
       id: 2,
-      title: "MLOps Engineer and What You Need to Become One?",
+      title: "A Day in the Life of an MLOps Engineer",
       description:
-        "An overview of what MLOps engineers do day-to-day, how the role differs from adjacent roles, and what skills/tools are commonly expected.",
-      url: "https://neptune.ai/blog/mlops-engineer",
-      author: "Neptune.ai",
+        "A practical overview of an MLOps engineer’s responsibilities, common challenges, and what the end-to-end lifecycle looks like in real organizations.",
+      url: "https://www.algomox.com/resources/blog/day-in-life-of-mlops-engineer/",
+      author: "Algomox",
       category: "Careers",
     },
     // Add more blog posts here as needed
