@@ -62,6 +62,8 @@ export default function DevelopmentEnvironmentPage() {
             ? "/environments/development/collaboration"
             : topic.id === "code-practices"
             ? "/environments/development/code-practices"
+            : topic.id === "continuous-integration"
+            ? "/environments/development/continuous-integration"
             : topic.id === "mcp"
             ? "/environments/development/mcp"
             : undefined;
