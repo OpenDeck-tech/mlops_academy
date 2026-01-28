@@ -14,6 +14,15 @@ export default function RolesPage() {
       description:
         "MLOps engineer role focused on building cloud MLOps pipelines, CI/CD orchestration, model deployment, versioning, monitoring, and collaboration with data teams.",
     },
+    {
+      id: 2,
+      title: "MLOps Engineer",
+      company: "J.P. Morgan",
+      location: "Per job listing",
+      url: "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/210689350?utm_medium=jobboard&utm_source=LinkedIn",
+      description:
+        "MLOps role in a large-scale financial environment, focusing on cloud MLOps pipelines, CI/CD, model deployment, and close collaboration with data science and engineering teams.",
+    },
     // Add more roles here as needed
   ];
 
