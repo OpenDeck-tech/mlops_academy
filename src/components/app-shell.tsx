@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { useTranslation } from "@/contexts/language-context";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SidebarNav } from "@/components/sidebar/sidebar-nav";
@@ -23,6 +25,7 @@ type Props = {
 
 export function AppShell({ children, actions, showSidebar = true, title }: Props) {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-background">
@@ -61,9 +64,15 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                   <div className="p-4">
                     <SidebarNav groups={sidebarGroups} onNavigate={() => setOpen(false)} />
                   </div>
-                  <div className="mt-auto border-t p-4 flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Theme</span>
-                    <ThemeToggle />
+                  <div className="mt-auto border-t p-4 space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm text-muted-foreground">{t("Theme")}</span>
+                      <ThemeToggle />
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm text-muted-foreground">{t("Language")}</span>
+                      <LanguageSwitcher />
+                    </div>
                   </div>
                 </SheetContent>
               </Sheet>
@@ -77,6 +86,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
           </div>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitcher className="hidden sm:flex" />
             <div className="hidden md:block">
               <ThemeToggle />
             </div>

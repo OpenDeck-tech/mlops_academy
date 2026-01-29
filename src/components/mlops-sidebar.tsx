@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useTranslation } from "@/contexts/language-context";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { sidebarGroups } from "@/components/sidebar/sections";
@@ -13,6 +14,7 @@ import { SidebarNav } from "@/components/sidebar/sidebar-nav";
 export function MLOpsSidebar() {
   const [isPro, setIsPro] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Check Pro status from session
@@ -88,7 +90,7 @@ export function MLOpsSidebar() {
 
       <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
         <div className="flex-1">
-          {!isCollapsed && <h2 className="mb-4 px-3 text-lg font-semibold text-foreground">Resources</h2>}
+          {!isCollapsed && <h2 className="mb-4 px-3 text-lg font-semibold text-foreground">{t("Resources")}</h2>}
           {isPro && (
             <TooltipProvider>
               <Tooltip>
@@ -105,7 +107,7 @@ export function MLOpsSidebar() {
                     {isCollapsed ? (
                       <Menu className="h-5 w-5" />
                     ) : (
-                      <span>Pro Content</span>
+                      <span>{t("Pro Content")}</span>
                     )}
                   </Link>
                 </TooltipTrigger>

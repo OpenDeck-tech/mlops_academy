@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useTranslation } from "@/contexts/language-context";
 import type { SidebarSection, SidebarGroup } from "@/components/sidebar/sections";
 
 type Props = {
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export function SidebarNav({ groups, sections, isCollapsed = false, onNavigate, className }: Props) {
+  const { t } = useTranslation();
   const itemsByGroup = groups
     ? groups.map((g) => ({ title: g.title, items: g.items }))
     : sections
@@ -29,12 +31,13 @@ export function SidebarNav({ groups, sections, isCollapsed = false, onNavigate, 
           <div key={title ?? "main"} className="space-y-2">
             {title && !isCollapsed && (
               <p className="px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                {title}
+                {t(title)}
               </p>
             )}
             <div className="space-y-1">
               {items.map((section) => {
                 const Icon = section.icon;
+                const label = t(section.title);
                 const linkClassName = cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                   "hover:bg-accent/50 hover:text-foreground",
@@ -45,7 +48,7 @@ export function SidebarNav({ groups, sections, isCollapsed = false, onNavigate, 
                 const content = (
                   <>
                     <Icon className="h-5 w-5 flex-shrink-0" />
-                    {!isCollapsed && <span>{section.title}</span>}
+                    {!isCollapsed && <span>{label}</span>}
                   </>
                 );
 
@@ -70,7 +73,7 @@ export function SidebarNav({ groups, sections, isCollapsed = false, onNavigate, 
                     <TooltipTrigger asChild>{LinkEl}</TooltipTrigger>
                     {isCollapsed && (
                       <TooltipContent side="right">
-                        <p>{section.title}</p>
+                        <p>{label}</p>
                       </TooltipContent>
                     )}
                   </Tooltip>
