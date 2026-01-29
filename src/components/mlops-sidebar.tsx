@@ -64,7 +64,8 @@ export function MLOpsSidebar() {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-screen border-r bg-background flex flex-col transition-all duration-300 z-40",
+        "fixed left-0 top-0 h-screen border-r border-border/50 flex flex-col transition-all duration-300 z-40",
+        "bg-sidebar/95 dark:bg-sidebar/90 backdrop-blur-xl",
         isCollapsed ? "w-20" : "w-64"
       )}
     >
