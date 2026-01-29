@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ArrowLeft, Activity, Shield, DollarSign, Bell, Wrench } from "lucide-react";
+import { ArrowLeft, Activity, Shield, DollarSign, Bell, Wrench, Database } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 
 export default function ProductionEnvironmentPage() {
@@ -40,6 +40,13 @@ export default function ProductionEnvironmentPage() {
       icon: Wrench,
       content: "Master troubleshooting techniques, log analysis, debugging strategies, incident response, and post-mortem practices for production issues.",
     },
+    {
+      id: "data-management",
+      title: "Data Management",
+      description: "Production data pipelines, feature serving, governance, and data quality",
+      icon: Database,
+      content: "Operate production data pipelines, feature stores, and data quality monitoring. Governance, lineage, and SLOs for production data.",
+    },
   ];
 
   return (
@@ -59,8 +66,11 @@ export default function ProductionEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          return (
-            <Card key={topic.id} className="h-full transition-all hover:shadow-lg">
+          const href = topic.id === "data-management"
+            ? "/environments/production/data-management"
+            : undefined;
+          const cardContent = (
+            <>
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="p-2 rounded-lg bg-red-50 dark:bg-red-950/20">
@@ -73,6 +83,20 @@ export default function ProductionEnvironmentPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">{topic.content}</p>
               </CardContent>
+            </>
+          );
+          return (
+            <Card
+              key={topic.id}
+              className={`h-full transition-all hover:shadow-lg ${href ? "cursor-pointer" : ""}`}
+            >
+              {href ? (
+                <Link href={href} className="block h-full">
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
             </Card>
           );
         })}
