@@ -2,8 +2,17 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/lib/session";
 
-export default function RolesPage() {
+export default async function RolesPage() {
+  let isSignedIn = false;
+  try {
+    const sess = await getSession();
+    isSignedIn = Boolean(sess.userId || sess.email);
+  } catch {
+    isSignedIn = false;
+  }
+
   const roles = [
     {
       id: 1,
@@ -23,7 +32,33 @@ export default function RolesPage() {
       description:
         "MLOps role in a large-scale financial environment, focusing on cloud MLOps pipelines, CI/CD, model deployment, and close collaboration with data science and engineering teams.",
     },
-    // Add more roles here as needed
+    {
+      id: 3,
+      title: "Senior MLOps Engineer",
+      company: "Marks & Spencer",
+      location: "London, Greater London",
+      url: "https://jobs.marksandspencer.com/job-search/digital-tech/london-greater-london/senior-mlops-engineer/300006962812844?utm_medium=JobSlots&utm_source=LinkedIn&utm_campaign=33_5568_LinkedIn&utm_term=1x1&utm_content=JobFeed",
+      description:
+        "Digital & Tech role working with data scientists to deliver ML solutions: design and implement ML pipelines and infrastructure, productionise models, embed automation and monitoring, and drive MLOps maturity. Python, Spark, Azure, CI/CD for ML. Hybrid (office 3 days/week).",
+    },
+    {
+      id: 4,
+      title: "Senior Machine Learning Engineer (MLOps)",
+      company: "ASOS",
+      location: "See listing",
+      url: "https://jobs.smartrecruiters.com/ASOS/744000104699685-senior-machine-learning-engineer-mlops-",
+      description:
+        "Design and implement reusable ML templates, deployment patterns, and MLOps tooling for scalable ML solutions. Collaborate with ML teams (Forecasting, Recommendations, Marketing, etc.), drive standardisation, CI/CD for ML, model registries, monitoring, and feature management. Azure, Python, MLflow, Docker/Kubernetes. Hybrid (2+ days/week in office).",
+    },
+    {
+      id: 5,
+      title: "Open role",
+      company: "Ohme",
+      location: "See listing",
+      url: "https://ohme-ev.com/job-postings/?gh_jid=4694069101",
+      description:
+        "Ohme is an EV charging and smart energy technology company. View the full job description and details at the link below.",
+    },
   ];
 
   return (
@@ -47,6 +82,35 @@ export default function RolesPage() {
           Curated MLOps roles. We’ll be updating these manually for now.
         </p>
       </div>
+
+      <Card className="mb-10">
+        <CardHeader>
+          <CardTitle className="text-xl">
+            {isSignedIn ? "You’re browsing as a signed-in user" : "Want to save your progress?"}
+          </CardTitle>
+          <CardDescription>
+            {isSignedIn
+              ? "Head to your dashboard for subscription and account settings."
+              : "Create an account (or sign in) to access personalized features, learning paths, and Pro content."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-3">
+          {isSignedIn ? (
+            <Button asChild>
+              <Link href="/dashboard">Go to Dashboard</Link>
+            </Button>
+          ) : (
+            <>
+              <Button asChild className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold">
+                <Link href="/signup">Create account</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/login">Sign in</Link>
+              </Button>
+            </>
+          )}
+        </CardContent>
+      </Card>
 
       {roles.length === 0 ? (
         <Card>
