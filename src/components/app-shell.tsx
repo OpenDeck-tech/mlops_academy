@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SidebarNav } from "@/components/sidebar/sidebar-nav";
-import { sidebarSections } from "@/components/sidebar/sections";
+import { sidebarGroups } from "@/components/sidebar/sections";
 import { MLOpsSidebar } from "@/components/mlops-sidebar";
 
 type Props = {
@@ -59,7 +59,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                     </SheetTitle>
                   </SheetHeader>
                   <div className="p-4">
-                    <SidebarNav sections={sidebarSections} onNavigate={() => setOpen(false)} />
+                    <SidebarNav groups={sidebarGroups} onNavigate={() => setOpen(false)} />
                   </div>
                   <div className="mt-auto border-t p-4 flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Theme</span>

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { sidebarSections } from "@/components/sidebar/sections";
+import { sidebarGroups } from "@/components/sidebar/sections";
 import { SidebarNav } from "@/components/sidebar/sidebar-nav";
 
 export function MLOpsSidebar() {
@@ -88,7 +88,7 @@ export function MLOpsSidebar() {
 
       <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
         <div className="flex-1">
-          {!isCollapsed && <h2 className="mb-6 px-3 text-lg font-semibold text-foreground">Resources</h2>}
+          {!isCollapsed && <h2 className="mb-4 px-3 text-lg font-semibold text-foreground">Resources</h2>}
           {isPro && (
             <TooltipProvider>
               <Tooltip>
@@ -117,7 +117,7 @@ export function MLOpsSidebar() {
               </Tooltip>
             </TooltipProvider>
           )}
-          <SidebarNav sections={sidebarSections} isCollapsed={isCollapsed} />
+          <SidebarNav groups={sidebarGroups} isCollapsed={isCollapsed} />
         </div>
         <div className={cn("mt-auto pt-4 border-t", isCollapsed && "px-2")}>
           <div className={cn("px-3", isCollapsed && "px-0 flex justify-center")}>
