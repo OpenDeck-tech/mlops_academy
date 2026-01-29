@@ -50,7 +50,7 @@ const principles = [
     icon: Layers,
     oneLiner: "Local → Dev → Staging → Prod. Don't skip steps.",
     description:
-      "Clear boundaries between environments prevent "works on my machine" and protect production. Each stage has a purpose: build, integrate, validate, run.",
+      "Clear boundaries between environments prevent \"works on my machine\" and protect production. Each stage has a purpose: build, integrate, validate, run.",
   },
 ];
 
