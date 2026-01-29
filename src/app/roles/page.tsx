@@ -154,6 +154,16 @@ export default async function RolesPage() {
       description:
         "Software Engineer role in Apple's AIML organization, focused on Machine Learning Platform and Infrastructure. View the full job description and details at the link below.",
     },
+    {
+      id: 14,
+      title: "Open role",
+      company: "Tesla",
+      location: "See listing",
+      region: "Other",
+      url: "https://app.mokahr.com/apply/tesla/68247?source=LinkedIn#/job/ee145253-c9f2-4188-84b4-8852d610da05",
+      description:
+        "Tesla role via Mokahr. View the full job title, description, and location at the link below.",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Other"];
