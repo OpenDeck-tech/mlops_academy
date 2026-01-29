@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Code2, Database, Lightbulb } from "lucide-react";
 import { useState, useEffect } from "react";
 import { CodeBlock } from "@/components/code-block";
+import { AppShell } from "@/components/app-shell";
 
 interface LeetCodeQuestion {
   id: number;
@@ -350,17 +351,17 @@ export default function ProgrammingPage() {
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
+      <AppShell title="Local / Programming">
         <div className="flex items-center justify-center min-h-[400px]">
           <p className="text-muted-foreground">Loading...</p>
         </div>
-      </div>
+      </AppShell>
     );
   }
 
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/environments/local" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+    <AppShell title="Local / Programming">
+      <Link href="/environments/local" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors px-2 py-1 -ml-2 rounded hover:bg-accent/50">
         <ArrowLeft className="h-4 w-4" />
         Back to Local Environment
       </Link>
@@ -546,7 +547,7 @@ export default function ProgrammingPage() {
           </Card>
         </div>
       )}
-    </div>
+    </AppShell>
   );
 }
 

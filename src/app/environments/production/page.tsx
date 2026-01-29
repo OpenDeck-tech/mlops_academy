@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, Activity, Shield, DollarSign, Bell, Wrench } from "lucide-react";
+import { AppShell } from "@/components/app-shell";
 
 export default function ProductionEnvironmentPage() {
   const topics = [
@@ -42,8 +43,8 @@ export default function ProductionEnvironmentPage() {
   ];
 
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+    <AppShell title="Production">
+      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors px-2 py-1 -ml-2 rounded hover:bg-accent/50">
         <ArrowLeft className="h-4 w-4" />
         Back to Environments
       </Link>
@@ -76,7 +77,7 @@ export default function ProductionEnvironmentPage() {
           );
         })}
       </div>
-    </div>
+    </AppShell>
   );
 }
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, GitBranch, Code, Users, Database, Network } from "lucide-react";
+import { AppShell } from "@/components/app-shell";
 
 export default function DevelopmentEnvironmentPage() {
   const topics = [
@@ -42,8 +43,8 @@ export default function DevelopmentEnvironmentPage() {
   ];
 
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
-      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
+    <AppShell title="Development">
+      <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors px-2 py-1 -ml-2 rounded hover:bg-accent/50">
         <ArrowLeft className="h-4 w-4" />
         Back to Environments
       </Link>
@@ -58,12 +59,14 @@ export default function DevelopmentEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          const href = topic.id === "collaboration" 
+          const href = topic.id === "collaboration"
             ? "/environments/development/collaboration"
             : topic.id === "code-practices"
             ? "/environments/development/code-practices"
             : topic.id === "continuous-integration"
             ? "/environments/development/continuous-integration"
+            : topic.id === "data-management"
+            ? "/environments/development/data-management"
             : topic.id === "mcp"
             ? "/environments/development/mcp"
             : undefined;
@@ -100,7 +103,7 @@ export default function DevelopmentEnvironmentPage() {
           );
         })}
       </div>
-    </div>
+    </AppShell>
   );
 }
 
