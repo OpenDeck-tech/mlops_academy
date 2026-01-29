@@ -38,8 +38,8 @@ export default async function RolesPage() {
       id: 2,
       title: "MLOps Engineer",
       company: "J.P. Morgan",
-      location: "Per job listing",
-      region: "USA",
+      location: "London",
+      region: "London",
       url: "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/210689350?utm_medium=jobboard&utm_source=LinkedIn",
       description:
         "MLOps role in a large-scale financial environment, focusing on cloud MLOps pipelines, CI/CD, model deployment, and close collaboration with data science and engineering teams.",
