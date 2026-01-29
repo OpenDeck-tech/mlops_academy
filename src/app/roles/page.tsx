@@ -13,12 +13,23 @@ export default async function RolesPage() {
     isSignedIn = false;
   }
 
-  const roles = [
+  type Region = "London" | "USA" | "China" | "Other";
+
+  const roles: Array<{
+    id: number;
+    title: string;
+    company: string;
+    location: string;
+    region: Region;
+    url: string;
+    description: string;
+  }> = [
     {
       id: 1,
       title: "MLOps engineer",
       company: "Accenture",
       location: "Vilnius (per listing)",
+      region: "Other",
       url: "https://www.accenture.com/lv-en/careers/jobdetails?id=R00218776_en",
       description:
         "MLOps engineer role focused on building cloud MLOps pipelines, CI/CD orchestration, model deployment, versioning, monitoring, and collaboration with data teams.",
@@ -28,6 +39,7 @@ export default async function RolesPage() {
       title: "MLOps Engineer",
       company: "J.P. Morgan",
       location: "Per job listing",
+      region: "USA",
       url: "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/210689350?utm_medium=jobboard&utm_source=LinkedIn",
       description:
         "MLOps role in a large-scale financial environment, focusing on cloud MLOps pipelines, CI/CD, model deployment, and close collaboration with data science and engineering teams.",
@@ -37,6 +49,7 @@ export default async function RolesPage() {
       title: "Senior MLOps Engineer",
       company: "Marks & Spencer",
       location: "London, Greater London",
+      region: "London",
       url: "https://jobs.marksandspencer.com/job-search/digital-tech/london-greater-london/senior-mlops-engineer/300006962812844?utm_medium=JobSlots&utm_source=LinkedIn&utm_campaign=33_5568_LinkedIn&utm_term=1x1&utm_content=JobFeed",
       description:
         "Digital & Tech role working with data scientists to deliver ML solutions: design and implement ML pipelines and infrastructure, productionise models, embed automation and monitoring, and drive MLOps maturity. Python, Spark, Azure, CI/CD for ML. Hybrid (office 3 days/week).",
@@ -46,6 +59,7 @@ export default async function RolesPage() {
       title: "Senior Machine Learning Engineer (MLOps)",
       company: "ASOS",
       location: "See listing",
+      region: "London",
       url: "https://jobs.smartrecruiters.com/ASOS/744000104699685-senior-machine-learning-engineer-mlops-",
       description:
         "Design and implement reusable ML templates, deployment patterns, and MLOps tooling for scalable ML solutions. Collaborate with ML teams (Forecasting, Recommendations, Marketing, etc.), drive standardisation, CI/CD for ML, model registries, monitoring, and feature management. Azure, Python, MLflow, Docker/Kubernetes. Hybrid (2+ days/week in office).",
@@ -55,11 +69,98 @@ export default async function RolesPage() {
       title: "Open role",
       company: "Ohme",
       location: "See listing",
+      region: "London",
       url: "https://ohme-ev.com/job-postings/?gh_jid=4694069101",
       description:
         "Ohme is an EV charging and smart energy technology company. View the full job description and details at the link below.",
     },
+    {
+      id: 6,
+      title: "MLOps Engineer",
+      company: "Tekever",
+      location: "See listing",
+      region: "Other",
+      url: "https://careers.tekever.com/jobs/6439831-mlops-engineer?utm_source=LinkedIn",
+      description:
+        "MLOps Engineer role at Tekever. View the full job description and details at the link below.",
+    },
+    {
+      id: 7,
+      title: "Senior MLOps Engineer",
+      company: "Optima Partners",
+      location: "Charlotte Square, Edinburgh · Hybrid",
+      region: "London",
+      url: "https://careers.optimapartners.co.uk/jobs/7084649-senior-mlops-engineer?utm_source=LinkedIn",
+      description:
+        "Build and scale ML pipelines, data platforms, and production-ready models. MLOps, Data Engineering, and DevOps: MLflow, Databricks, Azure, CI/CD, Terraform. PyTorch, TensorFlow, Scikit-learn. 3+ years MLOps/ML engineering. Data consultancy headquartered in Edinburgh, UK.",
+    },
+    {
+      id: 8,
+      title: "Senior MLOps Engineer - Football Metrics",
+      company: "Hudl",
+      location: "London, Barcelona, Remote (UK) or Remote (Spain)",
+      region: "London",
+      url: "https://job-boards.greenhouse.io/hudl/jobs/7212118",
+      description:
+        "Build and scale ML infrastructure for next-generation sports analytics. Own MLOps pipelines from raw data to production; CI/CD for ML, retraining automation, monitoring. Collaborate with Data Scientists and ML Engineers. MLflow, Kubeflow, Airflow, Feast, DVC, W&B; Python, AWS/SageMaker. London, Barcelona or remote UK/Spain.",
+    },
+    {
+      id: 9,
+      title: "Senior MLOps Engineer – LLMOps",
+      company: "TRM Labs",
+      location: "United States",
+      region: "USA",
+      url: "https://job-boards.greenhouse.io/trmlabs/jobs/5711370004?gh_src=21d21f294us",
+      description:
+        "Blockchain intelligence company. Build and scale AI/ML infrastructure for LLMs and agentic systems: CI/CD for training, evaluation, deployment; Langfuse, GitHub Actions; vector DBs, feature stores, model registries; LangChain, LlamaIndex, vLLM, MLflow, BentoML. Python, Docker, Kubernetes, Terraform. 5+ years Data/ML Engineer experience. US base salary range $200k–$220k.",
+    },
+    {
+      id: 10,
+      title: "Cloud - ML Platform Engineer",
+      company: "Bedrock Robotics",
+      location: "New York & San Francisco",
+      region: "USA",
+      url: "https://job-boards.greenhouse.io/bedrockrobotics/jobs/4807788008?gh_src=gnfll9db8us",
+      description:
+        "Senior/Staff ML Platform Engineers for physical-world autonomy (robotics, construction). Build labeling and evaluation pipelines, data mining, experiment tracking, scaled training; MLOps frameworks and best practices. Ray, Kubeflow, MLflow, Metaflow, Airflow, Feast, Vertex, SageMaker. 5+ years ML platform/infra. NY or SF.",
+    },
+    {
+      id: 11,
+      title: "Senior MLOps Engineer",
+      company: "LVT",
+      location: "Remote",
+      region: "USA",
+      url: "https://lvt.wd501.myworkdayjobs.com/LVT/job/Remote/Senior-MLOps-Engineer_JR100009?source=LinkedIn",
+      description:
+        "Senior MLOps Engineer role at LVT. Remote position. View the full job description and details at the link below.",
+    },
+    {
+      id: 12,
+      title: "ML Ops Engineer — Agentic AI Lab (Founding Team)",
+      company: "Fabrion",
+      location: "See listing",
+      region: "Other",
+      url: "https://jobs.ashbyhq.com/fabrion/277bb01a-80b0-4ee3-b0ef-20287174f597/application?utm_source=7b4V09v5gW",
+      description:
+        "ML Ops Engineer role on the Agentic AI Lab founding team at Fabrion. View the full job description and details at the link below.",
+    },
+    {
+      id: 13,
+      title: "AIML - Software Engineer, Machine Learning Platform & Infrastructure",
+      company: "Apple",
+      location: "United States (see listing)",
+      region: "USA",
+      url: "https://jobs.apple.com/en-us/details/200617349/aiml-software-engineer-machine-learning-platform-infrastructure?board_id=17682",
+      description:
+        "Software Engineer role in Apple's AIML organization, focused on Machine Learning Platform and Infrastructure. View the full job description and details at the link below.",
+    },
   ];
+
+  const regionOrder: Region[] = ["London", "USA", "China", "Other"];
+  const rolesByRegion = regionOrder.map((region) => ({
+    region,
+    roles: roles.filter((r) => r.region === region),
+  }));
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
@@ -79,7 +180,7 @@ export default async function RolesPage() {
           <h1 className="text-4xl font-semibold">Roles</h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          Curated MLOps roles. We’ll be updating these manually for now.
+          Curated MLOps roles by location: London, USA, China. We’ll be updating these manually for now.
         </p>
       </div>
 
@@ -119,34 +220,46 @@ export default async function RolesPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {roles.map((role) => (
-            <Card key={role.id} className="transition-all hover:shadow-lg h-full flex flex-col">
-              <CardHeader>
-                <CardTitle className="text-xl">{role.title}</CardTitle>
-                <CardDescription className="text-sm mt-1">
-                  {role.company}
-                  {role.location ? ` • ${role.location}` : ""}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-sm text-muted-foreground mb-4 flex-1">{role.description}</p>
-                <div className="pt-4 border-t">
-                  <Button asChild variant="outline" size="sm" className="gap-2 w-full">
-                    <a
-                      href={role.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center"
-                    >
-                      View role
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-12">
+          {rolesByRegion.map(
+            ({ region, roles: regionRoles }) =>
+              regionRoles.length > 0 && (
+                <section key={region}>
+                  <h2 className="text-xl font-semibold text-foreground mb-4 pb-2 border-b border-border/60">
+                    {region}
+                  </h2>
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {regionRoles.map((role) => (
+                      <Card key={role.id} className="transition-all hover:shadow-lg h-full flex flex-col">
+                        <CardHeader>
+                          <CardTitle className="text-xl">{role.title}</CardTitle>
+                          <CardDescription className="text-sm mt-1">
+                            {role.company}
+                            {role.location ? ` • ${role.location}` : ""}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-1 flex flex-col">
+                          <p className="text-sm text-muted-foreground mb-4 flex-1">{role.description}</p>
+                          <div className="pt-4 border-t">
+                            <Button asChild variant="outline" size="sm" className="gap-2 w-full">
+                              <a
+                                href={role.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center"
+                              >
+                                View role
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </section>
+              )
+          )}
         </div>
       )}
     </div>
