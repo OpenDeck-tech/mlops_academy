@@ -236,7 +236,7 @@ export default async function RolesPage() {
               regionRoles.length > 0 && (
                 <section key={region}>
                   <h2 className="text-xl font-semibold text-foreground mb-4 pb-2 border-b border-border/60">
-                    {region}
+                    {region} ({regionRoles.length})
                   </h2>
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {regionRoles.map((role) => (
