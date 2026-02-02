@@ -13,7 +13,7 @@ export default async function RolesPage() {
     isSignedIn = false;
   }
 
-  type Region = "London" | "USA" | "China" | "Other";
+  type Region = "London" | "USA" | "China" | "Contract" | "Other";
 
   const roles: Array<{
     id: number;
@@ -194,13 +194,31 @@ export default async function RolesPage() {
       description:
         "MLOps engineer role in investment banking, London. View the full job title, company, and description at the link below.",
     },
+    {
+      id: 18,
+      title: "See listing",
+      company: "See listing",
+      location: "See listing",
+      region: "Contract",
+      url: "https://www.linkedin.com/jobs/view/4317479290/",
+      description:
+        "Contract MLOps-related role. View the full job title, company, location, and description at the link below.",
+    },
   ];
 
-  const regionOrder: Region[] = ["London", "USA", "China", "Other"];
+  const regionOrder: Region[] = ["London", "USA", "China", "Contract", "Other"];
   const rolesByRegion = regionOrder.map((region) => ({
     region,
     roles: roles.filter((r) => r.region === region),
   }));
+
+  const regionAccent: Record<Region, { border: string; bg: string; cardBorder: string }> = {
+    London: { border: "border-l-blue-400 dark:border-l-blue-500", bg: "bg-blue-50/60 dark:bg-blue-950/25", cardBorder: "border-l-blue-200 dark:border-l-blue-800/80" },
+    USA: { border: "border-l-indigo-400 dark:border-l-indigo-500", bg: "bg-indigo-50/50 dark:bg-indigo-950/20", cardBorder: "border-l-indigo-200 dark:border-l-indigo-800/80" },
+    China: { border: "border-l-teal-400 dark:border-l-teal-500", bg: "bg-teal-50/50 dark:bg-teal-950/20", cardBorder: "border-l-teal-200 dark:border-l-teal-800/80" },
+    Contract: { border: "border-l-slate-500 dark:border-l-slate-400", bg: "bg-slate-100/60 dark:bg-slate-800/30", cardBorder: "border-l-slate-300 dark:border-l-slate-600/80" },
+    Other: { border: "border-l-slate-400 dark:border-l-slate-500", bg: "bg-slate-50/60 dark:bg-slate-900/25", cardBorder: "border-l-slate-200 dark:border-l-slate-700/80" },
+  };
 
   return (
     <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
@@ -212,19 +230,19 @@ export default async function RolesPage() {
         Back to Home
       </Link>
 
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-3 rounded-lg bg-[#f5f5dc]">
-            <Briefcase className="h-6 w-6 text-gray-900" />
+      <div className="mb-12 pl-4 border-l-4 border-slate-300 dark:border-slate-600 rounded-r-md bg-slate-50/70 dark:bg-slate-900/40 py-4 pr-4">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-3 rounded-lg bg-slate-200/80 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200">
+            <Briefcase className="h-6 w-6" />
           </div>
-          <h1 className="text-4xl font-semibold">Roles</h1>
+          <h1 className="text-4xl font-semibold text-foreground">Roles</h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          Curated MLOps roles by location: London, USA, China. We’ll be updating these manually for now.
+          Curated MLOps roles by location and type: London, USA, China, Contract. We’ll be updating these manually for now.
         </p>
       </div>
 
-      <Card className="mb-10">
+      <Card className="mb-10 border-l-4 border-l-slate-300 dark:border-l-slate-600">
         <CardHeader>
           <CardTitle className="text-xl">
             {isSignedIn ? "You’re browsing as a signed-in user" : "Want to save your progress?"}
@@ -265,12 +283,17 @@ export default async function RolesPage() {
             ({ region, roles: regionRoles }) =>
               regionRoles.length > 0 && (
                 <section key={region}>
-                  <h2 className="text-xl font-semibold text-foreground mb-4 pb-2 border-b border-border/60">
+                  <h2
+                    className={`text-xl font-semibold text-foreground mb-4 pb-2 pt-2 pl-3 rounded-r border-b border-border/60 ${regionAccent[region].border} ${regionAccent[region].bg}`}
+                  >
                     {region} ({regionRoles.length})
                   </h2>
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {regionRoles.map((role) => (
-                      <Card key={role.id} className="transition-all hover:shadow-lg h-full flex flex-col">
+                      <Card
+                        key={role.id}
+                        className={`transition-all hover:shadow-lg h-full flex flex-col border-l-4 ${regionAccent[region].cardBorder}`}
+                      >
                         <CardHeader>
                           <CardTitle className="text-xl">{role.title}</CardTitle>
                           <CardDescription className="text-sm mt-1">
@@ -281,7 +304,12 @@ export default async function RolesPage() {
                         <CardContent className="flex-1 flex flex-col">
                           <p className="text-sm text-muted-foreground mb-4 flex-1">{role.description}</p>
                           <div className="pt-4 border-t">
-                            <Button asChild variant="outline" size="sm" className="gap-2 w-full">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="gap-2 w-full hover:bg-primary/10 hover:border-primary/40 hover:text-primary"
+                            >
                               <a
                                 href={role.url}
                                 target="_blank"
