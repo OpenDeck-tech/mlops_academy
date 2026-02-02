@@ -164,6 +164,26 @@ export default async function RolesPage() {
       description:
         "Tesla role via Mokahr. View the full job title, description, and location at the link below.",
     },
+    {
+      id: 15,
+      title: "Lead MLOps Engineer",
+      company: "Randstad",
+      location: "London Area, United Kingdom",
+      region: "London",
+      url: "https://www.linkedin.com/jobs/view/4356820024/",
+      description:
+        "Lead MLOps Engineer – London, permanent. Own ML infrastructure and MLOps foundations; CI/CD for ML, productionise models, Docker/Kubernetes, Terraform/Helm. Staff/lead-level MLOps or DevOps. Python, PyTorch/TensorFlow, AWS/GCP/Azure. Relocation support possible.",
+    },
+    {
+      id: 16,
+      title: "Senior Python Engineer - AI",
+      company: "Man Group",
+      location: "London, England, United Kingdom",
+      region: "London",
+      url: "https://www.linkedin.com/jobs/view/4292932813/",
+      description:
+        "Build the firm's core AI and ML platform in the Machine Learning Technology team. Partner with research, trading, and operations to design and deploy AI/ML applications and agents. GenAI and ML; Python, production services, software best practices. Advantageous: TypeScript/React/Next.js, PostgreSQL/Redis, GenAI agents, model fine-tuning. Global alternative investment manager; London HQ.",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Other"];
