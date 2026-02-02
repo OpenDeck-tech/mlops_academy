@@ -184,6 +184,16 @@ export default async function RolesPage() {
       description:
         "Build the firm's core AI and ML platform in the Machine Learning Technology team. Partner with research, trading, and operations to design and deploy AI/ML applications and agents. GenAI and ML; Python, production services, software best practices. Advantageous: TypeScript/React/Next.js, PostgreSQL/Redis, GenAI agents, model fine-tuning. Global alternative investment manager; London HQ.",
     },
+    {
+      id: 17,
+      title: "MLOps Engineer",
+      company: "See listing",
+      location: "London",
+      region: "London",
+      url: "https://www.linkedin.com/jobs/view/4367243343/",
+      description:
+        "MLOps engineer role in investment banking, London. View the full job title, company, and description at the link below.",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Other"];
