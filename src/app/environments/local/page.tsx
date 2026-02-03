@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, TestTube, Container, Terminal, Settings, Code2 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
-import { getServerLocale, translate } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/i18n-server";
+import { translate } from "@/lib/i18n";
 
 export default async function LocalEnvironmentPage() {
   const locale = await getServerLocale();

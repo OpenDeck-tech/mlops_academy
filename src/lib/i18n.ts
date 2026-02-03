@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export type Locale = "en" | "zh";
 
 export const locales: Locale[] = ["en", "zh"];
@@ -9,13 +7,6 @@ export const localeLabels: Record<Locale, string> = {
   en: "English",
   zh: "中文",
 };
-
-/** Get locale from cookie on the server (for server components). */
-export async function getServerLocale(): Promise<Locale> {
-  const cookieStore = await cookies();
-  const value = cookieStore.get("NEXT_LOCALE")?.value;
-  return value === "zh" ? "zh" : "en";
-}
 
 /** Translation map: key (English UI string) -> Chinese. */
 const zhTranslations: Record<string, string> = {

@@ -56,6 +56,18 @@ export function ShareButtons({
   const twitterHref = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}&via=${TWITTER_HANDLE}`;
   const linkedInHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
 
+  const redirectConfirmKeyX = "You're about to be redirected to X (Twitter). Continue?";
+  const redirectConfirmKeyLinkedIn = "You're about to be redirected to LinkedIn. Continue?";
+
+  const handleExternalShare = useCallback(
+    (href: string, confirmKey: string) => {
+      if (window.confirm(t(confirmKey))) {
+        window.open(href, "_blank", "noopener,noreferrer");
+      }
+    },
+    [t]
+  );
+
   if (variant === "compact") {
     return (
       <div className={`flex items-center gap-2 flex-wrap ${className}`}>
@@ -76,15 +88,23 @@ export function ShareButtons({
             {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
             {copied ? t("Copied!") : t("Copy link")}
           </Button>
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={twitterHref} target="_blank" rel="noopener noreferrer" title={t("Share on X")}>
-              X
-            </a>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            title={t("Share on X")}
+            onClick={() => handleExternalShare(twitterHref, redirectConfirmKeyX)}
+          >
+            X
           </Button>
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={linkedInHref} target="_blank" rel="noopener noreferrer" title={t("Share on LinkedIn")}>
-              in
-            </a>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            title={t("Share on LinkedIn")}
+            onClick={() => handleExternalShare(linkedInHref, redirectConfirmKeyLinkedIn)}
+          >
+            in
           </Button>
         </div>
       </div>
@@ -110,15 +130,21 @@ export function ShareButtons({
           {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
           {copied ? t("Copied!") : t("Copy link")}
         </Button>
-        <Button variant="outline" size="sm" asChild className="gap-2">
-          <a href={twitterHref} target="_blank" rel="noopener noreferrer">
-            {t("Share on X")}
-          </a>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => handleExternalShare(twitterHref, redirectConfirmKeyX)}
+        >
+          {t("Share on X")}
         </Button>
-        <Button variant="outline" size="sm" asChild className="gap-2">
-          <a href={linkedInHref} target="_blank" rel="noopener noreferrer">
-            {t("Share on LinkedIn")}
-          </a>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => handleExternalShare(linkedInHref, redirectConfirmKeyLinkedIn)}
+        >
+          {t("Share on LinkedIn")}
         </Button>
       </div>
     </div>

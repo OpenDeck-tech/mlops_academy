@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/session";
-import { getServerLocale, translate } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/i18n-server";
+import { translate } from "@/lib/i18n";
 
 export default async function RolesPage() {
   const [sessResult, locale] = await Promise.all([getSession().then((s) => ({ isSignedIn: Boolean(s.userId || s.email) })).catch(() => ({ isSignedIn: false })), getServerLocale()]);
@@ -252,7 +253,7 @@ export default async function RolesPage() {
       <Card className="mb-10 border-l-4 border-l-slate-300 dark:border-l-slate-600">
         <CardHeader>
           <CardTitle className="text-xl">
-            {isSignedIn ? t("signed_in_browsing") : t("want_save_progress")}
+            {isSignedIn ? "You’re browsing as a signed-in user" : "Want to save your progress?"}
           </CardTitle>
           <CardDescription>
             {isSignedIn
@@ -293,7 +294,7 @@ export default async function RolesPage() {
                   <h2
                     className={`text-xl font-semibold text-foreground mb-4 pb-2 pt-2 pl-3 rounded-r border-b border-border/60 ${regionAccent[region].border} ${regionAccent[region].bg}`}
                   >
-                    {t(region)} ({regionRoles.length})
+                    {region} ({regionRoles.length})
                   </h2>
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {regionRoles.map((role) => (

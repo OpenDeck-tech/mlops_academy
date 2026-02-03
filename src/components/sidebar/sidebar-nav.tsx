@@ -58,6 +58,11 @@ export function SidebarNav({ groups, sections, isCollapsed = false, onNavigate, 
                     target="_blank"
                     rel="noopener noreferrer"
                     className={linkClassName}
+                    onClickCapture={(e) => {
+                      if (section.confirmRedirectKey) {
+                        e.preventDefault();
+                      }
+                    }}
                     onClick={(e) => {
                       if (section.confirmRedirectKey) {
                         e.preventDefault();

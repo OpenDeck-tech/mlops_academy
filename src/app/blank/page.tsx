@@ -9,7 +9,8 @@ import { ScrollingQuotes } from "@/components/scrolling-quotes";
 import { InteractiveVennDiagram } from "@/components/interactive-venn-diagram";
 import { ShareButtons } from "@/components/share-buttons";
 import { getSession } from "@/lib/session";
-import { getServerLocale, translate } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/i18n-server";
+import { translate } from "@/lib/i18n";
 import { AppShell } from "@/components/app-shell";
 
 export default async function BlankPage() {
