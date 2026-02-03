@@ -95,7 +95,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List files with details</div>
                     <code>ls -lah</code>
                   </div>
-                  <CopyButton text="ls -lah" />
+                  <CopyButton showOpenInTerminal text="ls -lah" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -104,7 +104,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Find files by name</div>
                     <code>find . -name "*.py" -type f</code>
                   </div>
-                  <CopyButton text='find . -name "*.py" -type f' />
+                  <CopyButton showOpenInTerminal text='find . -name "*.py" -type f' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -113,7 +113,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Search in files</div>
                     <code>grep -r "pattern" /path/to/dir</code>
                   </div>
-                  <CopyButton text='grep -r "pattern" /path/to/dir' />
+                  <CopyButton showOpenInTerminal text='grep -r "pattern" /path/to/dir' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -122,7 +122,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Watch file changes</div>
                     <code>tail -f /path/to/logfile</code>
                   </div>
-                  <CopyButton text="tail -f /path/to/logfile" />
+                  <CopyButton showOpenInTerminal text="tail -f /path/to/logfile" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -131,7 +131,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Copy recursively</div>
                     <code>cp -r source/ destination/</code>
                   </div>
-                  <CopyButton text="cp -r source/ destination/" />
+                  <CopyButton showOpenInTerminal text="cp -r source/ destination/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -140,7 +140,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Disk usage</div>
                     <code>du -sh * | sort -h</code>
                   </div>
-                  <CopyButton text="du -sh * | sort -h" />
+                  <CopyButton showOpenInTerminal text="du -sh * | sort -h" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -149,7 +149,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Create directory structure</div>
                     <code>{'mkdir -p project/{src,tests,docs}'}</code>
                   </div>
-                  <CopyButton text="mkdir -p project/{src,tests,docs}" />
+                  <CopyButton showOpenInTerminal text="mkdir -p project/{src,tests,docs}" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -158,7 +158,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Move/rename file</div>
                     <code>mv oldname.txt newname.txt</code>
                   </div>
-                  <CopyButton text="mv oldname.txt newname.txt" />
+                  <CopyButton showOpenInTerminal text="mv oldname.txt newname.txt" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -167,7 +167,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Remove directory recursively</div>
                     <code>rm -rf directory/</code>
                   </div>
-                  <CopyButton text="rm -rf directory/" />
+                  <CopyButton showOpenInTerminal text="rm -rf directory/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -176,7 +176,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Compress directory</div>
                     <code>tar -czf archive.tar.gz directory/</code>
                   </div>
-                  <CopyButton text="tar -czf archive.tar.gz directory/" />
+                  <CopyButton showOpenInTerminal text="tar -czf archive.tar.gz directory/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -185,7 +185,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Extract archive</div>
                     <code>tar -xzf archive.tar.gz</code>
                   </div>
-                  <CopyButton text="tar -xzf archive.tar.gz" />
+                  <CopyButton showOpenInTerminal text="tar -xzf archive.tar.gz" />
                 </div>
               </div>
             </CardContent>
@@ -206,7 +206,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Running processes</div>
                     <code>ps aux | grep python</code>
                   </div>
-                  <CopyButton text="ps aux | grep python" />
+                  <CopyButton showOpenInTerminal text="ps aux | grep python" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -215,7 +215,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Resource usage</div>
                     <code>top -p $(pgrep -d,"," python)</code>
                   </div>
-                  <CopyButton text='top -p $(pgrep -d,"," python)' />
+                  <CopyButton showOpenInTerminal text='top -p $(pgrep -d,"," python)' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -224,7 +224,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Kill process by name</div>
                     <code>pkill -f "script_name.py"</code>
                   </div>
-                  <CopyButton text='pkill -f "script_name.py"' />
+                  <CopyButton showOpenInTerminal text='pkill -f "script_name.py"' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -233,7 +233,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Kill process by PID</div>
                     <code>kill -9 &lt;PID&gt;</code>
                   </div>
-                  <CopyButton text="kill -9 <PID>" />
+                  <CopyButton showOpenInTerminal text="kill -9 <PID>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -242,7 +242,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Run in background</div>
                     <code>nohup python script.py &gt; output.log 2&gt;&amp;1 &amp;</code>
                   </div>
-                  <CopyButton text="nohup python script.py > output.log 2>&1 &" />
+                  <CopyButton showOpenInTerminal text="nohup python script.py > output.log 2>&1 &" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -251,7 +251,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Monitor GPU usage</div>
                     <code>watch -n 1 nvidia-smi</code>
                   </div>
-                  <CopyButton text="watch -n 1 nvidia-smi" />
+                  <CopyButton showOpenInTerminal text="watch -n 1 nvidia-smi" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -260,7 +260,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">CPU and memory</div>
                     <code>htop</code>
                   </div>
-                  <CopyButton text="htop" />
+                  <CopyButton showOpenInTerminal text="htop" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -269,7 +269,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Find process using port</div>
                     <code>lsof -i :8000</code>
                   </div>
-                  <CopyButton text="lsof -i :8000" />
+                  <CopyButton showOpenInTerminal text="lsof -i :8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -278,7 +278,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">System load average</div>
                     <code>uptime</code>
                   </div>
-                  <CopyButton text="uptime" />
+                  <CopyButton showOpenInTerminal text="uptime" />
                 </div>
               </div>
             </CardContent>
@@ -299,7 +299,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Check port in use</div>
                     <code>lsof -i :8000</code>
                   </div>
-                  <CopyButton text="lsof -i :8000" />
+                  <CopyButton showOpenInTerminal text="lsof -i :8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -308,7 +308,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Test connection</div>
                     <code>curl -I http://localhost:8000</code>
                   </div>
-                  <CopyButton text="curl -I http://localhost:8000" />
+                  <CopyButton showOpenInTerminal text="curl -I http://localhost:8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -317,7 +317,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Download file</div>
                     <code>wget https://example.com/file.zip</code>
                   </div>
-                  <CopyButton text="wget https://example.com/file.zip" />
+                  <CopyButton showOpenInTerminal text="wget https://example.com/file.zip" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -326,7 +326,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">SSH to server</div>
                     <code>ssh user@hostname</code>
                   </div>
-                  <CopyButton text="ssh user@hostname" />
+                  <CopyButton showOpenInTerminal text="ssh user@hostname" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -335,7 +335,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Copy over network</div>
                     <code>scp file.txt user@host:/path/</code>
                   </div>
-                  <CopyButton text="scp file.txt user@host:/path/" />
+                  <CopyButton showOpenInTerminal text="scp file.txt user@host:/path/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -345,8 +345,8 @@ export default function ShellCommandsPage() {
                     <code>ifconfig</code> or <code>ip addr</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="ifconfig" />
-                    <CopyButton text="ip addr" />
+                    <CopyButton showOpenInTerminal text="ifconfig" />
+                    <CopyButton showOpenInTerminal text="ip addr" />
                   </div>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Ping host</div>
                     <code>ping -c 4 google.com</code>
                   </div>
-                  <CopyButton text="ping -c 4 google.com" />
+                  <CopyButton showOpenInTerminal text="ping -c 4 google.com" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -365,7 +365,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Check DNS resolution</div>
                     <code>nslookup example.com</code>
                   </div>
-                  <CopyButton text="nslookup example.com" />
+                  <CopyButton showOpenInTerminal text="nslookup example.com" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -375,8 +375,8 @@ export default function ShellCommandsPage() {
                     <code>netstat -rn</code> or <code>ip route</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="netstat -rn" />
-                    <CopyButton text="ip route" />
+                    <CopyButton showOpenInTerminal text="netstat -rn" />
+                    <CopyButton showOpenInTerminal text="ip route" />
                   </div>
                 </div>
               </div>
@@ -399,8 +399,8 @@ export default function ShellCommandsPage() {
                     <code>python --version</code> | <code>python3 --version</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="python --version" />
-                    <CopyButton text="python3 --version" />
+                    <CopyButton showOpenInTerminal text="python --version" />
+                    <CopyButton showOpenInTerminal text="python3 --version" />
                   </div>
                 </div>
               </div>
@@ -411,8 +411,8 @@ export default function ShellCommandsPage() {
                     <code>which python</code> | <code>which python3</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="which python" />
-                    <CopyButton text="which python3" />
+                    <CopyButton showOpenInTerminal text="which python" />
+                    <CopyButton showOpenInTerminal text="which python3" />
                   </div>
                 </div>
               </div>
@@ -422,7 +422,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Create virtual environment</div>
                     <code>python3 -m venv venv</code>
                   </div>
-                  <CopyButton text="python3 -m venv venv" />
+                  <CopyButton showOpenInTerminal text="python3 -m venv venv" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -431,7 +431,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Activate virtual env (macOS/Linux)</div>
                     <code>source venv/bin/activate</code>
                   </div>
-                  <CopyButton text="source venv/bin/activate" />
+                  <CopyButton showOpenInTerminal text="source venv/bin/activate" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -440,7 +440,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Activate virtual env (Windows)</div>
                     <code>venv\Scripts\activate</code>
                   </div>
-                  <CopyButton text="venv\Scripts\activate" />
+                  <CopyButton showOpenInTerminal text="venv\Scripts\activate" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -449,7 +449,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Deactivate virtual env</div>
                     <code>deactivate</code>
                   </div>
-                  <CopyButton text="deactivate" />
+                  <CopyButton showOpenInTerminal text="deactivate" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -458,7 +458,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Install package</div>
                     <code>pip install package-name</code>
                   </div>
-                  <CopyButton text="pip install package-name" />
+                  <CopyButton showOpenInTerminal text="pip install package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -467,7 +467,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Install from requirements</div>
                     <code>pip install -r requirements.txt</code>
                   </div>
-                  <CopyButton text="pip install -r requirements.txt" />
+                  <CopyButton showOpenInTerminal text="pip install -r requirements.txt" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -476,7 +476,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List installed packages</div>
                     <code>pip list</code>
                   </div>
-                  <CopyButton text="pip list" />
+                  <CopyButton showOpenInTerminal text="pip list" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -485,7 +485,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Freeze dependencies</div>
                     <code>pip freeze &gt; requirements.txt</code>
                   </div>
-                  <CopyButton text="pip freeze > requirements.txt" />
+                  <CopyButton showOpenInTerminal text="pip freeze > requirements.txt" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -494,7 +494,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Upgrade pip</div>
                     <code>pip install --upgrade pip</code>
                   </div>
-                  <CopyButton text="pip install --upgrade pip" />
+                  <CopyButton showOpenInTerminal text="pip install --upgrade pip" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -503,7 +503,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Run Python script</div>
                     <code>python script.py</code>
                   </div>
-                  <CopyButton text="python script.py" />
+                  <CopyButton showOpenInTerminal text="python script.py" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -512,7 +512,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Run Python module</div>
                     <code>python -m module_name</code>
                   </div>
-                  <CopyButton text="python -m module_name" />
+                  <CopyButton showOpenInTerminal text="python -m module_name" />
                 </div>
               </div>
             </CardContent>
@@ -533,7 +533,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Initialize Poetry project</div>
                     <code>poetry init</code>
                   </div>
-                  <CopyButton text="poetry init" />
+                  <CopyButton showOpenInTerminal text="poetry init" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -542,7 +542,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Create new project</div>
                     <code>poetry new project-name</code>
                   </div>
-                  <CopyButton text="poetry new project-name" />
+                  <CopyButton showOpenInTerminal text="poetry new project-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -551,7 +551,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Install dependencies</div>
                     <code>poetry install</code>
                   </div>
-                  <CopyButton text="poetry install" />
+                  <CopyButton showOpenInTerminal text="poetry install" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -560,7 +560,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Add dependency</div>
                     <code>poetry add package-name</code>
                   </div>
-                  <CopyButton text="poetry add package-name" />
+                  <CopyButton showOpenInTerminal text="poetry add package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -569,7 +569,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Add dev dependency</div>
                     <code>poetry add --group dev package-name</code>
                   </div>
-                  <CopyButton text="poetry add --group dev package-name" />
+                  <CopyButton showOpenInTerminal text="poetry add --group dev package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -578,7 +578,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Update dependencies</div>
                     <code>poetry update</code>
                   </div>
-                  <CopyButton text="poetry update" />
+                  <CopyButton showOpenInTerminal text="poetry update" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -587,7 +587,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Remove dependency</div>
                     <code>poetry remove package-name</code>
                   </div>
-                  <CopyButton text="poetry remove package-name" />
+                  <CopyButton showOpenInTerminal text="poetry remove package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -596,7 +596,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Activate Poetry shell</div>
                     <code>poetry shell</code>
                   </div>
-                  <CopyButton text="poetry shell" />
+                  <CopyButton showOpenInTerminal text="poetry shell" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -605,7 +605,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Run command in Poetry env</div>
                     <code>poetry run python script.py</code>
                   </div>
-                  <CopyButton text="poetry run python script.py" />
+                  <CopyButton showOpenInTerminal text="poetry run python script.py" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -614,7 +614,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Show environment info</div>
                     <code>poetry env info</code>
                   </div>
-                  <CopyButton text="poetry env info" />
+                  <CopyButton showOpenInTerminal text="poetry env info" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -623,7 +623,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List environments</div>
                     <code>poetry env list</code>
                   </div>
-                  <CopyButton text="poetry env list" />
+                  <CopyButton showOpenInTerminal text="poetry env list" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -632,7 +632,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Export to requirements.txt</div>
                     <code>poetry export -f requirements.txt --output requirements.txt</code>
                   </div>
-                  <CopyButton text="poetry export -f requirements.txt --output requirements.txt" />
+                  <CopyButton showOpenInTerminal text="poetry export -f requirements.txt --output requirements.txt" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -641,7 +641,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Show dependency tree</div>
                     <code>poetry show --tree</code>
                   </div>
-                  <CopyButton text="poetry show --tree" />
+                  <CopyButton showOpenInTerminal text="poetry show --tree" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -650,7 +650,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Build package</div>
                     <code>poetry build</code>
                   </div>
-                  <CopyButton text="poetry build" />
+                  <CopyButton showOpenInTerminal text="poetry build" />
                 </div>
               </div>
             </CardContent>
@@ -671,7 +671,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List running containers</div>
                     <code>docker ps</code>
                   </div>
-                  <CopyButton text="docker ps" />
+                  <CopyButton showOpenInTerminal text="docker ps" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -680,7 +680,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List all containers</div>
                     <code>docker ps -a</code>
                   </div>
-                  <CopyButton text="docker ps -a" />
+                  <CopyButton showOpenInTerminal text="docker ps -a" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -689,7 +689,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List images</div>
                     <code>docker images</code>
                   </div>
-                  <CopyButton text="docker images" />
+                  <CopyButton showOpenInTerminal text="docker images" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -698,7 +698,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Build image</div>
                     <code>docker build -t image-name .</code>
                   </div>
-                  <CopyButton text="docker build -t image-name ." />
+                  <CopyButton showOpenInTerminal text="docker build -t image-name ." />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -707,7 +707,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Run container</div>
                     <code>docker run -d -p 8000:8000 image-name</code>
                   </div>
-                  <CopyButton text="docker run -d -p 8000:8000 image-name" />
+                  <CopyButton showOpenInTerminal text="docker run -d -p 8000:8000 image-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -716,7 +716,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">View container logs</div>
                     <code>docker logs &lt;container_id&gt;</code>
                   </div>
-                  <CopyButton text="docker logs <container_id>" />
+                  <CopyButton showOpenInTerminal text="docker logs <container_id>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -725,7 +725,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Follow logs</div>
                     <code>docker logs -f &lt;container_id&gt;</code>
                   </div>
-                  <CopyButton text="docker logs -f <container_id>" />
+                  <CopyButton showOpenInTerminal text="docker logs -f <container_id>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -734,7 +734,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Stop container</div>
                     <code>docker stop &lt;container_id&gt;</code>
                   </div>
-                  <CopyButton text="docker stop <container_id>" />
+                  <CopyButton showOpenInTerminal text="docker stop <container_id>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -743,7 +743,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Remove container</div>
                     <code>docker rm &lt;container_id&gt;</code>
                   </div>
-                  <CopyButton text="docker rm <container_id>" />
+                  <CopyButton showOpenInTerminal text="docker rm <container_id>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -752,7 +752,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Execute command in container</div>
                     <code>docker exec -it &lt;container_id&gt; /bin/bash</code>
                   </div>
-                  <CopyButton text="docker exec -it <container_id> /bin/bash" />
+                  <CopyButton showOpenInTerminal text="docker exec -it <container_id> /bin/bash" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -761,7 +761,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Docker Compose up</div>
                     <code>docker compose up -d</code>
                   </div>
-                  <CopyButton text="docker compose up -d" />
+                  <CopyButton showOpenInTerminal text="docker compose up -d" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -770,7 +770,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Docker Compose down</div>
                     <code>docker compose down</code>
                   </div>
-                  <CopyButton text="docker compose down" />
+                  <CopyButton showOpenInTerminal text="docker compose down" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -779,7 +779,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Clean up unused resources</div>
                     <code>docker system prune -a</code>
                   </div>
-                  <CopyButton text="docker system prune -a" />
+                  <CopyButton showOpenInTerminal text="docker system prune -a" />
                 </div>
               </div>
             </CardContent>
@@ -800,7 +800,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Get pods</div>
                     <code>kubectl get pods</code>
                   </div>
-                  <CopyButton text="kubectl get pods" />
+                  <CopyButton showOpenInTerminal text="kubectl get pods" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -809,7 +809,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Get all resources</div>
                     <code>kubectl get all</code>
                   </div>
-                  <CopyButton text="kubectl get all" />
+                  <CopyButton showOpenInTerminal text="kubectl get all" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -818,7 +818,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Describe pod</div>
                     <code>kubectl describe pod &lt;pod-name&gt;</code>
                   </div>
-                  <CopyButton text="kubectl describe pod <pod-name>" />
+                  <CopyButton showOpenInTerminal text="kubectl describe pod <pod-name>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -827,7 +827,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">View pod logs</div>
                     <code>kubectl logs &lt;pod-name&gt;</code>
                   </div>
-                  <CopyButton text="kubectl logs <pod-name>" />
+                  <CopyButton showOpenInTerminal text="kubectl logs <pod-name>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -836,7 +836,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Follow logs</div>
                     <code>kubectl logs -f &lt;pod-name&gt;</code>
                   </div>
-                  <CopyButton text="kubectl logs -f <pod-name>" />
+                  <CopyButton showOpenInTerminal text="kubectl logs -f <pod-name>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -845,7 +845,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Execute command in pod</div>
                     <code>kubectl exec -it &lt;pod-name&gt; -- /bin/bash</code>
                   </div>
-                  <CopyButton text="kubectl exec -it <pod-name> -- /bin/bash" />
+                  <CopyButton showOpenInTerminal text="kubectl exec -it <pod-name> -- /bin/bash" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -854,7 +854,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Apply manifest</div>
                     <code>kubectl apply -f manifest.yaml</code>
                   </div>
-                  <CopyButton text="kubectl apply -f manifest.yaml" />
+                  <CopyButton showOpenInTerminal text="kubectl apply -f manifest.yaml" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -863,7 +863,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Delete resource</div>
                     <code>kubectl delete pod &lt;pod-name&gt;</code>
                   </div>
-                  <CopyButton text="kubectl delete pod <pod-name>" />
+                  <CopyButton showOpenInTerminal text="kubectl delete pod <pod-name>" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -872,7 +872,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Get services</div>
                     <code>kubectl get services</code>
                   </div>
-                  <CopyButton text="kubectl get services" />
+                  <CopyButton showOpenInTerminal text="kubectl get services" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -881,7 +881,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Port forward</div>
                     <code>kubectl port-forward &lt;pod-name&gt; 8000:8000</code>
                   </div>
-                  <CopyButton text="kubectl port-forward <pod-name> 8000:8000" />
+                  <CopyButton showOpenInTerminal text="kubectl port-forward <pod-name> 8000:8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -890,7 +890,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Get nodes</div>
                     <code>kubectl get nodes</code>
                   </div>
-                  <CopyButton text="kubectl get nodes" />
+                  <CopyButton showOpenInTerminal text="kubectl get nodes" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -899,7 +899,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Get namespaces</div>
                     <code>kubectl get namespaces</code>
                   </div>
-                  <CopyButton text="kubectl get namespaces" />
+                  <CopyButton showOpenInTerminal text="kubectl get namespaces" />
                 </div>
               </div>
             </CardContent>
@@ -920,7 +920,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Install package</div>
                     <code>brew install package-name</code>
                   </div>
-                  <CopyButton text="brew install package-name" />
+                  <CopyButton showOpenInTerminal text="brew install package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -929,7 +929,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Install cask (GUI app)</div>
                     <code>brew install --cask app-name</code>
                   </div>
-                  <CopyButton text="brew install --cask app-name" />
+                  <CopyButton showOpenInTerminal text="brew install --cask app-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -938,7 +938,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Uninstall package</div>
                     <code>brew uninstall package-name</code>
                   </div>
-                  <CopyButton text="brew uninstall package-name" />
+                  <CopyButton showOpenInTerminal text="brew uninstall package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -947,7 +947,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List installed packages</div>
                     <code>brew list</code>
                   </div>
-                  <CopyButton text="brew list" />
+                  <CopyButton showOpenInTerminal text="brew list" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -956,7 +956,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Search for package</div>
                     <code>brew search package-name</code>
                   </div>
-                  <CopyButton text="brew search package-name" />
+                  <CopyButton showOpenInTerminal text="brew search package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -965,7 +965,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Update Homebrew</div>
                     <code>brew update</code>
                   </div>
-                  <CopyButton text="brew update" />
+                  <CopyButton showOpenInTerminal text="brew update" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -974,7 +974,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Upgrade packages</div>
                     <code>brew upgrade</code>
                   </div>
-                  <CopyButton text="brew upgrade" />
+                  <CopyButton showOpenInTerminal text="brew upgrade" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -983,7 +983,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Show package info</div>
                     <code>brew info package-name</code>
                   </div>
-                  <CopyButton text="brew info package-name" />
+                  <CopyButton showOpenInTerminal text="brew info package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -992,7 +992,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">Clean up old versions</div>
                     <code>brew cleanup</code>
                   </div>
-                  <CopyButton text="brew cleanup" />
+                  <CopyButton showOpenInTerminal text="brew cleanup" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -1001,7 +1001,7 @@ export default function ShellCommandsPage() {
                     <div className="font-semibold mb-1">List outdated packages</div>
                     <code>brew outdated</code>
                   </div>
-                  <CopyButton text="brew outdated" />
+                  <CopyButton showOpenInTerminal text="brew outdated" />
                 </div>
               </div>
             </CardContent>

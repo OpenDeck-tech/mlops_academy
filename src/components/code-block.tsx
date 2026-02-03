@@ -6,7 +6,7 @@ import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Copy, Check, Code2, Sparkles } from "lucide-react";
+import { Copy, Check, Code2, Sparkles, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CodeBlockProps {
@@ -20,6 +20,7 @@ export function CodeBlock({ code, language = "bash", className = "" }: CodeBlock
   const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("dark");
   const [copied, setCopied] = useState(false);
+  const [terminalCopied, setTerminalCopied] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -104,6 +105,18 @@ export function CodeBlock({ code, language = "bash", className = "" }: CodeBlock
     }
   };
 
+  const handleOpenInTerminal = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setTerminalCopied(true);
+      setTimeout(() => setTerminalCopied(false), 2500);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  const isShell = ["bash", "shell", "sh", "zsh"].includes((language || "").toLowerCase());
+
   if (!mounted) {
     return (
       <pre className={`bg-muted p-4 rounded-lg text-xs overflow-x-auto ${className}`}>
@@ -131,6 +144,25 @@ export function CodeBlock({ code, language = "bash", className = "" }: CodeBlock
             <Copy className="h-3.5 w-3.5" />
           )}
         </Button>
+        {isShell && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleOpenInTerminal}
+            className="h-7 px-2 bg-background/80 backdrop-blur-sm border"
+            title={
+              terminalCopied
+                ? "Copied — paste in your terminal (⌘V / Ctrl+V)"
+                : "Copy and run in terminal"
+            }
+          >
+            {terminalCopied ? (
+              <Check className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+            ) : (
+              <Terminal className="h-3.5 w-3.5" />
+            )}
+          </Button>
+        )}
         <Button
           variant="ghost"
           size="sm"

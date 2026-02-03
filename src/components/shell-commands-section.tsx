@@ -34,7 +34,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">List files with details</div>
                     <code>ls -lah</code>
                   </div>
-                  <CopyButton text="ls -lah" />
+                  <CopyButton showOpenInTerminal text="ls -lah" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -43,7 +43,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Find files by name</div>
                     <code>find . -name &quot;*.py&quot; -type f</code>
                   </div>
-                  <CopyButton text='find . -name "*.py" -type f' />
+                  <CopyButton showOpenInTerminal text='find . -name "*.py" -type f' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -52,7 +52,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Search in files</div>
                     <code>grep -r &quot;pattern&quot; /path/to/dir</code>
                   </div>
-                  <CopyButton text='grep -r "pattern" /path/to/dir' />
+                  <CopyButton showOpenInTerminal text='grep -r "pattern" /path/to/dir' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -61,7 +61,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Watch file changes</div>
                     <code>tail -f /path/to/logfile</code>
                   </div>
-                  <CopyButton text="tail -f /path/to/logfile" />
+                  <CopyButton showOpenInTerminal text="tail -f /path/to/logfile" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -70,7 +70,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Copy recursively</div>
                     <code>cp -r source/ destination/</code>
                   </div>
-                  <CopyButton text="cp -r source/ destination/" />
+                  <CopyButton showOpenInTerminal text="cp -r source/ destination/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -79,7 +79,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Disk usage</div>
                     <code>du -sh * | sort -h</code>
                   </div>
-                  <CopyButton text="du -sh * | sort -h" />
+                  <CopyButton showOpenInTerminal text="du -sh * | sort -h" />
                 </div>
               </div>
             </div>
@@ -93,7 +93,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Running processes</div>
                     <code>ps aux | grep python</code>
                   </div>
-                  <CopyButton text="ps aux | grep python" />
+                  <CopyButton showOpenInTerminal text="ps aux | grep python" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -102,7 +102,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Resource usage</div>
                     <code>top -p $(pgrep -d,&quot;,&quot; python)</code>
                   </div>
-                  <CopyButton text='top -p $(pgrep -d,"," python)' />
+                  <CopyButton showOpenInTerminal text='top -p $(pgrep -d,"," python)' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -111,7 +111,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Kill process by name</div>
                     <code>pkill -f &quot;script_name.py&quot;</code>
                   </div>
-                  <CopyButton text='pkill -f "script_name.py"' />
+                  <CopyButton showOpenInTerminal text='pkill -f "script_name.py"' />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -120,7 +120,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Run in background</div>
                     <code>nohup python script.py &gt; output.log 2&gt;&amp;1 &amp;</code>
                   </div>
-                  <CopyButton text="nohup python script.py > output.log 2>&1 &" />
+                  <CopyButton showOpenInTerminal text="nohup python script.py > output.log 2>&1 &" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -129,7 +129,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Monitor GPU usage</div>
                     <code>watch -n 1 nvidia-smi</code>
                   </div>
-                  <CopyButton text="watch -n 1 nvidia-smi" />
+                  <CopyButton showOpenInTerminal text="watch -n 1 nvidia-smi" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -138,7 +138,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">CPU and memory</div>
                     <code>htop</code>
                   </div>
-                  <CopyButton text="htop" />
+                  <CopyButton showOpenInTerminal text="htop" />
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Check port in use</div>
                     <code>lsof -i :8000</code>
                   </div>
-                  <CopyButton text="lsof -i :8000" />
+                  <CopyButton showOpenInTerminal text="lsof -i :8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -161,7 +161,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Test connection</div>
                     <code>curl -I http://localhost:8000</code>
                   </div>
-                  <CopyButton text="curl -I http://localhost:8000" />
+                  <CopyButton showOpenInTerminal text="curl -I http://localhost:8000" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -170,7 +170,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Download file</div>
                     <code>wget https://example.com/file.zip</code>
                   </div>
-                  <CopyButton text="wget https://example.com/file.zip" />
+                  <CopyButton showOpenInTerminal text="wget https://example.com/file.zip" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -179,7 +179,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">SSH to server</div>
                     <code>ssh user@hostname</code>
                   </div>
-                  <CopyButton text="ssh user@hostname" />
+                  <CopyButton showOpenInTerminal text="ssh user@hostname" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -188,7 +188,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Copy over network</div>
                     <code>scp file.txt user@host:/path/</code>
                   </div>
-                  <CopyButton text="scp file.txt user@host:/path/" />
+                  <CopyButton showOpenInTerminal text="scp file.txt user@host:/path/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -198,8 +198,8 @@ export function ShellCommandsSection() {
                     <code>ifconfig</code> or <code>ip addr</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="ifconfig" />
-                    <CopyButton text="ip addr" />
+                    <CopyButton showOpenInTerminal text="ifconfig" />
+                    <CopyButton showOpenInTerminal text="ip addr" />
                   </div>
                 </div>
               </div>
@@ -214,7 +214,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Activate virtual env</div>
                     <code>source venv/bin/activate</code>
                   </div>
-                  <CopyButton text="source venv/bin/activate" />
+                  <CopyButton showOpenInTerminal text="source venv/bin/activate" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -223,7 +223,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Install dependencies</div>
                     <code>pip install -r requirements.txt</code>
                   </div>
-                  <CopyButton text="pip install -r requirements.txt" />
+                  <CopyButton showOpenInTerminal text="pip install -r requirements.txt" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -233,8 +233,8 @@ export function ShellCommandsSection() {
                     <code>docker ps -a</code> | <code>docker logs &lt;container&gt;</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="docker ps -a" />
-                    <CopyButton text="docker logs <container>" />
+                    <CopyButton showOpenInTerminal text="docker ps -a" />
+                    <CopyButton showOpenInTerminal text="docker logs <container>" />
                   </div>
                 </div>
               </div>
@@ -245,8 +245,8 @@ export function ShellCommandsSection() {
                     <code>export VAR=&quot;value&quot;</code> | <code>env | grep VAR</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text='export VAR="value"' />
-                    <CopyButton text="env | grep VAR" />
+                    <CopyButton showOpenInTerminal text='export VAR="value"' />
+                    <CopyButton showOpenInTerminal text="env | grep VAR" />
                   </div>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Compress directory</div>
                     <code>tar -czf archive.tar.gz directory/</code>
                   </div>
-                  <CopyButton text="tar -czf archive.tar.gz directory/" />
+                  <CopyButton showOpenInTerminal text="tar -czf archive.tar.gz directory/" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -265,7 +265,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Monitor log file</div>
                     <code>tail -n 100 -f /var/log/app.log</code>
                   </div>
-                  <CopyButton text="tail -n 100 -f /var/log/app.log" />
+                  <CopyButton showOpenInTerminal text="tail -n 100 -f /var/log/app.log" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -275,8 +275,8 @@ export function ShellCommandsSection() {
                     <code>python --version</code> | <code>which python</code>
                   </div>
                   <div className="flex gap-1">
-                    <CopyButton text="python --version" />
-                    <CopyButton text="which python" />
+                    <CopyButton showOpenInTerminal text="python --version" />
+                    <CopyButton showOpenInTerminal text="which python" />
                   </div>
                 </div>
               </div>
@@ -286,7 +286,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Initialize Poetry project</div>
                     <code>poetry init</code>
                   </div>
-                  <CopyButton text="poetry init" />
+                  <CopyButton showOpenInTerminal text="poetry init" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -295,7 +295,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Create virtual environment</div>
                     <code>poetry env use python3.11</code>
                   </div>
-                  <CopyButton text="poetry env use python3.11" />
+                  <CopyButton showOpenInTerminal text="poetry env use python3.11" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -304,7 +304,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Install dependencies</div>
                     <code>poetry install</code>
                   </div>
-                  <CopyButton text="poetry install" />
+                  <CopyButton showOpenInTerminal text="poetry install" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -313,7 +313,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Add new dependency</div>
                     <code>poetry add package-name</code>
                   </div>
-                  <CopyButton text="poetry add package-name" />
+                  <CopyButton showOpenInTerminal text="poetry add package-name" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -322,7 +322,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Activate Poetry shell</div>
                     <code>poetry shell</code>
                   </div>
-                  <CopyButton text="poetry shell" />
+                  <CopyButton showOpenInTerminal text="poetry shell" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -331,7 +331,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Run command in Poetry env</div>
                     <code>poetry run python script.py</code>
                   </div>
-                  <CopyButton text="poetry run python script.py" />
+                  <CopyButton showOpenInTerminal text="poetry run python script.py" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -340,7 +340,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Show Poetry environment info</div>
                     <code>poetry env info</code>
                   </div>
-                  <CopyButton text="poetry env info" />
+                  <CopyButton showOpenInTerminal text="poetry env info" />
                 </div>
               </div>
               <div className="bg-muted/50 p-3 rounded-md font-mono text-sm">
@@ -349,7 +349,7 @@ export function ShellCommandsSection() {
                     <div className="font-semibold mb-1">Export to requirements.txt</div>
                     <code>poetry export -f requirements.txt --output requirements.txt</code>
                   </div>
-                  <CopyButton text="poetry export -f requirements.txt --output requirements.txt" />
+                  <CopyButton showOpenInTerminal text="poetry export -f requirements.txt --output requirements.txt" />
                 </div>
               </div>
             </div>
