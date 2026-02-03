@@ -204,6 +204,16 @@ export default async function RolesPage() {
       description:
         "Contract MLOps-related role. View the full job title, company, location, and description at the link below.",
     },
+    {
+      id: 19,
+      title: "ML Engineer",
+      company: "Contact recruiter",
+      location: "London, UK · Hybrid (2 days/week) · 5 months (extendable)",
+      region: "Contract",
+      url: "https://www.linkedin.com/in/prachi-patil-567481294/",
+      description:
+        "Contract: 5 months (extendable). 350–400 GBP/day (Inside IR35). Redis cluster setup; Kafka/Flink streaming pipelines; S3 data pipeline; real-time micro-batches (5 min, hourly, daily); Mongo/Atlas or S3; SageMaker MLOps, training & model deployment; PyTorch. Apply via recruiter (link below).",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Contract", "Other"];
@@ -316,7 +326,7 @@ export default async function RolesPage() {
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center"
                               >
-                                View role
+                                {role.company === "Contact recruiter" ? "Contact recruiter" : "View role"}
                                 <ExternalLink className="h-3 w-3" />
                               </a>
                             </Button>
