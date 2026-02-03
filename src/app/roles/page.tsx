@@ -3,15 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/session";
+import { getServerLocale, translate } from "@/lib/i18n";
 
 export default async function RolesPage() {
-  let isSignedIn = false;
-  try {
-    const sess = await getSession();
-    isSignedIn = Boolean(sess.userId || sess.email);
-  } catch {
-    isSignedIn = false;
-  }
+  const [sessResult, locale] = await Promise.all([getSession().then((s) => ({ isSignedIn: Boolean(s.userId || s.email) })).catch(() => ({ isSignedIn: false })), getServerLocale()]);
+  const isSignedIn = sessResult.isSignedIn;
+  const t = (key: string) => translate(locale, key);
 
   type Region = "London" | "USA" | "China" | "Contract" | "Other";
 
@@ -237,7 +234,7 @@ export default async function RolesPage() {
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Home
+        {t("Back to Home")}
       </Link>
 
       <div className="mb-12 pl-4 border-l-4 border-slate-300 dark:border-slate-600 rounded-r-md bg-slate-50/70 dark:bg-slate-900/40 py-4 pr-4">
@@ -245,7 +242,7 @@ export default async function RolesPage() {
           <div className="p-3 rounded-lg bg-slate-200/80 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200">
             <Briefcase className="h-6 w-6" />
           </div>
-          <h1 className="text-4xl font-semibold text-foreground">Roles</h1>
+          <h1 className="text-4xl font-semibold text-foreground">{t("Roles")}</h1>
         </div>
         <p className="text-muted-foreground text-lg">
           Curated MLOps roles by location and type: London, USA, China, Contract. We’ll be updating these manually for now.
@@ -259,8 +256,8 @@ export default async function RolesPage() {
           </CardTitle>
           <CardDescription>
             {isSignedIn
-              ? "Head to your dashboard for subscription and account settings."
-              : "Create an account (or sign in) to access personalized features, learning paths, and Pro content."}
+              ? t("Head to your dashboard for subscription and account settings.")
+              : t("Create an account (or sign in) to access personalized features, learning paths, and Pro content.")}
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-3">
@@ -271,10 +268,10 @@ export default async function RolesPage() {
           ) : (
             <>
               <Button asChild className="bg-[#ADFF2F] hover:bg-[#9AFF1F] text-black font-semibold">
-                <Link href="/signup">Create account</Link>
+                <Link href="/signup">{t("Create account")}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href="/login">Sign in</Link>
+                <Link href="/login">{t("Sign In")}</Link>
               </Button>
             </>
           )}
@@ -284,7 +281,7 @@ export default async function RolesPage() {
       {roles.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">No roles added yet. Check back soon!</p>
+            <p className="text-muted-foreground">{t("No roles added yet. Check back soon!")}</p>
           </CardContent>
         </Card>
       ) : (
@@ -296,7 +293,7 @@ export default async function RolesPage() {
                   <h2
                     className={`text-xl font-semibold text-foreground mb-4 pb-2 pt-2 pl-3 rounded-r border-b border-border/60 ${regionAccent[region].border} ${regionAccent[region].bg}`}
                   >
-                    {region} ({regionRoles.length})
+                    {t(region)} ({regionRoles.length})
                   </h2>
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {regionRoles.map((role) => (
@@ -326,7 +323,7 @@ export default async function RolesPage() {
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center"
                               >
-                                {role.company === "Contact recruiter" ? "Contact recruiter" : "View role"}
+                                {role.company === "Contact recruiter" ? t("Contact recruiter") : t("View role")}
                                 <ExternalLink className="h-3 w-3" />
                               </a>
                             </Button>

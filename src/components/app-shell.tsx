@@ -37,7 +37,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
           "left-[-9999px] top-4 focus:left-4 focus:block"
         )}
       >
-        Skip to main content
+        {t("Skip to main content")}
       </a>
       {showSidebar && (
         <div className="hidden md:block">
@@ -59,7 +59,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
             {showSidebar && (
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="outline" size="icon" className="md:hidden" aria-label="Open menu">
+                  <Button variant="outline" size="icon" className="md:hidden" aria-label={t("Open menu")}>
                     <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
@@ -67,7 +67,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                   <SheetHeader className="border-b">
                     <SheetTitle>
                       <Link href="/blank" onClick={() => setOpen(false)}>
-                        MLOps Academy
+                        {t("MLOps Academy")}
                       </Link>
                     </SheetTitle>
                   </SheetHeader>
@@ -89,10 +89,10 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
             )}
 
             <Link href="/blank" className="font-semibold tracking-tight">
-              MLOps Academy
+              {t("MLOps Academy")}
             </Link>
 
-            {title && <span className="hidden md:inline text-sm text-muted-foreground">/ {title}</span>}
+            {title && <span className="hidden md:inline text-sm text-muted-foreground">/ {t(title)}</span>}
           </div>
 
           <div className="flex items-center gap-2">

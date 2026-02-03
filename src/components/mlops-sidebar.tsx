@@ -78,7 +78,7 @@ export function MLOpsSidebar() {
           size="icon"
           className="h-8 w-8 rounded-full bg-background border-2 shadow-md hover:shadow-lg"
           onClick={toggleSidebar}
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={isCollapsed ? t("Expand sidebar") : t("Collapse sidebar")}
         >
           {isCollapsed ? (
             <ChevronRight className="h-4 w-4" />

@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { Copy, Check, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/contexts/language-context";
 
 const TWITTER_HANDLE = "MLOps_engineer";
 const DEFAULT_SHARE_TEXT =
@@ -28,6 +29,8 @@ export function ShareButtons({
   className = "",
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  const { t } = useTranslation();
+  const titleDisplay = title ? t(title) : "";
 
   const getUrl = useCallback(() => {
     if (urlProp) return urlProp;
@@ -56,10 +59,10 @@ export function ShareButtons({
   if (variant === "compact") {
     return (
       <div className={`flex items-center gap-2 flex-wrap ${className}`}>
-        {title && (
+        {titleDisplay && (
           <span className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Share2 className="h-4 w-4" />
-            {title}
+            {titleDisplay}
           </span>
         )}
         <div className="flex items-center gap-1">
@@ -68,18 +71,18 @@ export function ShareButtons({
             size="sm"
             onClick={handleCopy}
             className="gap-1.5"
-            title="Copy link"
+            title={t("Copy link")}
           >
             {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
-            {copied ? "Copied!" : "Copy link"}
+            {copied ? t("Copied!") : t("Copy link")}
           </Button>
           <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={twitterHref} target="_blank" rel="noopener noreferrer" title="Share on X (Twitter)">
+            <a href={twitterHref} target="_blank" rel="noopener noreferrer" title={t("Share on X")}>
               X
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={linkedInHref} target="_blank" rel="noopener noreferrer" title="Share on LinkedIn">
+            <a href={linkedInHref} target="_blank" rel="noopener noreferrer" title={t("Share on LinkedIn")}>
               in
             </a>
           </Button>
@@ -90,10 +93,10 @@ export function ShareButtons({
 
   return (
     <div className={`space-y-3 ${className}`}>
-      {title && (
+      {titleDisplay && (
         <p className="text-sm font-medium text-foreground flex items-center gap-2">
           <Share2 className="h-4 w-4 text-muted-foreground" />
-          {title}
+          {titleDisplay}
         </p>
       )}
       <div className="flex flex-wrap items-center gap-2">
@@ -102,19 +105,19 @@ export function ShareButtons({
           size="sm"
           onClick={handleCopy}
           className="gap-2"
-          title="Copy link"
+          title={t("Copy link")}
         >
           {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
-          {copied ? "Copied!" : "Copy link"}
+          {copied ? t("Copied!") : t("Copy link")}
         </Button>
         <Button variant="outline" size="sm" asChild className="gap-2">
           <a href={twitterHref} target="_blank" rel="noopener noreferrer">
-            Share on X
+            {t("Share on X")}
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild className="gap-2">
           <a href={linkedInHref} target="_blank" rel="noopener noreferrer">
-            Share on LinkedIn
+            {t("Share on LinkedIn")}
           </a>
         </Button>
       </div>
