@@ -10,6 +10,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       defaultTheme="system"
       enableSystem
       disableTransitionOnChange
+      themes={["light", "dark", "blue"]}
     >
       <LanguageProvider>{children}</LanguageProvider>
     </ThemeProvider>
