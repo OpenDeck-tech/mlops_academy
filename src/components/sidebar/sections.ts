@@ -24,6 +24,8 @@ export type SidebarSection = {
   icon: LucideIcon;
   href: string;
   external: boolean;
+  /** Translation key for confirm message before opening link (e.g. redirect to X). If set, user is prompted before redirect. */
+  confirmRedirectKey?: string;
 };
 
 export type SidebarGroup = {
@@ -55,11 +57,11 @@ export const sidebarGroups: SidebarGroup[] = [
     title: "Community & Jobs",
     items: [
       { id: "podcasts", title: "Podcasts", icon: Headphones, href: "/podcasts", external: false },
-      { id: "tweets", title: "Tweets", icon: TwitterIcon, href: "https://x.com/search?q=%23mlops&src=typed_query&f=top", external: true },
-      { id: "practitioners", title: "Practitioners on LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL", external: true },
+      { id: "tweets", title: "Tweets", icon: TwitterIcon, href: "https://x.com/search?q=%23mlops&src=typed_query&f=top", external: true, confirmRedirectKey: "You're about to be redirected to X (Twitter). Continue?" },
+      { id: "practitioners", title: "Practitioners on LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/search/results/people/?keywords=mlops%20engineer&origin=SWITCH_SEARCH_VERTICAL", external: true, confirmRedirectKey: "You're about to be redirected to LinkedIn. Continue?" },
       { id: "recruiters", title: "Recruiters", icon: UserSearch, href: "/recruiters", external: false },
       { id: "community", title: "MLOps Community", icon: Calendar, href: "https://mlops.community/", external: true },
-      { id: "reddit", title: "Reddit", icon: MessageSquare, href: "https://www.reddit.com/r/mlops/", external: true },
+      { id: "reddit", title: "Reddit", icon: MessageSquare, href: "https://www.reddit.com/r/mlops/", external: true, confirmRedirectKey: "You're about to be redirected to Reddit. Continue?" },
     ],
   },
   {

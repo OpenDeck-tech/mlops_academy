@@ -4,17 +4,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Terminal } from "lucide-react";
 import { CopyButton } from "@/components/copy-button";
+import { useTranslation } from "@/contexts/language-context";
 
 export function ShellCommandsSection() {
+  const { t } = useTranslation();
   return (
     <Card className="mt-6">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Terminal className="h-5 w-5" />
-          Essential Shell Commands
+          {t("Essential Shell Commands")}
         </CardTitle>
         <CardDescription>
-          Quick reference for common shell commands used in MLOps workflows
+          {t("Quick reference for common shell commands used in MLOps workflows")}
         </CardDescription>
       </CardHeader>
       <CardContent>
