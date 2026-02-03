@@ -7,6 +7,7 @@ import { Server, Code, Layers, Rocket, CheckCircle2, Lightbulb } from "lucide-re
 import { LogoutButtonClient } from "@/components/logout-button-client";
 import { ScrollingQuotes } from "@/components/scrolling-quotes";
 import { InteractiveVennDiagram } from "@/components/interactive-venn-diagram";
+import { ShareButtons } from "@/components/share-buttons";
 import { getSession } from "@/lib/session";
 import { AppShell } from "@/components/app-shell";
 
@@ -69,6 +70,9 @@ export default async function BlankPage() {
         <p className="text-muted-foreground text-sm mb-4">
           Explore best practices and concepts for each stage (Local → Dev → Staging → Prod).
         </p>
+        <div className="flex justify-center mb-6">
+          <ShareButtons title="Share" variant="compact" />
+        </div>
         <div className="flex items-center justify-center gap-3 flex-wrap">
           {sess.isPro && (
             <Button

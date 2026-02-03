@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ShellCommandsSection } from "@/components/shell-commands-section";
 import { LogoCarousel } from "@/components/logo-carousel";
+import { ShareButtons } from "@/components/share-buttons";
 import Link from "next/link";
 
 export default function Home() {
@@ -46,6 +47,9 @@ export default function Home() {
             <Link href="/mlops-for-kids" className="text-sm underline">MLOps for Starters!</Link>
           </div>
           <Link href="/environments/local" className="text-sm underline">Preview curriculum</Link>
+        </div>
+        <div className="mt-8 pt-6 border-t border-border/60 w-full max-w-md mx-auto">
+          <ShareButtons title="Share with your team" variant="compact" />
         </div>
       </section>
 
