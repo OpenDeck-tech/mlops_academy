@@ -110,7 +110,6 @@ const zhTranslations: Record<string, string> = {
   "Share on LinkedIn": "分享到 LinkedIn",
   // Local env
   "Local": "本地",
-  "Set up and optimize your local development workspace": "设置并优化本地开发环境",
   "Testing": "测试",
   "Unit tests, integration tests, and testing strategies for ML code": "ML 代码的单元测试、集成测试与测试策略",
   "Docker": "Docker",
