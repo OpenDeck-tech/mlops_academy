@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Lightbulb, Repeat, Zap, Eye, GitBranch, Shield, Layers } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { getServerLocale, translate } from "@/lib/i18n";
 
 const principles = [
   {
@@ -54,7 +55,10 @@ const principles = [
   },
 ];
 
-export default function PrinciplesPage() {
+export default async function PrinciplesPage() {
+  const locale = await getServerLocale();
+  const t = (key: string) => translate(locale, key);
+
   return (
     <AppShell title="Principles">
       <Link
@@ -62,16 +66,16 @@ export default function PrinciplesPage() {
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Environments
+        {t("Back to Environments")}
       </Link>
 
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-2">
           <Lightbulb className="h-8 w-8 text-amber-500 dark:text-amber-400" />
-          <h1 className="text-4xl font-semibold">First Principles of MLOps</h1>
+          <h1 className="text-4xl font-semibold">{t("First Principles of MLOps")}</h1>
         </div>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Tools change; these principles don't. Think from first principles when designing or reviewing ML systems.
+          {t("Tools change; these principles don't. Think from first principles when designing or reviewing ML systems.")}
         </p>
       </div>
 
@@ -85,14 +89,14 @@ export default function PrinciplesPage() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <CardTitle className="text-xl">{p.title}</CardTitle>
+                  <CardTitle className="text-xl">{t(p.title)}</CardTitle>
                 </div>
                 <CardDescription className="text-base font-medium text-foreground/90 pt-1">
-                  {p.oneLiner}
+                  {t(p.oneLiner)}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{p.description}</p>
+                <p className="text-sm text-muted-foreground">{t(p.description)}</p>
               </CardContent>
             </Card>
           );

@@ -78,8 +78,11 @@ const zhTranslations: Record<string, string> = {
   "First principles": "第一性原理",
   // Roles
   "Curated MLOps roles by location and type: London, USA, China, Contract. We'll be updating these manually for now.": "按地区和类型精选的 MLOps 职位：伦敦、美国、中国、合同制。我们会持续手动更新。",
+  "Curated MLOps roles by location and type: London, USA, China, Contract. We\u2019ll be updating these manually for now.": "按地区和类型精选的 MLOps 职位：伦敦、美国、中国、合同制。我们会持续手动更新。",
   "You're browsing as a signed-in user": "您已登录",
   "You\u2019re browsing as a signed-in user": "您已登录",
+  "signed_in_browsing": "您已登录",
+  "want_save_progress": "想保存学习进度？",
   "Want to save your progress?": "想保存学习进度？",
   "Head to your dashboard for subscription and account settings.": "前往仪表盘管理订阅与账户设置。",
   "Create an account (or sign in) to access personalized features, learning paths, and Pro content.": "创建账户（或登录）以使用个性化功能、学习路径与 Pro 内容。",
@@ -89,6 +92,7 @@ const zhTranslations: Record<string, string> = {
   // Principles
   "First Principles of MLOps": "MLOps 第一性原理",
   "Tools change; these principles don't. Think from first principles when designing or reviewing ML systems.": "工具在变，这些原则不变。在设计或审视 ML 系统时，从第一性原理出发。",
+  "Tools change; these principles don\u2019t. Think from first principles when designing or reviewing ML systems.": "工具在变，这些原则不变。在设计或审视 ML 系统时，从第一性原理出发。",
   "Reproducibility": "可复现性",
   "Same inputs, same outputs — every time.": "相同输入，相同输出——每次如此。",
   "Environments, code, data, and model artifacts must be versioned and replayable. If you can't reproduce a run, you can't debug or improve it.": "环境、代码、数据与模型制品必须可版本化、可重放。若无法复现一次运行，就无法调试或改进。",
@@ -134,6 +138,7 @@ const zhTranslations: Record<string, string> = {
   // Home
   "Master MLOps. Build production ML systems that last.": "掌握 MLOps，构建可持续的生产级 ML 系统。",
   "Curated, no-fluff curriculum from real-world experience. Tools change, fundamentals don't.": "来自实战的精选课程，去芜存菁。工具在变，基础不变。",
+  "Curated, no-fluff curriculum from real-world experience. Tools change, fundamentals don\u2019t.": "来自实战的精选课程，去芜存菁。工具在变，基础不变。",
   "Get Pro Access": "获取 Pro 权限",
   "MLOps for Starters!": "MLOps 入门！",
   "Preview curriculum": "预览课程",

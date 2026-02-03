@@ -2,8 +2,12 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowLeft, TestTube, Container, Terminal, Settings, Code2 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { getServerLocale, translate } from "@/lib/i18n";
 
-export default function LocalEnvironmentPage() {
+export default async function LocalEnvironmentPage() {
+  const locale = await getServerLocale();
+  const t = (key: string) => translate(locale, key);
+
   const topics = [
     {
       id: "testing",
@@ -49,13 +53,13 @@ export default function LocalEnvironmentPage() {
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors cursor-pointer relative z-10 px-2 py-1 -ml-2 rounded hover:bg-accent/50"
       >
         <ArrowLeft className="h-4 w-4" />
-        <span>Back to Environments</span>
+        {t("Back to Environments")}
       </Link>
 
       <div className="mb-12">
-        <h1 className="text-4xl font-semibold mb-2">Local Environment</h1>
+        <h1 className="text-4xl font-semibold mb-2">{t("Local Environment")}</h1>
         <p className="text-muted-foreground text-lg">
-          Set up and optimize your local development workspace
+          {t("Set up and optimize your local development workspace")}
         </p>
       </div>
 
@@ -80,12 +84,12 @@ export default function LocalEnvironmentPage() {
                   <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/20">
                     <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <CardTitle className="text-xl">{topic.title}</CardTitle>
+                  <CardTitle className="text-xl">{t(topic.title)}</CardTitle>
                 </div>
-                <CardDescription>{topic.description}</CardDescription>
+                <CardDescription>{t(topic.description)}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{topic.content}</p>
+                <p className="text-sm text-muted-foreground">{t(topic.content)}</p>
               </CardContent>
             </>
           );

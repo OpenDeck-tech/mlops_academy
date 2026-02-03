@@ -252,7 +252,7 @@ export default async function RolesPage() {
       <Card className="mb-10 border-l-4 border-l-slate-300 dark:border-l-slate-600">
         <CardHeader>
           <CardTitle className="text-xl">
-            {isSignedIn ? "You’re browsing as a signed-in user" : "Want to save your progress?"}
+            {isSignedIn ? t("signed_in_browsing") : t("want_save_progress")}
           </CardTitle>
           <CardDescription>
             {isSignedIn
