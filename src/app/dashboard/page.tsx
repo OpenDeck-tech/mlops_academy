@@ -187,7 +187,7 @@ export default async function DashboardPage() {
                     ) : (
                       <>
                         <Button asChild size="sm">
-                          <Link href="/#curriculum">View curriculum</Link>
+                          <a href="https://www.mlopsengineer.co/journeys" target="_blank" rel="noopener noreferrer">View curriculum</a>
                         </Button>
                         <Button asChild size="sm" variant="outline">
                           <Link href="/roles">See current roles</Link>
@@ -293,13 +293,18 @@ export default async function DashboardPage() {
                 </p>
               )}
             </div>
-            {hasActiveSubscription && (
+            {(hasActiveSubscription || subscription) && (
               <>
                 <Separator />
                 <ManageSubscriptionButton />
+                {!hasActiveSubscription && subscription && (
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Update your payment method or cancel in the portal.
+                  </p>
+                )}
               </>
             )}
-            {!hasActiveSubscription && (
+            {!hasActiveSubscription && !subscription && (
               <>
                 <Separator />
                 <Button className="w-full" asChild>
@@ -345,9 +350,9 @@ export default async function DashboardPage() {
             ) : (
               <>
                 <Button variant="outline" className="justify-start" asChild>
-                  <Link href="/#curriculum">
+                  <a href="https://www.mlopsengineer.co/journeys" target="_blank" rel="noopener noreferrer">
                     View Curriculum
-                  </Link>
+                  </a>
                 </Button>
                 <Button variant="outline" className="justify-start" asChild>
                   <Link href="/#pricing">

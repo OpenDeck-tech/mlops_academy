@@ -49,7 +49,7 @@ export default function Home() {
             <Button size="lg" onClick={checkout}>{t("Get Pro Access")}</Button>
             <Link href="/mlops-for-kids" className="text-sm underline">{t("MLOps for Starters!")}</Link>
           </div>
-          <Link href="/environments/local" className="text-sm underline">{t("Preview curriculum")}</Link>
+          <a href="https://www.mlopsengineer.co/journeys" target="_blank" rel="noopener noreferrer" className="text-sm underline">{t("Preview curriculum")}</a>
         </div>
         <div className="mt-8 pt-6 border-t border-border/60 w-full max-w-md mx-auto">
           <ShareButtons title="Share with your team" variant="compact" />
