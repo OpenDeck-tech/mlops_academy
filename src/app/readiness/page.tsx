@@ -1,5 +1,5 @@
 import { getSession } from "@/lib/session";
-import { ReadinessClient } from "./readiness-client";
+import { ReadinessClient } from "@/components/readiness-client";
 
 export default async function ReadinessPage() {
   const sess = await getSession().catch(() => null);

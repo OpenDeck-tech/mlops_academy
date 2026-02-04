@@ -222,6 +222,16 @@ export default async function RolesPage() {
       description:
         "ML Engineer role in investment banking (via LinkedIn). View the full job title, company, location, and description at the link below.",
     },
+    {
+      id: 21,
+      title: "MLOps Engineer",
+      company: "Inara",
+      location: "London · Remote (occasional client-site)",
+      region: "Contract",
+      url: "https://artificialintelligencejobs.co.uk/view-job/mlops-engineer-52ab94da0bf2",
+      description:
+        "Contract: initially 3 months. £500–550/day Inside IR35. Consultancy-led team building production-grade ML platforms for end clients. End-to-end MLOps platforms, MLflow (experiment tracking, model registry), production deployments, CI/CD for ML, model governance and monitoring, Databricks, AWS/SageMaker, Docker/Kubernetes, Terraform, Python. Remote with occasional travel to client-site. Via Artificial Intelligence Jobs UK.",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Contract", "Other"];
