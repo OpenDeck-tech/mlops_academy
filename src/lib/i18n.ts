@@ -145,7 +145,6 @@ const zhTranslations: Record<string, string> = {
   "Foundations": "基础",
   "Data versioning & lineage": "数据版本与血缘",
   "Experiment tracking": "实验追踪",
-  "Reproducibility": "可复现性",
   "Systems": "系统",
   "Pipelines (batch/stream)": "流水线（批/流）",
   "Training orchestration": "训练编排",
