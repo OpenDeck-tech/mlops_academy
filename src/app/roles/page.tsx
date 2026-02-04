@@ -212,6 +212,16 @@ export default async function RolesPage() {
       description:
         "Contract: 5 months (extendable). 350–400 GBP/day (Inside IR35). Redis cluster setup; Kafka/Flink streaming pipelines; S3 data pipeline; real-time micro-batches (5 min, hourly, daily); Mongo/Atlas or S3; SageMaker MLOps, training & model deployment; PyTorch. Apply via recruiter (link below).",
     },
+    {
+      id: 20,
+      title: "ML Engineer",
+      company: "See listing",
+      location: "See listing",
+      region: "Other",
+      url: "https://www.linkedin.com/jobs/view/4344587055/",
+      description:
+        "ML Engineer role in investment banking (via LinkedIn). View the full job title, company, location, and description at the link below.",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Contract", "Other"];

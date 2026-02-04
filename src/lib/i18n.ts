@@ -158,6 +158,7 @@ const zhTranslations: Record<string, string> = {
   "Pro Access": "Pro 权限",
   "All current and future content. One subscription.": "当前及未来全部内容，一次订阅。",
   "Subscribe": "订阅",
+  "Sign in to save your checklist and access your dashboard, learning paths, and Pro content.": "登录后可保存清单进度，并访问仪表盘、学习路径与 Pro 内容。",
   "You're about to be redirected to X (Twitter). Continue?": "您即将被重定向到 X（Twitter）。继续？",
   "You're about to be redirected to Reddit. Continue?": "您即将被重定向到 Reddit。继续？",
   "You're about to be redirected to LinkedIn. Continue?": "您即将被重定向到 LinkedIn。继续？",
