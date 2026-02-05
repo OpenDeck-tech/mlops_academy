@@ -140,20 +140,20 @@ export default function AbbreviationsPage() {
         </div>
 
         <Tabs defaultValue="mlops" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
-            <TabsTrigger value="mlops" className="flex items-center gap-2">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto gap-1 p-1">
+            <TabsTrigger value="mlops" className="flex items-center gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 dark:data-[state=active]:bg-blue-900/50 dark:data-[state=active]:text-blue-200">
               <Code className="h-4 w-4" />
               MLOps
             </TabsTrigger>
-            <TabsTrigger value="cloud" className="flex items-center gap-2">
+            <TabsTrigger value="cloud" className="flex items-center gap-2 data-[state=active]:bg-sky-100 data-[state=active]:text-sky-800 dark:data-[state=active]:bg-sky-900/50 dark:data-[state=active]:text-sky-200">
               <Cloud className="h-4 w-4" />
               Cloud
             </TabsTrigger>
-            <TabsTrigger value="data" className="flex items-center gap-2">
+            <TabsTrigger value="data" className="flex items-center gap-2 data-[state=active]:bg-emerald-100 data-[state=active]:text-emerald-800 dark:data-[state=active]:bg-emerald-900/50 dark:data-[state=active]:text-emerald-200">
               <Database className="h-4 w-4" />
               Data & ML
             </TabsTrigger>
-            <TabsTrigger value="devops" className="flex items-center gap-2">
+            <TabsTrigger value="devops" className="flex items-center gap-2 data-[state=active]:bg-amber-100 data-[state=active]:text-amber-800 dark:data-[state=active]:bg-amber-900/50 dark:data-[state=active]:text-amber-200">
               <Settings className="h-4 w-4" />
               DevOps
             </TabsTrigger>
@@ -162,9 +162,9 @@ export default function AbbreviationsPage() {
           <TabsContent value="mlops" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {mlopsAbbreviations.map((abbr, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-blue-500 dark:border-l-blue-400 bg-blue-50/40 dark:bg-blue-950/20">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg font-bold">{abbr.term}</CardTitle>
+                    <CardTitle className="text-lg font-bold text-blue-700 dark:text-blue-300">{abbr.term}</CardTitle>
                     <CardDescription className="font-semibold text-foreground">{abbr.meaning}</CardDescription>
                   </CardHeader>
                   {abbr.description && (
@@ -180,9 +180,9 @@ export default function AbbreviationsPage() {
           <TabsContent value="cloud" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {cloudAbbreviations.map((abbr, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-sky-500 dark:border-l-sky-400 bg-sky-50/40 dark:bg-sky-950/20">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg font-bold">{abbr.term}</CardTitle>
+                    <CardTitle className="text-lg font-bold text-sky-700 dark:text-sky-300">{abbr.term}</CardTitle>
                     <CardDescription className="font-semibold text-foreground">{abbr.meaning}</CardDescription>
                   </CardHeader>
                   {abbr.description && (
@@ -198,9 +198,9 @@ export default function AbbreviationsPage() {
           <TabsContent value="data" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {dataAbbreviations.map((abbr, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-emerald-500 dark:border-l-emerald-400 bg-emerald-50/40 dark:bg-emerald-950/20">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg font-bold">{abbr.term}</CardTitle>
+                    <CardTitle className="text-lg font-bold text-emerald-700 dark:text-emerald-300">{abbr.term}</CardTitle>
                     <CardDescription className="font-semibold text-foreground">{abbr.meaning}</CardDescription>
                   </CardHeader>
                   {abbr.description && (
@@ -216,9 +216,9 @@ export default function AbbreviationsPage() {
           <TabsContent value="devops" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {devOpsAbbreviations.map((abbr, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-amber-500 dark:border-l-amber-400 bg-amber-50/40 dark:bg-amber-950/20">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg font-bold">{abbr.term}</CardTitle>
+                    <CardTitle className="text-lg font-bold text-amber-700 dark:text-amber-300">{abbr.term}</CardTitle>
                     <CardDescription className="font-semibold text-foreground">{abbr.meaning}</CardDescription>
                   </CardHeader>
                   {abbr.description && (
