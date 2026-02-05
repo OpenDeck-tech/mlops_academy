@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useTranslation } from "@/contexts/language-context";
+import { useGuide } from "@/contexts/guide-context";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SidebarNav } from "@/components/sidebar/sidebar-nav";
@@ -26,6 +27,7 @@ type Props = {
 export function AppShell({ children, actions, showSidebar = true, title }: Props) {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const { startTour } = useGuide();
 
   return (
     <div className="min-h-screen bg-background">
@@ -75,6 +77,17 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                     <SidebarNav groups={sidebarGroups} onNavigate={() => setOpen(false)} />
                   </div>
                   <div className="mt-auto border-t p-4 space-y-3">
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start gap-2"
+                      onClick={() => {
+                        startTour();
+                        setOpen(false);
+                      }}
+                    >
+                      <Compass className="h-4 w-4" />
+                      {t("Show me around")}
+                    </Button>
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-sm text-muted-foreground">{t("Theme")}</span>
                       <ThemeToggle />

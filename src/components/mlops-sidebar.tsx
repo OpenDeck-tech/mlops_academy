@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useTranslation } from "@/contexts/language-context";
+import { useGuide } from "@/contexts/guide-context";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { sidebarGroups } from "@/components/sidebar/sections";
@@ -15,6 +16,7 @@ export function MLOpsSidebar() {
   const [isPro, setIsPro] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { t } = useTranslation();
+  const { startTour } = useGuide();
 
   useEffect(() => {
     // Check Pro status from session
@@ -121,7 +123,32 @@ export function MLOpsSidebar() {
           )}
           <SidebarNav groups={sidebarGroups} isCollapsed={isCollapsed} />
         </div>
-        <div className={cn("mt-auto pt-4 border-t", isCollapsed && "px-2")}>
+        <div className={cn("mt-auto pt-4 border-t space-y-2", isCollapsed && "px-2")}>
+          <div className={cn("px-3", isCollapsed && "px-0 flex justify-center")}>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={cn(
+                      "w-full justify-start gap-2 text-muted-foreground hover:text-foreground",
+                      isCollapsed && "justify-center px-2"
+                    )}
+                    onClick={startTour}
+                  >
+                    <Compass className="h-4 w-4 shrink-0" />
+                    {!isCollapsed && <span>{t("Show me around")}</span>}
+                  </Button>
+                </TooltipTrigger>
+                {isCollapsed && (
+                  <TooltipContent side="right">
+                    <p>{t("Show me around")}</p>
+                  </TooltipContent>
+                )}
+              </Tooltip>
+            </TooltipProvider>
+          </div>
           <div className={cn("px-3", isCollapsed && "px-0 flex justify-center")}>
             <ThemeToggle />
           </div>

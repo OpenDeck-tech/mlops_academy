@@ -2,6 +2,8 @@
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
+import { GuideProvider } from "@/contexts/guide-context";
+import { GuideTour } from "@/components/guide-tour";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +14,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
       themes={["light", "dark", "blue"]}
     >
-      <LanguageProvider>{children}</LanguageProvider>
+      <LanguageProvider>
+        <GuideProvider>
+          {children}
+          <GuideTour />
+        </GuideProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
