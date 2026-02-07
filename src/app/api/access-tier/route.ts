@@ -47,6 +47,7 @@ const PRO_ONLY_ACCESS = {
     "/pro/book-call",
     "/environments/staging/continuous-deployment",
     "/environments/staging/troubleshooting",
+    "/environments/staging/load-testing",
   ],
   features: [
     "Pro hub and curriculum",
@@ -54,6 +55,7 @@ const PRO_ONLY_ACCESS = {
     "Pro communication and book-a-call",
     "Staging: Continuous Deployment (Pro)",
     "Staging: Troubleshooting (Pro)",
+    "Staging: Load Testing (Pro)",
     "Pro badge and 'Access Pro Content' CTA on environments",
     "Dashboard: Pro curriculum and coding exercise CTAs",
   ],
