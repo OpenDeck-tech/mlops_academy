@@ -21,7 +21,9 @@ export function PodcastPlayerProvider({ children }: { children: React.ReactNode 
   const [state, setState] = useState<PodcastPlayerState>({ embedUrl: null, title: null });
 
   const setPlayer = useCallback((embedUrl: string, title: string) => {
-    setState({ embedUrl, title });
+    const separator = embedUrl.includes("?") ? "&" : "?";
+    const urlWithAutoplay = `${embedUrl}${separator}autoplay=1`;
+    setState({ embedUrl: urlWithAutoplay, title });
   }, []);
 
   const clearPlayer = useCallback(() => {

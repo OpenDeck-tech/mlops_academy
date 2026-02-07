@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/contexts/language-context";
 import { GuideProvider } from "@/contexts/guide-context";
 import { GuideTour } from "@/components/guide-tour";
 import { PodcastPlayerProvider } from "@/contexts/podcast-player-context";
+import { StreakRecorder } from "@/components/streak-recorder";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +19,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <LanguageProvider>
         <GuideProvider>
           <PodcastPlayerProvider>
+            <StreakRecorder />
             {children}
             <GuideTour />
           </PodcastPlayerProvider>

@@ -9,7 +9,8 @@ import { Separator } from "@/components/ui/separator";
 import { LogoutButton } from "@/components/logout-button";
 import { ShellCommandsSection } from "@/components/shell-commands-section";
 import Link from "next/link";
-import { Calendar, Mail, CreditCard, CheckCircle2, XCircle } from "lucide-react";
+import { Calendar, Mail, CreditCard, CheckCircle2, XCircle, Flame } from "lucide-react";
+import { getStreak } from "@/lib/streak";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { AppShell } from "@/components/app-shell";
 
@@ -82,6 +83,8 @@ export default async function DashboardPage() {
 
   const isPro = Boolean(sess.isPro || hasActiveSubscription);
 
+  const streak = sess.userId ? await getStreak(sess.userId) : { currentStreak: 0, longestStreak: 0, lastActiveAt: null };
+
   const skills = [
     { label: "Environments & infra", value: 70, bar: "bg-emerald-500 dark:bg-emerald-400" },
     { label: "CI/CD & testing", value: 60, bar: "bg-blue-500 dark:bg-blue-400" },
@@ -105,6 +108,24 @@ export default async function DashboardPage() {
             Your MLOps command center — account, learning, and career in one place.
           </p>
         </div>
+
+        <Card className="border-l-4 border-l-orange-500 dark:border-l-orange-400 max-w-md">
+          <CardContent className="py-4 flex items-center gap-4">
+            <div className="p-2 rounded-lg bg-orange-500/10 dark:bg-orange-400/10">
+              <Flame className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div>
+              <p className="font-semibold text-lg">
+                {streak.currentStreak} day{streak.currentStreak !== 1 ? "s" : ""} streak
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {streak.longestStreak > 0
+                  ? `Longest: ${streak.longestStreak} day${streak.longestStreak !== 1 ? "s" : ""}`
+                  : "Visit any page daily to build your streak"}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">
           <Card className="border-l-4 border-l-emerald-500 dark:border-l-emerald-400">
