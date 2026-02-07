@@ -1,4 +1,5 @@
-// Define database connection via the `mlops_PRISMA_DATABASE_URL` env var
+// Database URL: set mlops_PRISMA_DATABASE_URL in .env.local (app runtime) or .env (Prisma CLI).
+// For CLI (db push, migrate): use "npm run db:push" so .env.local is loaded, or put the URL in .env.
 datasource db {
   provider = "postgresql"
   url      = env("mlops_PRISMA_DATABASE_URL")

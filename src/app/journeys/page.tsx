@@ -125,6 +125,29 @@ const levelLabel: Record<Journey["level"], string> = {
   advanced: "Advanced",
 };
 
+/** Per-path accent colors (border + header strip + step numbers) */
+const pathColors: Record<string, { border: string; accent: string; step: string }> = {
+  "ds-to-mlops": {
+    border: "border-l-emerald-500 dark:border-l-emerald-400",
+    accent: "bg-emerald-500/10 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300",
+    step: "text-emerald-600 dark:text-emerald-400",
+  },
+  "swe-to-platform": {
+    border: "border-l-blue-500 dark:border-l-blue-400",
+    accent: "bg-blue-500/10 dark:bg-blue-400/10 text-blue-700 dark:text-blue-300",
+    step: "text-blue-600 dark:text-blue-400",
+  },
+  "career-switch": {
+    border: "border-l-amber-500 dark:border-l-amber-400",
+    accent: "bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-300",
+    step: "text-amber-600 dark:text-amber-400",
+  },
+};
+
+function getPathColor(journeyId: string) {
+  return pathColors[journeyId] ?? pathColors["ds-to-mlops"];
+}
+
 export default function JourneysPage() {
   return (
     <AppShell title="Learning paths">
@@ -167,9 +190,11 @@ export default function JourneysPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        {journeys.map((journey) => (
-          <Card key={journey.id} className="flex flex-col h-full">
-            <CardHeader className="space-y-2">
+        {journeys.map((journey) => {
+          const colors = getPathColor(journey.id);
+          return (
+          <Card key={journey.id} className={`flex flex-col h-full border-l-4 ${colors.border}`}>
+            <CardHeader className={`space-y-2 rounded-t-lg ${colors.accent} -mx-px -mt-px px-6 pt-6`}>
               <div className="flex items-center justify-between gap-2">
                 <CardTitle className="text-xl">{journey.title}</CardTitle>
                 <Badge variant="outline">{levelLabel[journey.level]}</Badge>
@@ -188,7 +213,7 @@ export default function JourneysPage() {
               <div className="space-y-3 text-sm">
                 {journey.steps.map((step, index) => (
                   <div key={step.id} className="flex items-start gap-2">
-                    <div className="mt-0.5 text-xs text-muted-foreground font-medium w-5 shrink-0">
+                    <div className={`mt-0.5 text-xs font-medium w-5 shrink-0 ${colors.step}`}>
                       {index + 1}.
                     </div>
                     <div className="space-y-1">
@@ -228,7 +253,8 @@ export default function JourneysPage() {
               </div>
             </CardContent>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mt-10">
