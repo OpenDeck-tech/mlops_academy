@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,7 +24,7 @@ const OAUTH_ERROR_MESSAGES: Record<string, string> = {
   server_error: "Something went wrong. Please try again.",
 };
 
-export default function LoginPage() {
+function LoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -273,6 +273,37 @@ export default function LoginPage() {
       </div>
       <LogoCarousel />
     </div>
+  );
+}
+
+function LoginFallback() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Sign In</CardTitle>
+            <CardDescription>Use your password or get a magic link sent to your email</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-10 rounded-md bg-muted animate-pulse" />
+            <div className="mt-4 h-10 rounded-md bg-muted animate-pulse w-3/4 mx-auto" />
+          </CardContent>
+        </Card>
+      </div>
+      <LogoCarousel />
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoginFallback />}>
+      <LoginForm />
+    </Suspense>
   );
 }
 

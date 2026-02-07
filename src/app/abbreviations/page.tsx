@@ -131,7 +131,7 @@ export default function AbbreviationsPage() {
 
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            <BookOpen className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
             <h1 className="text-4xl font-semibold">Abbreviations & Acronyms</h1>
           </div>
           <p className="text-muted-foreground text-lg">
@@ -141,7 +141,7 @@ export default function AbbreviationsPage() {
 
         <Tabs defaultValue="mlops" className="space-y-6">
           <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto gap-1 p-1">
-            <TabsTrigger value="mlops" className="flex items-center gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 dark:data-[state=active]:bg-blue-900/50 dark:data-[state=active]:text-blue-200">
+            <TabsTrigger value="mlops" className="flex items-center gap-2 data-[state=active]:bg-yellow-100 data-[state=active]:text-yellow-800 dark:data-[state=active]:bg-yellow-900/50 dark:data-[state=active]:text-yellow-200">
               <Code className="h-4 w-4" />
               MLOps
             </TabsTrigger>
@@ -162,9 +162,9 @@ export default function AbbreviationsPage() {
           <TabsContent value="mlops" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {mlopsAbbreviations.map((abbr, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-blue-500 dark:border-l-blue-400 bg-blue-50/40 dark:bg-blue-950/20">
+                <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-yellow-500 dark:border-l-yellow-400 bg-yellow-50/40 dark:bg-yellow-950/20">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg font-bold text-blue-700 dark:text-blue-300">{abbr.term}</CardTitle>
+                    <CardTitle className="text-lg font-bold text-yellow-700 dark:text-yellow-300">{abbr.term}</CardTitle>
                     <CardDescription className="font-semibold text-foreground">{abbr.meaning}</CardDescription>
                   </CardHeader>
                   {abbr.description && (
