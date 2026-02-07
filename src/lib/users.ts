@@ -95,23 +95,43 @@ export async function createUserFromOAuth(email: string, provider: "google" | "a
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-  // Using Prisma instead of raw SQL
-  const user = await prisma.user.findUnique({
-    where: { email: email.toLowerCase() }
-  });
+  const emailLower = email.toLowerCase();
 
-  if (!user) {
-    return null;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: emailLower },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return {
+      id: user.id,
+      email: user.email,
+      passwordHash: user.passwordHash,
+      stripeCustomerId: user.stripeCustomerId || undefined,
+      authProvider: (user as { authProvider?: string | null }).authProvider as AuthProvider | undefined,
+      createdAt: user.createdAt.toISOString(),
+    };
+  } catch (err) {
+    // If Prisma fails (e.g. missing auth_provider column), fall back to raw SQL
+    // so regular email/password sign-in still works before migrations are run
+    const rows = await dbQuery<UserRow>(
+      `SELECT id, email, password_hash, stripe_customer_id, created_at FROM users WHERE LOWER(email) = $1`,
+      [emailLower]
+    );
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    const row = rows[0];
+    return {
+      ...rowToUser(row),
+      authProvider: undefined,
+    };
   }
-
-  return {
-    id: user.id,
-    email: user.email,
-    passwordHash: user.passwordHash,
-    stripeCustomerId: user.stripeCustomerId || undefined,
-    authProvider: (user as { authProvider?: string | null }).authProvider as AuthProvider | undefined,
-    createdAt: user.createdAt.toISOString(),
-  };
 }
 
 export async function getUserById(id: string): Promise<User | null> {
