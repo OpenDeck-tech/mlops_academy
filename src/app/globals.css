@@ -201,9 +201,15 @@
     animation-play-state: paused;
   }
 
-  /* Moving dashes border for environment cards */
+  /* Moving dashes border for environment cards: one full pass, pause 2s, repeat */
   @keyframes env-dash-rotate {
-    to {
+    0% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(360deg);
+    }
+    100% {
       transform: rotate(360deg);
     }
   }
@@ -225,7 +231,8 @@
       var(--env-dash-color) 0deg 14deg,
       var(--env-dash-gap) 14deg 28deg
     );
-    animation: env-dash-rotate 6s linear infinite;
+    /* 8s total: 6s rotation (75%) then 2s pause (25%) */
+    animation: env-dash-rotate 8s linear infinite;
     pointer-events: none;
   }
 
