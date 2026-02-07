@@ -21,6 +21,8 @@ type Journey = {
   duration: string;
   audience: string;
   steps: JourneyStep[];
+  /** Optional: where "Start with this path" goes (e.g. first step). If unset, links to /journeys#id */
+  startHref?: string;
 };
 
 const journeys: Journey[] = [
@@ -93,6 +95,7 @@ const journeys: Journey[] = [
     level: "beginner",
     duration: "2–4 weeks (self-paced)",
     audience: "Engineers and analysts exploring MLOps roles",
+    startHref: "/blog",
     steps: [
       {
         id: "overview",
@@ -245,7 +248,7 @@ export default function JourneysPage() {
               </div>
               <div className="pt-2 mt-auto">
                 <Button asChild variant="outline" size="sm" className="w-full justify-center">
-                  <Link href={`/journeys#${journey.id}`}>
+                  <Link href={journey.startHref ?? `/journeys#${journey.id}`}>
                     Start with this path
                     <ArrowRight className="h-3 w-3 ml-1" />
                   </Link>
