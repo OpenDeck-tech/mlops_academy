@@ -43,16 +43,6 @@ export default async function RolesPage() {
         "MLOps role in a large-scale financial environment, focusing on cloud MLOps pipelines, CI/CD, model deployment, and close collaboration with data science and engineering teams.",
     },
     {
-      id: 3,
-      title: "Senior MLOps Engineer",
-      company: "Marks & Spencer",
-      location: "London, Greater London",
-      region: "London",
-      url: "https://jobs.marksandspencer.com/job-search/digital-tech/london-greater-london/senior-mlops-engineer/300006962812844?utm_medium=JobSlots&utm_source=LinkedIn&utm_campaign=33_5568_LinkedIn&utm_term=1x1&utm_content=JobFeed",
-      description:
-        "Digital & Tech role working with data scientists to deliver ML solutions: design and implement ML pipelines and infrastructure, productionise models, embed automation and monitoring, and drive MLOps maturity. Python, Spark, Azure, CI/CD for ML. Hybrid (office 3 days/week).",
-    },
-    {
       id: 4,
       title: "Senior Machine Learning Engineer (MLOps)",
       company: "ASOS",
@@ -61,16 +51,6 @@ export default async function RolesPage() {
       url: "https://jobs.smartrecruiters.com/ASOS/744000104699685-senior-machine-learning-engineer-mlops-",
       description:
         "Design and implement reusable ML templates, deployment patterns, and MLOps tooling for scalable ML solutions. Collaborate with ML teams (Forecasting, Recommendations, Marketing, etc.), drive standardisation, CI/CD for ML, model registries, monitoring, and feature management. Azure, Python, MLflow, Docker/Kubernetes. Hybrid (2+ days/week in office).",
-    },
-    {
-      id: 5,
-      title: "Open role",
-      company: "Ohme",
-      location: "See listing",
-      region: "London",
-      url: "https://ohme-ev.com/job-postings/?gh_jid=4694069101",
-      description:
-        "Ohme is an EV charging and smart energy technology company. View the full job description and details at the link below.",
     },
     {
       id: 6,

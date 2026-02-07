@@ -46,6 +46,8 @@
 
 :root {
   --radius: 0.625rem;
+  /* Gap color for env moving-dashes border: matches background so dashes read clearly in light and dark */
+  --env-dash-gap: var(--background);
   /* Sidebar width used by logged-in layouts. Keep 0 on mobile to avoid pushing content off-screen. */
   --sidebar-width: 256px;
   --background: oklch(1 0 0);
@@ -89,6 +91,7 @@
 
 .dark {
   --background: oklch(0.147 0.004 49.25);
+  --env-dash-gap: var(--background);
   --foreground: oklch(0.985 0.001 106.423);
   --card: oklch(0.216 0.006 56.043);
   --card-foreground: oklch(0.985 0.001 106.423);
@@ -220,7 +223,7 @@
     background: repeating-conic-gradient(
       from 0deg,
       var(--env-dash-color) 0deg 14deg,
-      transparent 14deg 28deg
+      var(--env-dash-gap) 14deg 28deg
     );
     animation: env-dash-rotate 6s linear infinite;
     pointer-events: none;
