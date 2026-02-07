@@ -66,17 +66,25 @@ export default function ProductionEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
+          const isProOnly = topic.id === "monitoring-drift";
           const href = topic.id === "data-management"
             ? "/environments/production/data-management"
-            : undefined;
+            : topic.id === "monitoring-drift"
+              ? "/environments/production/monitoring-drift"
+              : undefined;
           const cardContent = (
             <>
               <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-2 flex-wrap">
                   <div className="p-2 rounded-lg bg-red-50 dark:bg-red-950/20">
                     <Icon className="h-5 w-5 text-red-600 dark:text-red-400" />
                   </div>
                   <CardTitle className="text-xl">{topic.title}</CardTitle>
+                  {isProOnly && (
+                    <span className="rounded-md bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200 text-xs font-medium px-2 py-0.5">
+                      Pro
+                    </span>
+                  )}
                 </div>
                 <CardDescription>{topic.description}</CardDescription>
               </CardHeader>

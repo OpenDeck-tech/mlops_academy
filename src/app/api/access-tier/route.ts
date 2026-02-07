@@ -48,6 +48,7 @@ const PRO_ONLY_ACCESS = {
     "/environments/staging/continuous-deployment",
     "/environments/staging/troubleshooting",
     "/environments/staging/load-testing",
+    "/environments/production/monitoring-drift",
   ],
   features: [
     "Pro hub and curriculum",
@@ -56,6 +57,7 @@ const PRO_ONLY_ACCESS = {
     "Staging: Continuous Deployment (Pro)",
     "Staging: Troubleshooting (Pro)",
     "Staging: Load Testing (Pro)",
+    "Production: Monitoring and Drift (Pro)",
     "Pro badge and 'Access Pro Content' CTA on environments",
     "Dashboard: Pro curriculum and coding exercise CTAs",
   ],
