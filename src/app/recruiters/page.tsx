@@ -26,7 +26,20 @@ export default function RecruitersPage() {
       linkedinUrl: "https://www.linkedin.com/in/takveen-bashir-59335398/",
       description: "Recruiter connecting technical talent with roles across data, ML, and software.",
     },
-    // Add more recruiters here as needed
+    {
+      id: 4,
+      name: "Rochelle Bruce",
+      title: "Tech Recruiter",
+      linkedinUrl: "https://www.linkedin.com/in/rochelle-bruce-1740a9181/",
+      description: "Connect for MLOps and technical recruiting opportunities.",
+    },
+    {
+      id: 5,
+      name: "Navnika Swarup",
+      title: "Tech Recruiter",
+      linkedinUrl: "https://www.linkedin.com/in/navnika-swarup-ba57a38/",
+      description: "Connect for MLOps and technical recruiting opportunities.",
+    },
   ];
 
   return (

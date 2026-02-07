@@ -65,18 +65,18 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                     <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="p-0">
-                  <SheetHeader className="border-b">
+                <SheetContent side="left" className="p-0 flex flex-col max-h-screen">
+                  <SheetHeader className="border-b shrink-0">
                     <SheetTitle>
                       <Link href="/blank" onClick={() => setOpen(false)}>
                         {t("MLOps Academy")}
                       </Link>
                     </SheetTitle>
                   </SheetHeader>
-                  <div className="p-4">
+                  <div className="p-4 flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
                     <SidebarNav groups={sidebarGroups} onNavigate={() => setOpen(false)} />
                   </div>
-                  <div className="mt-auto border-t p-4 space-y-3">
+                  <div className="shrink-0 border-t p-4 space-y-3">
                     <Button
                       variant="outline"
                       className="w-full justify-start gap-2"
