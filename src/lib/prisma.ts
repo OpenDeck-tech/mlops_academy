@@ -1,9 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-// Get the connection string that Prisma will use (from schema: mlops_PRISMA_DATABASE_URL)
-// Prisma reads from mlops_PRISMA_DATABASE_URL as specified in schema.prisma
-const connectionString = process.env.mlops_PRISMA_DATABASE_URL || process.env.mlops_POSTGRES_URL || process.env.DATABASE_URL;
+// Connection string for Accelerate check. Prisma schema uses DATABASE_URL.
+const connectionString = process.env.DATABASE_URL || process.env.mlops_PRISMA_DATABASE_URL || process.env.mlops_POSTGRES_URL;
 
 // Check if we're using Prisma Accelerate (connection string must start with prisma:// or prisma+postgres://)
 const isAccelerate = 
@@ -40,7 +39,7 @@ if (isAccelerate && connectionString) {
   }
 } else {
   // Use regular Prisma Client for standard postgres:// URLs
-  // Prisma will read mlops_PRISMA_DATABASE_URL from environment automatically
+  // Prisma reads DATABASE_URL from environment automatically
   // DO NOT use Accelerate extension here
   prisma = new PrismaClient();
   if (process.env.NODE_ENV !== 'production') {

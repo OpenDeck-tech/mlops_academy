@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ArrowLeft, Headphones, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, Headphones } from "lucide-react";
+import { AppShell } from "@/components/app-shell";
+import { ListenWhileBrowsingButton } from "@/components/listen-while-browsing-button";
 
 export default function PodcastsPage() {
   // Podcast data - you can add more podcasts here
@@ -30,8 +31,14 @@ export default function PodcastsPage() {
     // Add more podcasts here as needed
   ];
 
+  const embedUrls: Record<number, string> = {
+    1: "https://open.spotify.com/embed/show/7tdDbryfI1kzRloVvCyuqR?utm_source=generator",
+    2: "https://open.spotify.com/embed/show/7wZygk3mUUqBaRbBGB1lgh?utm_source=generator",
+    3: "https://open.spotify.com/embed/show/0RZiV4zf2GKu1rp1rtNPRZ?utm_source=generator",
+  };
+
   return (
-    <div className="min-h-screen container mx-auto max-w-7xl px-6 py-12">
+    <AppShell title="Podcasts">
       <Link href="/blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8">
         <ArrowLeft className="h-4 w-4" />
         Back to Home
@@ -67,6 +74,7 @@ export default function PodcastsPage() {
                   <CardDescription>
                     A podcast spin-off from the MLOps London quarterly meetups, diving into the evolving strategy and market landscape of ML and AI
                   </CardDescription>
+                  <ListenWhileBrowsingButton embedUrl={embedUrls[1]} title="MLOps London On Air" className="mt-2" />
                 </CardHeader>
                 <CardContent>
                   <div className="mt-4">
@@ -94,6 +102,7 @@ export default function PodcastsPage() {
                   <CardDescription>
                     Relaxed Conversations around getting AI into production, whatever shape that may come in (agentic, traditional ML, LLMs, Vibes, etc)
                   </CardDescription>
+                  <ListenWhileBrowsingButton embedUrl={embedUrls[2]} title="MLOps.community" className="mt-2" />
                 </CardHeader>
                 <CardContent>
                   <div className="mt-4">
@@ -121,6 +130,7 @@ export default function PodcastsPage() {
                   <CardDescription>
                     Join each week as we talk to MLOps operators, practitioners, and professionals about the current state of MLOps
                   </CardDescription>
+                  <ListenWhileBrowsingButton embedUrl={embedUrls[3]} title="MLOps Weekly Podcast" className="mt-2" />
                 </CardHeader>
                 <CardContent>
                   <div className="mt-4">
@@ -142,7 +152,7 @@ export default function PodcastsPage() {
           </div>
         </div>
       )}
-    </div>
+    </AppShell>
   );
 }
 
