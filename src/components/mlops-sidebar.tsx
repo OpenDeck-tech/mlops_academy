@@ -90,8 +90,8 @@ export function MLOpsSidebar() {
         </Button>
       </div>
 
-      <div className={cn("p-6 pt-20 flex flex-col flex-1", isCollapsed && "px-3")}>
-        <div className="flex-1">
+      <div className={cn("p-6 pt-20 flex flex-col flex-1 min-h-0", isCollapsed && "px-3")}>
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
           {!isCollapsed && <h2 className="mb-4 px-3 text-lg font-semibold text-foreground">{t("Resources")}</h2>}
           {isPro && (
             <TooltipProvider>

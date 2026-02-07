@@ -116,12 +116,13 @@ export default async function PrinciplesPage() {
       <div className="grid gap-6 md:grid-cols-2">
         {principles.map((p) => {
           const Icon = p.icon;
+          const colors = principleColors[p.id] ?? principleColors.reproducibility;
           return (
-            <Card key={p.id} className="transition-all hover:shadow-lg">
-              <CardHeader className="pb-2">
+            <Card key={p.id} className={`border-l-4 ${colors.border} transition-all hover:shadow-lg`}>
+              <CardHeader className={`pb-2 rounded-t-xl border-b border-border/50 ${colors.accent}`}>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Icon className="h-5 w-5 text-primary" />
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${colors.icon}`}>
+                    <Icon className="h-5 w-5" />
                   </div>
                   <CardTitle className="text-xl">{t(p.title)}</CardTitle>
                 </div>
@@ -137,7 +138,7 @@ export default async function PrinciplesPage() {
         })}
       </div>
 
-      <div className="mt-10 p-4 rounded-lg bg-muted/50 border border-border/60">
+      <div className="mt-10 p-4 rounded-xl bg-amber-500/5 dark:bg-amber-400/5 border border-amber-200/60 dark:border-amber-800/40">
         <p className="text-sm text-muted-foreground">
           These principles map to the pipeline: <Link href="/blank" className="underline font-medium text-foreground hover:no-underline">Environments</Link> (Local → Prod),{" "}
           <Link href="/journeys" className="underline font-medium text-foreground hover:no-underline">Learning Paths</Link>, and{" "}
