@@ -68,7 +68,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                 <SheetContent side="left" className="p-0 flex flex-col max-h-screen">
                   <SheetHeader className="border-b shrink-0">
                     <SheetTitle>
-                      <Link href="/blank" onClick={() => setOpen(false)}>
+                      <Link href="/blank" onClick={() => setOpen(false)} title={t("Back to Environments")}>
                         {t("MLOps Academy")}
                       </Link>
                     </SheetTitle>
@@ -101,7 +101,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
               </Sheet>
             )}
 
-            <Link href="/blank" className="font-semibold tracking-tight">
+            <Link href="/blank" className="font-semibold tracking-tight" title={t("Back to Environments")}>
               {t("MLOps Academy")}
             </Link>
 

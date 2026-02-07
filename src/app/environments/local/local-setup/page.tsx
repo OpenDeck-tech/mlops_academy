@@ -241,6 +241,41 @@ venv\\Scripts\\activate
 deactivate`}
                 </pre>
               </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">uv (fast Python package manager)</h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  uv is a fast, drop-in replacement for pip and venv (by Astral). Use it for quicker installs and reproducible environments.
+                </p>
+                <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
+{`# Install uv (macOS/Linux)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# macOS (Homebrew)
+brew install uv
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Verify
+uv --version
+
+# Create virtual environment
+uv venv
+
+# Activate (same as above: source .venv/bin/activate or .venv\\Scripts\\activate)
+source .venv/bin/activate   # macOS/Linux
+.venv\\Scripts\\activate    # Windows
+
+# Install dependencies (fast, replaces pip install)
+uv pip install -r requirements.txt
+uv pip install package-name
+
+# Run without activating (uv creates/manages env)
+uv run python script.py
+uv run pytest`}
+                </pre>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
