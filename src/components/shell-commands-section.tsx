@@ -9,10 +9,12 @@ import { useTranslation } from "@/contexts/language-context";
 export function ShellCommandsSection() {
   const { t } = useTranslation();
   return (
-    <Card className="mt-6">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Terminal className="h-5 w-5" />
+    <Card className="mt-6 border-l-4 border-l-amber-500 dark:border-l-amber-400">
+      <CardHeader className="bg-amber-500/5 dark:bg-amber-400/5 rounded-t-lg border-b border-border/50">
+        <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
+          <span className="p-1.5 rounded-md bg-amber-500/10 dark:bg-amber-400/10">
+            <Terminal className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+          </span>
           {t("Essential Shell Commands")}
         </CardTitle>
         <CardDescription>

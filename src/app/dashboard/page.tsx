@@ -82,6 +82,20 @@ export default async function DashboardPage() {
 
   const isPro = Boolean(sess.isPro || hasActiveSubscription);
 
+  const skills = [
+    { label: "Environments & infra", value: 70, bar: "bg-emerald-500 dark:bg-emerald-400" },
+    { label: "CI/CD & testing", value: 60, bar: "bg-blue-500 dark:bg-blue-400" },
+    { label: "Monitoring & reliability", value: 40, bar: "bg-violet-500 dark:bg-violet-400" },
+    { label: "LLM / MCP & tools", value: 35, bar: "bg-amber-500 dark:bg-amber-400" },
+    { label: "Career & interviewing", value: 50, bar: "bg-sky-500 dark:bg-sky-400" },
+  ] as const;
+
+  const actionColors = [
+    { bullet: "bg-emerald-500 dark:bg-emerald-400", border: "border-l-emerald-500 dark:border-l-emerald-400" },
+    { bullet: "bg-blue-500 dark:bg-blue-400", border: "border-l-blue-500 dark:border-l-blue-400" },
+    { bullet: "bg-amber-500 dark:bg-amber-400", border: "border-l-amber-500 dark:border-l-amber-400" },
+  ] as const;
+
   return (
     <AppShell title="Dashboard" actions={<LogoutButton />}>
       <div className="mb-8 space-y-4">
@@ -93,29 +107,23 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">
-          <Card>
-            <CardHeader>
+          <Card className="border-l-4 border-l-emerald-500 dark:border-l-emerald-400">
+            <CardHeader className="bg-emerald-500/5 dark:bg-emerald-400/5 rounded-t-lg border-b border-border/50">
               <CardTitle>Skills overview</CardTitle>
               <CardDescription>
                 High-level view of the areas this app can help you grow.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {[
-                { label: "Environments & infra", value: 70 },
-                { label: "CI/CD & testing", value: 60 },
-                { label: "Monitoring & reliability", value: 40 },
-                { label: "LLM / MCP & tools", value: 35 },
-                { label: "Career & interviewing", value: 50 },
-              ].map((skill) => (
+            <CardContent className="space-y-4 pt-6">
+              {skills.map((skill) => (
                 <div key={skill.label}>
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span>{skill.label}</span>
-                    <span className="text-muted-foreground">{skill.value}%</span>
+                    <span className="text-muted-foreground font-medium">{skill.value}%</span>
                   </div>
-                  <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div className="h-2.5 rounded-full bg-muted overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-primary"
+                      className={`h-full rounded-full ${skill.bar} transition-all`}
                       style={{ width: `${skill.value}%` }}
                     />
                   </div>
@@ -127,17 +135,17 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
+          <Card className="border-l-4 border-l-blue-500 dark:border-l-blue-400">
+            <CardHeader className="bg-blue-500/5 dark:bg-blue-400/5 rounded-t-lg border-b border-border/50">
               <CardTitle>Next best actions</CardTitle>
               <CardDescription>
                 A few high-leverage things you can do in the next hour.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-start gap-3 text-sm">
-                <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                <div className="space-y-1">
+            <CardContent className="space-y-3 pt-6">
+              <div className={`flex items-start gap-3 text-sm pl-3 border-l-2 ${actionColors[0].border} rounded`}>
+                <div className={`mt-1.5 h-2.5 w-2.5 rounded-full shrink-0 ${actionColors[0].bullet}`} />
+                <div className="space-y-1 min-w-0">
                   <p className="font-medium">Explore your environments</p>
                   <p className="text-muted-foreground">
                     Review Local, Development, Staging, and Production environment guides to make your current setup more production-like.
@@ -148,9 +156,9 @@ export default async function DashboardPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 text-sm">
-                <div className="mt-1 h-2 w-2 rounded-full bg-primary/80" />
-                <div className="space-y-1">
+              <div className={`flex items-start gap-3 text-sm pl-3 border-l-2 ${actionColors[1].border} rounded`}>
+                <div className={`mt-1.5 h-2.5 w-2.5 rounded-full shrink-0 ${actionColors[1].bullet}`} />
+                <div className="space-y-1 min-w-0">
                   <p className="font-medium">Tighten your CI pipeline</p>
                   <p className="text-muted-foreground">
                     Use the Continuous Integration page to add or refine linting, typechecking, and tests in your current project.
@@ -163,9 +171,9 @@ export default async function DashboardPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 text-sm">
-                <div className="mt-1 h-2 w-2 rounded-full bg-primary/60" />
-                <div className="space-y-1">
+              <div className={`flex items-start gap-3 text-sm pl-3 border-l-2 ${actionColors[2].border} rounded`}>
+                <div className={`mt-1.5 h-2.5 w-2.5 rounded-full shrink-0 ${actionColors[2].bullet}`} />
+                <div className="space-y-1 min-w-0">
                   <p className="font-medium">
                     {isPro ? "Go deeper with Pro content" : "Plan your path into MLOps"}
                   </p>
@@ -204,10 +212,12 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-2 mt-6">
         {/* Account Information */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Mail className="h-5 w-5" />
+        <Card className="border-l-4 border-l-sky-500 dark:border-l-sky-400">
+          <CardHeader className="bg-sky-500/5 dark:bg-sky-400/5 rounded-t-lg border-b border-border/50">
+            <CardTitle className="flex items-center gap-2 text-sky-700 dark:text-sky-300">
+              <span className="p-1.5 rounded-md bg-sky-500/10 dark:bg-sky-400/10">
+                <Mail className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+              </span>
               Account Information
             </CardTitle>
           </CardHeader>
@@ -237,10 +247,12 @@ export default async function DashboardPage() {
         </Card>
 
         {/* Subscription Status */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CreditCard className="h-5 w-5" />
+        <Card className={`border-l-4 ${hasActiveSubscription ? "border-l-emerald-500 dark:border-l-emerald-400" : "border-l-slate-400 dark:border-l-slate-500"}`}>
+          <CardHeader className={`rounded-t-lg border-b border-border/50 ${hasActiveSubscription ? "bg-emerald-500/5 dark:bg-emerald-400/5" : "bg-muted/50"}`}>
+            <CardTitle className={`flex items-center gap-2 ${hasActiveSubscription ? "text-emerald-700 dark:text-emerald-300" : ""}`}>
+              <span className={`p-1.5 rounded-md ${hasActiveSubscription ? "bg-emerald-500/10 dark:bg-emerald-400/10" : "bg-muted"}`}>
+                <CreditCard className={`h-5 w-5 ${hasActiveSubscription ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground"}`} />
+              </span>
               Subscription Status
             </CardTitle>
           </CardHeader>
@@ -317,9 +329,9 @@ export default async function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+      <Card className="mt-6 border-l-4 border-l-violet-500 dark:border-l-violet-400">
+        <CardHeader className="bg-violet-500/5 dark:bg-violet-400/5 rounded-t-lg border-b border-border/50">
+          <CardTitle className="text-violet-700 dark:text-violet-300">Quick Actions</CardTitle>
           <CardDescription>Navigate to different sections of MLOps Academy</CardDescription>
         </CardHeader>
         <CardContent>
@@ -374,9 +386,9 @@ export default async function DashboardPage() {
       <ShellCommandsSection />
 
       {/* Account Actions */}
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>Account Settings</CardTitle>
+      <Card className="mt-6 border-l-4 border-l-slate-400 dark:border-l-slate-500">
+        <CardHeader className="bg-muted/30 rounded-t-lg border-b border-border/50">
+          <CardTitle className="text-foreground">Account Settings</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
