@@ -46,8 +46,6 @@
 
 :root {
   --radius: 0.625rem;
-  /* Gap color for env moving-dashes border: matches background so dashes read clearly in light and dark */
-  --env-dash-gap: var(--background);
   /* Sidebar width used by logged-in layouts. Keep 0 on mobile to avoid pushing content off-screen. */
   --sidebar-width: 256px;
   --background: oklch(1 0 0);
@@ -91,7 +89,6 @@
 
 .dark {
   --background: oklch(0.147 0.004 49.25);
-  --env-dash-gap: var(--background);
   --foreground: oklch(0.985 0.001 106.423);
   --card: oklch(0.216 0.006 56.043);
   --card-foreground: oklch(0.985 0.001 106.423);
@@ -201,73 +198,4 @@
     animation-play-state: paused;
   }
 
-  /* Moving dashes border: snake-game style — equal dash and gap, moves then stops then continues */
-  @keyframes env-dash-rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    70% {
-      transform: rotate(360deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .env-dash-border {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-xl);
-    height: 100%;
-  }
-
-  .env-dash-border::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-xl);
-    /* Equal dash and gap (6deg each) for snake-like chain; 30 segments around */
-    background: repeating-conic-gradient(
-      from 0deg,
-      var(--env-dash-color) 0deg 6deg,
-      var(--env-dash-gap) 6deg 12deg
-    );
-    /* 7s total: 4.9s move (70%) then 2.1s pause (30%) */
-    animation: env-dash-rotate 7s linear infinite;
-    pointer-events: none;
-  }
-
-  .env-dash-border .env-dash-inner {
-    position: relative;
-    z-index: 1;
-    margin: 2px;
-    height: calc(100% - 4px);
-    box-sizing: border-box;
-    border-radius: calc(var(--radius-xl) - 2px);
-  }
-
-  .env-dash-blue {
-    --env-dash-color: #3b82f6;
-  }
-  .dark .env-dash-blue {
-    --env-dash-color: #60a5fa;
-  }
-  .env-dash-green {
-    --env-dash-color: #22c55e;
-  }
-  .dark .env-dash-green {
-    --env-dash-color: #4ade80;
-  }
-  .env-dash-yellow {
-    --env-dash-color: #eab308;
-  }
-  .dark .env-dash-yellow {
-    --env-dash-color: #facc15;
-  }
-  .env-dash-red {
-    --env-dash-color: #ef4444;
-  }
-  .dark .env-dash-red {
-    --env-dash-color: #f87171;
-  }
 }

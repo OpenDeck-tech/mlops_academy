@@ -18,10 +18,10 @@ export default async function BlankPage() {
   const t = (key: string) => translate(locale, key);
 
   const environments = [
-    { step: 1, id: "local", titleKey: "Local Environment", descKey: "Set up and optimize your local development workspace", icon: Code, href: "/environments/local", color: "bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800", dashClass: "env-dash-blue" },
-    { step: 2, id: "development", titleKey: "Development Environment", descKey: "Best practices for development workflows and collaboration", icon: Server, href: "/environments/development", color: "bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800", dashClass: "env-dash-green" },
-    { step: 3, id: "staging", titleKey: "Staging Environment", descKey: "Testing and validation strategies before production", icon: Layers, href: "/environments/staging", color: "bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200 dark:border-yellow-800", dashClass: "env-dash-yellow" },
-    { step: 4, id: "production", titleKey: "Production Environment", descKey: "Deployment, monitoring, and operational excellence", icon: Rocket, href: "/environments/production", color: "bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800", dashClass: "env-dash-red" },
+    { step: 1, id: "local", titleKey: "Local Environment", descKey: "Set up and optimize your local development workspace", icon: Code, href: "/environments/local", color: "bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 dark:border-l-blue-400" },
+    { step: 2, id: "development", titleKey: "Development Environment", descKey: "Best practices for development workflows and collaboration", icon: Server, href: "/environments/development", color: "bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 border-l-4 border-l-green-500 dark:border-l-green-400" },
+    { step: 3, id: "staging", titleKey: "Staging Environment", descKey: "Testing and validation strategies before production", icon: Layers, href: "/environments/staging", color: "bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 border-l-4 border-l-yellow-500 dark:border-l-yellow-400" },
+    { step: 4, id: "production", titleKey: "Production Environment", descKey: "Deployment, monitoring, and operational excellence", icon: Rocket, href: "/environments/production", color: "bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 border-l-4 border-l-red-500 dark:border-l-red-400" },
   ];
 
   return (
@@ -80,9 +80,8 @@ export default async function BlankPage() {
             const Icon = env.icon;
             return (
               <Link key={env.id} href={env.href} className="block h-full group">
-                <div className={`env-dash-border ${env.dashClass} h-full transition-all hover:shadow-lg group-hover:scale-[1.02] cursor-pointer`}>
-                  <Card className={`env-dash-inner h-full ${env.color} border-0 shadow-none hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_12px_40px_rgb(0,0,0,0.28)]`}>
-                    <CardHeader className="text-center pb-4">
+                <Card className={`h-full transition-all hover:shadow-lg hover:scale-[1.02] cursor-pointer ${env.color}`}>
+                  <CardHeader className="text-center pb-4">
                       <div className="flex justify-center items-center gap-2 mb-4">
                         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/70 text-xs font-semibold tabular-nums">
                           {env.step}
@@ -97,7 +96,6 @@ export default async function BlankPage() {
                       <p className="text-sm text-muted-foreground">{t(env.descKey)}</p>
                     </CardContent>
                   </Card>
-                </div>
               </Link>
             );
           })}
