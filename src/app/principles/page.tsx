@@ -56,6 +56,39 @@ const principles = [
   },
 ];
 
+const principleColors: Record<string, { border: string; accent: string; icon: string }> = {
+  reproducibility: {
+    border: "border-l-emerald-500 dark:border-l-emerald-400",
+    accent: "bg-emerald-500/5 dark:bg-emerald-400/5",
+    icon: "bg-emerald-500/10 dark:bg-emerald-400/10 text-emerald-600 dark:text-emerald-400",
+  },
+  automation: {
+    border: "border-l-amber-500 dark:border-l-amber-400",
+    accent: "bg-amber-500/5 dark:bg-amber-400/5",
+    icon: "bg-amber-500/10 dark:bg-amber-400/10 text-amber-600 dark:text-amber-400",
+  },
+  observability: {
+    border: "border-l-blue-500 dark:border-l-blue-400",
+    accent: "bg-blue-500/5 dark:bg-blue-400/5",
+    icon: "bg-blue-500/10 dark:bg-blue-400/10 text-blue-600 dark:text-blue-400",
+  },
+  versioning: {
+    border: "border-l-violet-500 dark:border-l-violet-400",
+    accent: "bg-violet-500/5 dark:bg-violet-400/5",
+    icon: "bg-violet-500/10 dark:bg-violet-400/10 text-violet-600 dark:text-violet-400",
+  },
+  governance: {
+    border: "border-l-rose-500 dark:border-l-rose-400",
+    accent: "bg-rose-500/5 dark:bg-rose-400/5",
+    icon: "bg-rose-500/10 dark:bg-rose-400/10 text-rose-600 dark:text-rose-400",
+  },
+  separation: {
+    border: "border-l-sky-500 dark:border-l-sky-400",
+    accent: "bg-sky-500/5 dark:bg-sky-400/5",
+    icon: "bg-sky-500/10 dark:bg-sky-400/10 text-sky-600 dark:text-sky-400",
+  },
+};
+
 export default async function PrinciplesPage() {
   const locale = await getServerLocale();
   const t = (key: string) => translate(locale, key);

@@ -197,4 +197,66 @@
   .hover\:pause-animation:hover {
     animation-play-state: paused;
   }
+
+  /* Moving dashes border for environment cards */
+  @keyframes env-dash-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .env-dash-border {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    height: 100%;
+  }
+
+  .env-dash-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    background: repeating-conic-gradient(
+      from 0deg,
+      var(--env-dash-color) 0deg 14deg,
+      transparent 14deg 28deg
+    );
+    animation: env-dash-rotate 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .env-dash-border .env-dash-inner {
+    position: relative;
+    z-index: 1;
+    margin: 2px;
+    height: calc(100% - 4px);
+    box-sizing: border-box;
+    border-radius: calc(var(--radius-xl) - 2px);
+  }
+
+  .env-dash-blue {
+    --env-dash-color: #3b82f6;
+  }
+  .dark .env-dash-blue {
+    --env-dash-color: #60a5fa;
+  }
+  .env-dash-green {
+    --env-dash-color: #22c55e;
+  }
+  .dark .env-dash-green {
+    --env-dash-color: #4ade80;
+  }
+  .env-dash-yellow {
+    --env-dash-color: #eab308;
+  }
+  .dark .env-dash-yellow {
+    --env-dash-color: #facc15;
+  }
+  .env-dash-red {
+    --env-dash-color: #ef4444;
+  }
+  .dark .env-dash-red {
+    --env-dash-color: #f87171;
+  }
 }

@@ -45,7 +45,12 @@ export default function StagingEnvironmentPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => {
           const Icon = topic.icon;
-          const isProOnly = topic.id === "continuous-deployment";
+          const isProOnly = topic.id === "continuous-deployment" || topic.id === "troubleshooting";
+          const proHref = topic.id === "continuous-deployment"
+            ? "/environments/staging/continuous-deployment"
+            : topic.id === "troubleshooting"
+              ? "/environments/staging/troubleshooting"
+              : "";
           const card = (
             <Card key={topic.id} className="h-full transition-all hover:shadow-lg">
               <CardHeader>
@@ -68,7 +73,7 @@ export default function StagingEnvironmentPage() {
             </Card>
           );
           return isProOnly ? (
-            <Link key={topic.id} href="/environments/staging/continuous-deployment" className="block h-full">
+            <Link key={topic.id} href={proHref} className="block h-full">
               {card}
             </Link>
           ) : (
