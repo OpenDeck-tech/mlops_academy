@@ -2,11 +2,14 @@ import bcrypt from "bcryptjs";
 import { dbQuery } from "./db";
 import prisma from "./prisma";
 
+export type AuthProvider = "google" | "apple" | null;
+
 export interface User {
   id: string;
   email: string;
   passwordHash: string;
   stripeCustomerId?: string;
+  authProvider?: AuthProvider;
   createdAt: string;
 }
 
@@ -56,6 +59,37 @@ export async function createUser(email: string, password: string): Promise<User>
     email: user.email,
     passwordHash: user.passwordHash,
     stripeCustomerId: user.stripeCustomerId || undefined,
+    authProvider: (user as { authProvider?: string | null }).authProvider as AuthProvider | undefined,
+    createdAt: user.createdAt.toISOString(),
+  };
+}
+
+/** Create a user from OAuth (e.g. Google). They sign in only via that provider. */
+export async function createUserFromOAuth(email: string, provider: "google" | "apple"): Promise<User> {
+  const existing = await getUserByEmail(email);
+  if (existing) {
+    throw new Error("User already exists");
+  }
+
+  const userId = `user_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+  const emailLower = email.toLowerCase();
+  const passwordHash = await bcrypt.hash(`oauth_${provider}_${userId}_${Math.random().toString(36)}`, 10);
+
+  const user = await prisma.user.create({
+    data: {
+      id: userId,
+      email: emailLower,
+      passwordHash,
+      authProvider: provider,
+    },
+  });
+
+  return {
+    id: user.id,
+    email: user.email,
+    passwordHash: user.passwordHash,
+    stripeCustomerId: user.stripeCustomerId || undefined,
+    authProvider: provider,
     createdAt: user.createdAt.toISOString(),
   };
 }
@@ -75,6 +109,7 @@ export async function getUserByEmail(email: string): Promise<User | null> {
     email: user.email,
     passwordHash: user.passwordHash,
     stripeCustomerId: user.stripeCustomerId || undefined,
+    authProvider: (user as { authProvider?: string | null }).authProvider as AuthProvider | undefined,
     createdAt: user.createdAt.toISOString(),
   };
 }

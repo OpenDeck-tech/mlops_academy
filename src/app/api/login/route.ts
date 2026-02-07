@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     const user = await getUserByEmail(email);
 
     if (!user) {
+      // User not in DB - check Stripe below
       // Fallback: Check Stripe (for users who paid before signup)
       const customers = await stripe.customers.list({
         email: email,
@@ -51,6 +52,14 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 401 }
+      );
+    }
+
+    // OAuth-only users must sign in with their provider
+    if (user.authProvider === "google") {
+      return NextResponse.json(
+        { error: "This account uses Google Sign-In. Please sign in with Google." },
+        { status: 400 }
       );
     }
 
