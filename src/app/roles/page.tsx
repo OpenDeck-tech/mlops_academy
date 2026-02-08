@@ -212,6 +212,16 @@ export default async function RolesPage() {
       description:
         "Contract: initially 3 months. £500–550/day Inside IR35. Consultancy-led team building production-grade ML platforms for end clients. End-to-end MLOps platforms, MLflow (experiment tracking, model registry), production deployments, CI/CD for ML, model governance and monitoring, Databricks, AWS/SageMaker, Docker/Kubernetes, Terraform, Python. Remote with occasional travel to client-site. Via Artificial Intelligence Jobs UK.",
     },
+    {
+      id: 22,
+      title: "Machine Learning Operations Engineer",
+      company: "Proactive IT (financial services client)",
+      location: "London, UK · Hybrid",
+      region: "London",
+      url: "https://www.proactive.it/job/machine-learning-operations-engineer-11328sr7/",
+      description:
+        "Design, deploy, maintain and refine ML and statistical models using Azure ML for a London financial services client. Model development with actuarial analysts (life expectancy, default risk, investment returns); data pipelines and ETL; model drift monitoring, data-quality alerts, scheduled retraining. Python, CI/CD, DevOps/MLOps; data wrangling with Python, SQL, ADF. Power BI desirable; pensions or regulated financial services experience a plus. £40k–60k. Hybrid (home and London office).",
+    },
   ];
 
   const regionOrder: Region[] = ["London", "USA", "China", "Contract", "Other"];

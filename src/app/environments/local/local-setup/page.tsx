@@ -7,8 +7,10 @@ import { ArrowLeft, Settings, Container, Code, Package, FileCode, Cloud, Termina
 import { useState, useEffect } from "react";
 import { CodeBlock } from "@/components/code-block";
 import { AppShell } from "@/components/app-shell";
+import { useTranslation } from "@/contexts/language-context";
 
 export default function LocalSetupPage() {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -17,28 +19,28 @@ export default function LocalSetupPage() {
 
   if (!mounted) {
     return (
-      <AppShell title="Local / Setup">
+      <AppShell title={t("Local Setup")}>
         <div className="flex items-center justify-center min-h-[400px]">
-          <p className="text-muted-foreground">Loading...</p>
+          <p className="text-muted-foreground">{t("Loading...")}</p>
         </div>
       </AppShell>
     );
   }
 
   return (
-    <AppShell title="Local / Setup">
+    <AppShell title={t("Local Setup")}>
       <Link href="/environments/local" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors px-2 py-1 -ml-2 rounded hover:bg-accent/50">
         <ArrowLeft className="h-4 w-4" />
-        Back to Local Environment
+        {t("Back to Local Environment")}
       </Link>
 
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-2">
           <Settings className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-          <h1 className="text-4xl font-semibold">Local Setup</h1>
+          <h1 className="text-4xl font-semibold">{t("Local Setup")}</h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          Configure and optimize your local development environment with essential tools
+          {t("Configure and optimize your local development environment with essential tools")}
         </p>
       </div>
 
@@ -46,34 +48,34 @@ export default function LocalSetupPage() {
         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
           <TabsTrigger value="docker" className="flex items-center gap-2">
             <Container className="h-4 w-4" />
-            Docker
+            {t("Docker")}
           </TabsTrigger>
           <TabsTrigger value="python" className="flex items-center gap-2">
             <Code className="h-4 w-4" />
-            Python
+            {t("Python")}
           </TabsTrigger>
           <TabsTrigger value="poetry" className="flex items-center gap-2">
             <Package className="h-4 w-4" />
-            Poetry
+            {t("Poetry")}
           </TabsTrigger>
           <TabsTrigger value="vscode" className="flex items-center gap-2">
             <FileCode className="h-4 w-4" />
-            VS Code
+            {t("VS Code")}
           </TabsTrigger>
         </TabsList>
 
         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3">
           <TabsTrigger value="terraform" className="flex items-center gap-2">
             <Cloud className="h-4 w-4" />
-            Terraform
+            {t("Terraform")}
           </TabsTrigger>
           <TabsTrigger value="aws-cdk" className="flex items-center gap-2">
             <Cloud className="h-4 w-4" />
-            AWS CDK
+            {t("AWS CDK")}
           </TabsTrigger>
           <TabsTrigger value="other" className="flex items-center gap-2">
             <Terminal className="h-4 w-4" />
-            Other Tools
+            {t("Other Tools")}
           </TabsTrigger>
         </TabsList>
 
@@ -83,13 +85,13 @@ export default function LocalSetupPage() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Container className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>Docker Installation</CardTitle>
+                <CardTitle>{t("Docker Installation")}</CardTitle>
               </div>
-              <CardDescription>Containerization platform for consistent development environments</CardDescription>
+              <CardDescription>{t("Containerization platform for consistent development environments")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">macOS</h3>
+                <h3 className="font-semibold mb-2">{t("macOS")}</h3>
                 <CodeBlock 
                   code={`# Using Homebrew (Recommended)
 brew install --cask docker
@@ -101,7 +103,7 @@ brew install --cask docker
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Linux (Ubuntu/Debian)</h3>
+                <h3 className="font-semibold mb-2">{t("Linux (Ubuntu/Debian)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Update package index
 sudo apt-get update
@@ -129,17 +131,17 @@ sudo usermod -aG docker $USER
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Windows</h3>
+                <h3 className="font-semibold mb-2">{t("Windows")}</h3>
                 <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>Download Docker Desktop from <a href="https://www.docker.com/products/docker-desktop" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">docker.com</a></li>
-                  <li>Run the installer and follow the setup wizard</li>
-                  <li>Enable WSL 2 if prompted</li>
-                  <li>Restart your computer if required</li>
+                  <li>{t("Download Docker Desktop from")} <a href="https://www.docker.com/products/docker-desktop" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">docker.com</a></li>
+                  <li>{t("Run the installer and follow the setup wizard")}</li>
+                  <li>{t("Enable WSL 2 if prompted")}</li>
+                  <li>{t("Restart your computer if required")}</li>
                 </ol>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Verify Installation</h3>
+                <h3 className="font-semibold mb-2">{t("Verify Installation")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`docker --version
 docker compose version
@@ -156,14 +158,14 @@ docker run hello-world`}
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Code className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>Python Installation</CardTitle>
+                <CardTitle>{t("Python Installation")}</CardTitle>
               </div>
-              <CardDescription>Python runtime and package management</CardDescription>
+              <CardDescription>{t("Python runtime and package management")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Using pyenv (Recommended)</h3>
-                <p className="text-sm text-muted-foreground mb-2">pyenv allows you to manage multiple Python versions easily.</p>
+                <h3 className="font-semibold mb-2">{t("Using pyenv (Recommended)")}</h3>
+                <p className="text-sm text-muted-foreground mb-2">{t("pyenv allows you to manage multiple Python versions easily.")}</p>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install pyenv
@@ -186,7 +188,7 @@ python --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">macOS (Homebrew)</h3>
+                <h3 className="font-semibold mb-2">{t("macOS (Homebrew)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Install Python
 brew install python@3.11
@@ -198,7 +200,7 @@ pip3 --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Linux (Ubuntu/Debian)</h3>
+                <h3 className="font-semibold mb-2">{t("Linux (Ubuntu/Debian)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Update package list
 sudo apt update
@@ -216,17 +218,17 @@ pip3 --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Windows</h3>
+                <h3 className="font-semibold mb-2">{t("Windows")}</h3>
                 <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>Download Python from <a href="https://www.python.org/downloads/" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">python.org</a></li>
-                  <li>Run the installer</li>
-                  <li>Check "Add Python to PATH" during installation</li>
-                  <li>Verify: <code className="bg-muted px-1 rounded">python --version</code></li>
+                  <li>{t("Download Python from")} <a href="https://www.python.org/downloads/" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">python.org</a></li>
+                  <li>{t("Run the installer")}</li>
+                  <li>{t("Check \"Add Python to PATH\" during installation")}</li>
+                  <li>{t("Verify:")} <code className="bg-muted px-1 rounded">python --version</code></li>
                 </ol>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Virtual Environments</h3>
+                <h3 className="font-semibold mb-2">{t("Virtual Environments")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Create virtual environment
 python3 -m venv venv
@@ -243,9 +245,9 @@ deactivate`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">uv (fast Python package manager)</h3>
+                <h3 className="font-semibold mb-2">{t("uv (fast Python package manager)")}</h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  uv is a fast, drop-in replacement for pip and venv (by Astral). Use it for quicker installs and reproducible environments.
+                  {t("uv is a fast, drop-in replacement for pip and venv (by Astral). Use it for quicker installs and reproducible environments.")}
                 </p>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Install uv (macOS/Linux)
@@ -286,13 +288,13 @@ uv run pytest`}
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Package className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>Poetry Installation</CardTitle>
+                <CardTitle>{t("Poetry Installation")}</CardTitle>
               </div>
-              <CardDescription>Modern Python dependency management and packaging</CardDescription>
+              <CardDescription>{t("Modern Python dependency management and packaging")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Official Installer (Recommended)</h3>
+                <h3 className="font-semibold mb-2">{t("Official Installer (Recommended)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS/Linux
 curl -sSL https://install.python-poetry.org | python3 -
@@ -306,14 +308,14 @@ poetry --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">macOS (Homebrew)</h3>
+                <h3 className="font-semibold mb-2">{t("macOS (Homebrew)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`brew install poetry`}
                 </pre>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">pip (Alternative)</h3>
+                <h3 className="font-semibold mb-2">{t("pip (Alternative)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`pip install poetry
 
@@ -323,7 +325,7 @@ poetry --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Basic Usage</h3>
+                <h3 className="font-semibold mb-2">{t("Basic Usage")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Create a new project
 poetry new my-project
@@ -357,7 +359,7 @@ poetry publish`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Configuration</h3>
+                <h3 className="font-semibold mb-2">{t("Configuration")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Configure Poetry to create virtualenv in project directory
 poetry config virtualenvs.in-project true
@@ -376,13 +378,13 @@ poetry config --list`}
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <FileCode className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>VS Code Setup</CardTitle>
+                <CardTitle>{t("VS Code Setup")}</CardTitle>
               </div>
-              <CardDescription>Visual Studio Code with essential extensions for MLOps</CardDescription>
+              <CardDescription>{t("Visual Studio Code with essential extensions for MLOps")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Installation</h3>
+                <h3 className="font-semibold mb-2">{t("Installation")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install --cask visual-studio-code
@@ -399,40 +401,40 @@ sudo apt install code
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Essential Extensions</h3>
+                <h3 className="font-semibold mb-2">{t("Essential Extensions")}</h3>
                 <div className="space-y-3">
                   <div className="bg-muted p-3 rounded-lg">
-                    <h4 className="font-semibold text-sm mb-1">Python Development</h4>
+                    <h4 className="font-semibold text-sm mb-1">{t("Python Development")}</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      <li><strong>Python</strong> (ms-python.python) - Python language support</li>
-                      <li><strong>Pylance</strong> (ms-python.vscode-pylance) - Fast Python language server</li>
-                      <li><strong>Python Test Explorer</strong> - Test discovery and running</li>
+                      <li><strong>Python</strong> (ms-python.python) - {t("Python language support")}</li>
+                      <li><strong>Pylance</strong> (ms-python.vscode-pylance) - {t("Fast Python language server")}</li>
+                      <li><strong>Python Test Explorer</strong> - {t("Test discovery and running")}</li>
                     </ul>
                   </div>
 
                   <div className="bg-muted p-3 rounded-lg">
-                    <h4 className="font-semibold text-sm mb-1">Infrastructure as Code</h4>
+                    <h4 className="font-semibold text-sm mb-1">{t("Infrastructure as Code")}</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      <li><strong>HashiCorp Terraform</strong> (hashicorp.terraform) - Terraform syntax highlighting</li>
-                      <li><strong>YAML</strong> (redhat.vscode-yaml) - YAML language support</li>
-                      <li><strong>Docker</strong> (ms-azuretools.vscode-docker) - Docker extension</li>
+                      <li><strong>HashiCorp Terraform</strong> (hashicorp.terraform) - {t("Terraform syntax highlighting")}</li>
+                      <li><strong>YAML</strong> (redhat.vscode-yaml) - {t("YAML language support")}</li>
+                      <li><strong>Docker</strong> (ms-azuretools.vscode-docker) - {t("Docker extension")}</li>
                     </ul>
                   </div>
 
                   <div className="bg-muted p-3 rounded-lg">
-                    <h4 className="font-semibold text-sm mb-1">General Development</h4>
+                    <h4 className="font-semibold text-sm mb-1">{t("General Development")}</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      <li><strong>GitLens</strong> (eamodio.gitlens) - Git supercharged</li>
-                      <li><strong>Prettier</strong> (esbenp.prettier-vscode) - Code formatter</li>
-                      <li><strong>ESLint</strong> (dbaeumer.vscode-eslint) - JavaScript/TypeScript linting</li>
-                      <li><strong>Remote - SSH</strong> (ms-vscode-remote.remote-ssh) - Remote development</li>
+                      <li><strong>GitLens</strong> (eamodio.gitlens) - {t("Git supercharged")}</li>
+                      <li><strong>Prettier</strong> (esbenp.prettier-vscode) - {t("Code formatter")}</li>
+                      <li><strong>ESLint</strong> (dbaeumer.vscode-eslint) - {t("JavaScript/TypeScript linting")}</li>
+                      <li><strong>Remote - SSH</strong> (ms-vscode-remote.remote-ssh) - {t("Remote development")}</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Install Extensions via Command Line</h3>
+                <h3 className="font-semibold mb-2">{t("Install Extensions via Command Line")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Install extensions
 code --install-extension ms-python.python
@@ -444,8 +446,8 @@ code --install-extension eamodio.gitlens`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Recommended Settings</h3>
-                <p className="text-sm text-muted-foreground mb-2">Add to <code className="bg-muted px-1 rounded">settings.json</code>:</p>
+                <h3 className="font-semibold mb-2">{t("Recommended Settings")}</h3>
+                <p className="text-sm text-muted-foreground mb-2">{t("Add to settings.json:")}</p>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`{
   "editor.formatOnSave": true,
@@ -474,17 +476,17 @@ code --install-extension eamodio.gitlens`}
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Cloud className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>Terraform Installation</CardTitle>
+                <CardTitle>{t("Terraform Installation")}</CardTitle>
               </div>
-              <CardDescription>Infrastructure as Code tool for managing cloud resources</CardDescription>
+              <CardDescription>{t("Infrastructure as Code tool for managing cloud resources")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Using tfenv (Recommended)</h3>
-                <p className="text-sm text-muted-foreground mb-2">tfenv allows you to manage multiple Terraform versions easily, similar to pyenv for Python.</p>
+                <h3 className="font-semibold mb-2">{t("Using tfenv (Recommended)")}</h3>
+                <p className="text-sm text-muted-foreground mb-2">{t("tfenv allows you to manage multiple Terraform versions easily, similar to pyenv for Python.")}</p>
                 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2">Installation</h4>
+                  <h4 className="font-semibold text-sm mb-2">{t("Installation")}</h4>
                   <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS (Homebrew - Recommended)
 brew install tfenv
@@ -501,7 +503,7 @@ tfenv --version`}
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2">Basic Usage</h4>
+                  <h4 className="font-semibold text-sm mb-2">{t("Basic Usage")}</h4>
                   <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# List available Terraform versions
 tfenv list-remote
@@ -531,8 +533,8 @@ terraform version`}
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2">Version Files</h4>
-                  <p className="text-sm text-muted-foreground mb-2">tfenv respects version files in your project directory:</p>
+                  <h4 className="font-semibold text-sm mb-2">{t("Version Files")}</h4>
+                  <p className="text-sm text-muted-foreground mb-2">{t("tfenv respects version files in your project directory:")}</p>
                   <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Create .terraform-version file in your project
 echo "1.6.0" > .terraform-version
@@ -543,7 +545,7 @@ echo "1.6.0" > .terraform-version
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-sm mb-2">Advanced Usage</h4>
+                  <h4 className="font-semibold text-sm mb-2">{t("Advanced Usage")}</h4>
                   <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Install min-required version (reads from required_version in terraform block)
 tfenv install min-required
@@ -561,7 +563,7 @@ tfenv which`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">macOS (Homebrew)</h3>
+                <h3 className="font-semibold mb-2">{t("macOS (Homebrew)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
@@ -572,7 +574,7 @@ terraform version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Linux</h3>
+                <h3 className="font-semibold mb-2">{t("Linux")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Download and install
 wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
@@ -585,16 +587,16 @@ terraform version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Windows</h3>
+                <h3 className="font-semibold mb-2">{t("Windows")}</h3>
                 <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>Download from <a href="https://www.terraform.io/downloads" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">terraform.io</a></li>
-                  <li>Extract and add to PATH</li>
-                  <li>Verify: <code className="bg-muted px-1 rounded">terraform version</code></li>
+                  <li><a href="https://www.terraform.io/downloads" className="text-blue-600 dark:text-blue-400 underline" target="_blank" rel="noopener noreferrer">{t("Download from terraform.io")}</a></li>
+                  <li>{t("Extract and add to PATH")}</li>
+                  <li>{t("Verify:")} <code className="bg-muted px-1 rounded">terraform version</code></li>
                 </ol>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Basic Usage</h3>
+                <h3 className="font-semibold mb-2">{t("Basic Usage")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Initialize Terraform
 terraform init
@@ -620,7 +622,7 @@ terraform show`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">AWS Provider Setup</h3>
+                <h3 className="font-semibold mb-2">{t("AWS Provider Setup")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Configure AWS credentials
 aws configure
@@ -650,22 +652,22 @@ resource "aws_s3_bucket" "example" {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Cloud className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>AWS CDK Installation</CardTitle>
+                <CardTitle>{t("AWS CDK Installation")}</CardTitle>
               </div>
-              <CardDescription>Define cloud infrastructure using familiar programming languages</CardDescription>
+              <CardDescription>{t("Define cloud infrastructure using familiar programming languages")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Prerequisites</h3>
+                <h3 className="font-semibold mb-2">{t("Prerequisites")}</h3>
                 <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>Node.js (v18.0.0 or later)</li>
-                  <li>Python 3.7+ (for Python CDK apps)</li>
-                  <li>AWS CLI configured</li>
+                  <li>{t("Node.js (v18.0.0 or later)")}</li>
+                  <li>{t("Python 3.7+ (for Python CDK apps)")}</li>
+                  <li>{t("AWS CLI configured")}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Install AWS CDK CLI</h3>
+                <h3 className="font-semibold mb-2">{t("Install AWS CDK CLI")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Install globally via npm
 npm install -g aws-cdk
@@ -679,7 +681,7 @@ npm install aws-cdk`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Bootstrap CDK (First Time Setup)</h3>
+                <h3 className="font-semibold mb-2">{t("Bootstrap CDK (First Time Setup)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Bootstrap CDK in your AWS account
 cdk bootstrap
@@ -690,7 +692,7 @@ cdk bootstrap aws://ACCOUNT-ID/REGION`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Create a New CDK Project</h3>
+                <h3 className="font-semibold mb-2">{t("Create a New CDK Project")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Initialize a new CDK app (Python)
 mkdir my-cdk-app
@@ -708,7 +710,7 @@ pip install -r requirements.txt`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Basic CDK Commands</h3>
+                <h3 className="font-semibold mb-2">{t("Basic CDK Commands")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# List stacks
 cdk list
@@ -734,7 +736,7 @@ aws cloudformation describe-stacks --stack-name MyStack`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Example CDK App (Python)</h3>
+                <h3 className="font-semibold mb-2">{t("Example CDK App (Python)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# app.py
 from aws_cdk import (
@@ -761,7 +763,7 @@ app.synth()`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">CDK Constructs Library</h3>
+                <h3 className="font-semibold mb-2">{t("CDK Constructs Library")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# Python
 pip install aws-cdk-lib
@@ -780,13 +782,13 @@ npm install aws-cdk-lib`}
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Terminal className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <CardTitle>Other Essential Tools</CardTitle>
+                <CardTitle>{t("Other Essential Tools")}</CardTitle>
               </div>
-              <CardDescription>Additional tools for MLOps development</CardDescription>
+              <CardDescription>{t("Additional tools for MLOps development")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Git</h3>
+                <h3 className="font-semibold mb-2">{t("Git")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install git
@@ -802,7 +804,7 @@ git config --global init.defaultBranch main`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">AWS CLI</h3>
+                <h3 className="font-semibold mb-2">{t("AWS CLI")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install awscli
@@ -821,7 +823,7 @@ aws --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">kubectl (Kubernetes)</h3>
+                <h3 className="font-semibold mb-2">{t("kubectl (Kubernetes)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install kubectl
@@ -836,7 +838,7 @@ kubectl version --client`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">jq (JSON Processor)</h3>
+                <h3 className="font-semibold mb-2">{t("jq (JSON Processor)")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install jq
@@ -850,7 +852,7 @@ echo '{"name": "test"}' | jq '.name'`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">Make</h3>
+                <h3 className="font-semibold mb-2">{t("Make")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS (usually pre-installed)
 # If not: xcode-select --install
@@ -864,7 +866,7 @@ make --version`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">curl & wget</h3>
+                <h3 className="font-semibold mb-2">{t("curl & wget")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS (usually pre-installed)
 # Linux
@@ -873,7 +875,7 @@ sudo apt install curl wget`}
               </div>
 
               <div>
-                <h3 className="font-semibold mb-2">PostgreSQL Client</h3>
+                <h3 className="font-semibold mb-2">{t("PostgreSQL Client")}</h3>
                 <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto">
 {`# macOS
 brew install postgresql
