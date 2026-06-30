@@ -6,7 +6,7 @@ const quotes = [
   "Make it work, make it right, make it fast",
   "Code is read more often than it's written",
   "Simplicity is the ultimate sophistication",
-  "Check your dashboards first, in-between, and last",
+  "Check your dashboards first when you clock in, in-between work hours, and last when you clock out",
   "Debugging mode is better than guessing mode",
 ];
 
