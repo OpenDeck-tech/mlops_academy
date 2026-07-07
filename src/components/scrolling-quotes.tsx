@@ -1,13 +1,15 @@
 "use client";
 
 const quotes = [
-  "Loose-coupled systems are always mostly better",
-  "Premature optimization is the root of all evil",
-  "Make it work, make it right, make it fast",
-  "Code is read more often than it's written",
-  "Simplicity is the ultimate sophistication",
-  "Check your dashboards first when you clock in, in-between work hours, and last when you clock out",
-  "Debugging mode is better than guessing mode",
+  "loose-coupled systems are always mostly better",
+  "premature optimization is the root of all evil",
+  "make it work, make it right, make it fast",
+  "code is read more often than it's written",
+  "simplicity is the ultimate sophistication",
+  "check your dashboards first when you clock in, in-between work hours, and last when you clock out",
+  "debugging mode is better than guessing mode",
+  "logging is better than commenting",
+  "optimize without breaking things"
 ];
 
 // Duplicate quotes for seamless loop
