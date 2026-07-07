@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Code2, Database, Lightbulb } from "lucide-react";
+import { ArrowLeft, Code2, Database, Lightbulb, Cpu, Zap, Layers, GitBranch } from "lucide-react";
 import { useState, useEffect } from "react";
 import { CodeBlock } from "@/components/code-block";
 import { AppShell } from "@/components/app-shell";
@@ -372,12 +372,12 @@ export default function ProgrammingPage() {
           <h1 className="text-4xl font-semibold">Programming</h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          LeetCode questions and answers covering data structures and software engineering principles
+          LeetCode questions and answers covering data structures, software engineering principles, and Rust for ML systems
         </p>
       </div>
 
       <Tabs defaultValue="data-structures" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 max-w-md">
+        <TabsList className="grid w-full grid-cols-3 max-w-2xl">
           <TabsTrigger value="data-structures" className="flex items-center gap-2">
             <Database className="h-4 w-4" />
             Data Structures
@@ -385,6 +385,10 @@ export default function ProgrammingPage() {
           <TabsTrigger value="software-engineering" className="flex items-center gap-2">
             <Lightbulb className="h-4 w-4" />
             Software Engineering
+          </TabsTrigger>
+          <TabsTrigger value="rust" className="flex items-center gap-2">
+            <Cpu className="h-4 w-4" />
+            Rust
           </TabsTrigger>
         </TabsList>
 
@@ -428,6 +432,188 @@ export default function ProgrammingPage() {
               </Card>
             ))}
           </div>
+        </TabsContent>
+
+        <TabsContent value="rust" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Cpu className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                <CardTitle>Why Rust in ML Systems</CardTitle>
+              </div>
+              <CardDescription>
+                Rust is increasingly used for the performance-critical layers around ML — not usually for training, but for serving, data processing, and platform tooling.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                <li className="list-disc"><strong>Low latency inference:</strong> Predictable performance without a GC pause — important for real-time scoring APIs</li>
+                <li className="list-disc"><strong>Memory safety:</strong> Catch data races and use-after-free bugs at compile time in concurrent serving paths</li>
+                <li className="list-disc"><strong>Efficient data pipelines:</strong> High-throughput feature computation and ETL with Polars, Arrow, and DataFusion</li>
+                <li className="list-disc"><strong>Small deployable artifacts:</strong> Single static binaries simplify container images for edge and sidecar deployments</li>
+                <li className="list-disc"><strong>Python interop:</strong> Keep research in Python; ship hot paths as Rust extensions via PyO3 and maturin</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Layers className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                <CardTitle>Where Rust Fits in the ML Stack</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h3 className="font-semibold mb-2">Common MLOps use cases</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                  <li className="list-disc"><strong>Model serving:</strong> HTTP/gRPC inference servers wrapping ONNX Runtime, Candle, or tract</li>
+                  <li className="list-disc"><strong>Feature engineering:</strong> Batch and streaming transforms that must keep up with production traffic</li>
+                  <li className="list-disc"><strong>Data infrastructure:</strong> Ingestion, validation, and query layers in the feature store path</li>
+                  <li className="list-disc"><strong>Platform tooling:</strong> CLIs, operators, and control-plane services for training and deployment systems</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">Keep Python for</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                  <li className="list-disc">Experimentation, notebooks, and model training (PyTorch, JAX, scikit-learn)</li>
+                  <li className="list-disc">Rapid prototyping where iteration speed matters more than raw throughput</li>
+                  <li className="list-disc">Teams whose primary stack is already Python-first end to end</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Zap className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                <CardTitle>Rust ML Ecosystem</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                <li className="list-disc"><strong>Candle</strong> — Minimal ML framework in Rust for inference and small-model training</li>
+                <li className="list-disc"><strong>ort</strong> — ONNX Runtime bindings for production model serving</li>
+                <li className="list-disc"><strong>tract</strong> — Lightweight ONNX/TFLite inference engine</li>
+                <li className="list-disc"><strong>Polars</strong> — Fast DataFrame library (often used alongside Python Polars)</li>
+                <li className="list-disc"><strong>Arrow / DataFusion</strong> — Columnar data and SQL over Arrow for pipeline workloads</li>
+                <li className="list-disc"><strong>PyO3 + maturin</strong> — Expose Rust functions to Python with minimal overhead</li>
+                <li className="list-disc"><strong>Tokio + Axum</strong> — Async runtime and web framework for inference APIs</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <GitBranch className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                <CardTitle>Example: ONNX Inference Server</CardTitle>
+              </div>
+              <CardDescription>
+                A minimal Axum service loading an ONNX model — the kind of sidecar or microservice you might deploy next to a Python training pipeline.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <CodeBlock
+                language="rust"
+                code={`use axum::{routing::post, Json, Router};
+use ort::{Environment, Session, SessionBuilder, Value};
+use serde::{Deserialize, Serialize};
+use std::sync::Arc;
+
+#[derive(Deserialize)]
+struct PredictRequest {
+    features: Vec<f32>,
+}
+
+#[derive(Serialize)]
+struct PredictResponse {
+    score: f32,
+}
+
+struct AppState {
+    session: Session,
+}
+
+async fn predict(
+    axum::extract::State(state): axum::extract::State<Arc<AppState>>,
+    Json(body): Json<PredictRequest>,
+) -> Json<PredictResponse> {
+    let input = Value::from_array(
+        state.session.allocator(),
+        ndarray::Array2::from_shape_vec((1, body.features.len()), body.features).unwrap(),
+    )
+    .unwrap();
+
+    let outputs = state.session.run(vec![input]).unwrap();
+    let score = outputs[0].try_extract::<f32>().unwrap()[[0, 0]];
+
+    Json(PredictResponse { score })
+}
+
+#[tokio::main]
+async fn main() {
+    let env = Environment::builder().with_name("inference").build().unwrap();
+    let session = SessionBuilder::new(&env)
+        .unwrap()
+        .with_model_from_file("model.onnx")
+        .unwrap();
+
+    let state = Arc::new(AppState { session });
+
+    let app = Router::new()
+        .route("/predict", post(predict))
+        .with_state(state);
+
+    axum::serve(tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap(), app)
+        .await
+        .unwrap();
+}`}
+              />
+              <p className="text-sm text-muted-foreground">
+                In practice, add request validation, structured logging, health checks, model version headers, and graceful shutdown — the same production concerns as any inference service.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Python ↔ Rust Interop with PyO3</CardTitle>
+              <CardDescription>
+                Ship a Rust extension for a hot path without rewriting the whole codebase.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <CodeBlock
+                language="rust"
+                code={`use pyo3::prelude::*;
+
+#[pyfunction]
+fn batch_normalize(features: Vec<f32>, mean: f32, std: f32) -> PyResult<Vec<f32>> {
+    Ok(features.into_iter().map(|x| (x - mean) / std).collect())
+}
+
+#[pymodule]
+fn ml_preprocess(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(batch_normalize, m)?)?;
+    Ok(())
+}`}
+              />
+              <CodeBlock
+                language="python"
+                code={`# After: maturin develop
+from ml_preprocess import batch_normalize
+
+normalized = batch_normalize(raw_features, mean=0.5, std=0.2)`}
+              />
+              <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                <li className="list-disc">Use maturin to build wheels and publish alongside your Python package</li>
+                <li className="list-disc">Profile before rewriting — Python + NumPy/Polars is often fast enough</li>
+                <li className="list-disc">Document the ABI boundary: input types, error handling, and thread safety</li>
+              </ul>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="software-engineering" className="space-y-6">

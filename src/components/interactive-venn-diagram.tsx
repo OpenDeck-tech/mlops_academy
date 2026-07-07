@@ -46,7 +46,8 @@ const sectionInfo: Record<Exclude<SectionType, null>, SectionInfo> = {
       "CI/CD for ML Pipelines",
       "Testing ML Systems (model tests, integration tests)",
       "Feature Stores and Data Engineering",
-      "ML System Architecture and Design Patterns"
+      "ML System Architecture and Design Patterns",
+      "Rust for ML inference, data pipelines, and PyO3 extensions"
     ]
   },
   "machine-learning": {
