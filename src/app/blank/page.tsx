@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Server, Code, Layers, Rocket, CheckCircle2, Lightbulb } from "lucide-react";
+import { CheckCircle2, Lightbulb } from "lucide-react";
 import { LogoutButtonClient } from "@/components/logout-button-client";
 import { ScrollingQuotes } from "@/components/scrolling-quotes";
 import { InteractiveVennDiagram } from "@/components/interactive-venn-diagram";
+import { EnvironmentDataCenters } from "@/components/environment-data-centers";
 import { ShareButtons } from "@/components/share-buttons";
 import { getSession } from "@/lib/session";
 import { getServerLocale } from "@/lib/i18n-server";
@@ -18,10 +19,10 @@ export default async function BlankPage() {
   const t = (key: string) => translate(locale, key);
 
   const environments = [
-    { step: 1, id: "local", titleKey: "Local Environment", descKey: "Set up and optimize your local development workspace", icon: Code, href: "/environments/local", color: "bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 dark:border-l-blue-400" },
-    { step: 2, id: "development", titleKey: "Development Environment", descKey: "Best practices for development workflows and collaboration", icon: Server, href: "/environments/development", color: "bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 border-l-4 border-l-green-500 dark:border-l-green-400" },
-    { step: 3, id: "staging", titleKey: "Staging Environment", descKey: "Testing and validation strategies before production", icon: Layers, href: "/environments/staging", color: "bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 border-l-4 border-l-yellow-500 dark:border-l-yellow-400" },
-    { step: 4, id: "production", titleKey: "Production Environment", descKey: "Deployment, monitoring, and operational excellence", icon: Rocket, href: "/environments/production", color: "bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 border-l-4 border-l-red-500 dark:border-l-red-400" },
+    { step: 1, id: "local", titleKey: "Local Environment", descKey: "Set up and optimize your local development workspace", href: "/environments/local" },
+    { step: 2, id: "development", titleKey: "Development Environment", descKey: "Best practices for development workflows and collaboration", href: "/environments/development" },
+    { step: 3, id: "staging", titleKey: "Staging Environment", descKey: "Testing and validation strategies before production", href: "/environments/staging" },
+    { step: 4, id: "production", titleKey: "Production Environment", descKey: "Deployment, monitoring, and operational excellence", href: "/environments/production" },
   ];
 
   return (
@@ -75,31 +76,15 @@ export default async function BlankPage() {
         <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4 text-center">
           {t("Pipeline")}
         </p>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {environments.map((env) => {
-            const Icon = env.icon;
-            return (
-              <Link key={env.id} href={env.href} className="block h-full group">
-                <Card className={`h-full transition-all hover:shadow-lg hover:scale-[1.02] cursor-pointer ${env.color}`}>
-                  <CardHeader className="text-center pb-4">
-                      <div className="flex justify-center items-center gap-2 mb-4">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/70 text-xs font-semibold tabular-nums">
-                          {env.step}
-                        </span>
-                        <div className="p-3 rounded-full bg-background/50">
-                          <Icon className="h-8 w-8" />
-                        </div>
-                      </div>
-                      <CardTitle className="text-xl">{t(env.titleKey)}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                      <p className="text-sm text-muted-foreground">{t(env.descKey)}</p>
-                    </CardContent>
-                  </Card>
-              </Link>
-            );
-          })}
-        </div>
+        <EnvironmentDataCenters
+          environments={environments.map((env) => ({
+            step: env.step,
+            id: env.id,
+            title: t(env.titleKey),
+            description: t(env.descKey),
+            href: env.href,
+          }))}
+        />
       </div>
 
       {/* Interactive Venn Diagram - above the static image */}
