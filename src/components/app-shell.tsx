@@ -69,7 +69,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
                   <SheetHeader className="border-b shrink-0">
                     <SheetTitle>
                       <Link href="/blank" onClick={() => setOpen(false)} title={t("Back to Environments")}>
-                        {t("MLOps Academy")}
+                        {t("A.I Engineering Academy")}
                       </Link>
                     </SheetTitle>
                   </SheetHeader>
@@ -102,7 +102,7 @@ export function AppShell({ children, actions, showSidebar = true, title }: Props
             )}
 
             <Link href="/blank" className="font-semibold tracking-tight" title={t("Back to Environments")}>
-              {t("MLOps Academy")}
+              {t("A.I Engineering Academy")}
             </Link>
 
             {title && <span className="hidden md:inline text-sm text-muted-foreground">/ {t(title)}</span>}

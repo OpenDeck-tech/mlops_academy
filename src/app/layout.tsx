@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteTitle = "MLOps Academy";
+const siteTitle = "A.I Engineering Academy";
 const siteDescription =
   "Master MLOps. Production-grade ML systems, hands-on. From laptop to production — one pipeline.";
 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     type: "website",
-    images: [{ url: "/icon.png", width: 512, height: 512, alt: "MLOps Academy" }],
+    images: [{ url: "/icon.png", width: 512, height: 512, alt: "A.I Engineering Academy" }],
   },
   twitter: {
     card: "summary_large_image",

@@ -92,14 +92,14 @@ export default async function BlankPage() {
         <InteractiveVennDiagram />
       </div>
 
-      {/* The MLOps Engineer Venn Diagram - Static image */}
+      {/* The A.I Engineer Venn Diagram - Static image */}
       <div className="mt-12 flex justify-center">
         <Card className="max-w-xl w-full">
           <CardContent className="p-6">
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <Image
                 src="/mlops-engineer-venn.png"
-                alt="The MLOps Engineer - Venn diagram showing the intersection of Infrastructure, Software, and Machine Learning"
+                alt="The A.I Engineer - Venn diagram showing the intersection of Infrastructure, Software, and Machine Learning"
                 fill
                 className="object-contain"
                 priority

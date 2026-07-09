@@ -297,7 +297,7 @@ export default function MLOpsForKidsPage() {
           <CardContent>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/">Explore MLOps Academy</Link>
+                <Link href="/">Explore A.I Engineering Academy</Link>
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20" asChild>
                 <Link href="/signup">Sign Up Free</Link>

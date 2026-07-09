@@ -9,7 +9,7 @@ if (!process.env.RESEND_API_KEY) {
 }
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const FROM_EMAIL = process.env.FROM_EMAIL || "MLOps Academy <onboarding@resend.dev>";
+const FROM_EMAIL = process.env.FROM_EMAIL || "A.I Engineering Academy <onboarding@resend.dev>";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function sendMagicLinkEmail(email: string, token: string) {
@@ -24,7 +24,7 @@ export async function sendMagicLinkEmail(email: string, token: string) {
     const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
-      subject: "Sign in to MLOps Academy",
+      subject: "Sign in to A.I Engineering Academy",
       html: `
         <!DOCTYPE html>
         <html>
@@ -34,11 +34,11 @@ export async function sendMagicLinkEmail(email: string, token: string) {
           </head>
           <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 28px;">MLOps Academy</h1>
+              <h1 style="color: white; margin: 0; font-size: 28px;">A.I Engineering Academy</h1>
             </div>
             <div style="background: #ffffff; padding: 40px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
               <h2 style="color: #333; margin-top: 0;">Sign in to your account</h2>
-              <p style="color: #666; font-size: 16px;">Click the button below to securely sign in to your MLOps Academy account. This link will expire in 1 hour.</p>
+              <p style="color: #666; font-size: 16px;">Click the button below to securely sign in to your A.I Engineering Academy account. This link will expire in 1 hour.</p>
               
               <div style="text-align: center; margin: 30px 0;">
                 <a href="${magicLink}" 
@@ -56,13 +56,13 @@ export async function sendMagicLinkEmail(email: string, token: string) {
               </p>
             </div>
             <div style="text-align: center; margin-top: 20px; color: #999; font-size: 12px;">
-              <p>© ${new Date().getFullYear()} MLOps Academy. All rights reserved.</p>
+              <p>© ${new Date().getFullYear()} A.I Engineering Academy. All rights reserved.</p>
             </div>
           </body>
         </html>
       `,
       text: `
-Sign in to MLOps Academy
+Sign in to A.I Engineering Academy
 
 Click the link below to securely sign in to your account. This link will expire in 1 hour.
 
@@ -70,7 +70,7 @@ ${magicLink}
 
 If you didn't request this link, you can safely ignore this email.
 
-© ${new Date().getFullYear()} MLOps Academy. All rights reserved.
+© ${new Date().getFullYear()} A.I Engineering Academy. All rights reserved.
       `,
     });
 
@@ -99,7 +99,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
     const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
-      subject: "Reset your MLOps Academy password",
+      subject: "Reset your A.I Engineering Academy password",
       html: `
         <!DOCTYPE html>
         <html>
@@ -109,7 +109,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
           </head>
           <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 28px;">MLOps Academy</h1>
+              <h1 style="color: white; margin: 0; font-size: 28px;">A.I Engineering Academy</h1>
             </div>
             <div style="background: #ffffff; padding: 40px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
               <h2 style="color: #333; margin-top: 0;">Reset your password</h2>
@@ -131,13 +131,13 @@ export async function sendPasswordResetEmail(email: string, token: string) {
               </p>
             </div>
             <div style="text-align: center; margin-top: 20px; color: #999; font-size: 12px;">
-              <p>© ${new Date().getFullYear()} MLOps Academy. All rights reserved.</p>
+              <p>© ${new Date().getFullYear()} A.I Engineering Academy. All rights reserved.</p>
             </div>
           </body>
         </html>
       `,
       text: `
-Reset your MLOps Academy password
+Reset your A.I Engineering Academy password
 
 We received a request to reset your password. Click the link below to create a new password. This link will expire in 1 hour.
 
@@ -145,7 +145,7 @@ ${resetLink}
 
 If you didn't request a password reset, you can safely ignore this email. Your password will not be changed.
 
-© ${new Date().getFullYear()} MLOps Academy. All rights reserved.
+© ${new Date().getFullYear()} A.I Engineering Academy. All rights reserved.
       `,
     });
 

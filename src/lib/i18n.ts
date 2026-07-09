@@ -48,7 +48,7 @@ const zhTranslations: Record<string, string> = {
   "Go to Dashboard": "前往仪表盘",
   // App shell
   "Skip to main content": "跳到主内容",
-  "MLOps Academy": "MLOps 学院",
+  "A.I Engineering Academy": "A.I 工程学院",
   "Open menu": "打开菜单",
   "Expand sidebar": "展开侧边栏",
   "Collapse sidebar": "收起侧边栏",
@@ -58,7 +58,7 @@ const zhTranslations: Record<string, string> = {
   "Back": "上一步",
   "Next": "下一步",
   "Finish": "完成",
-  "Welcome to MLOps Academy": "欢迎使用 MLOps 学院",
+  "Welcome to A.I Engineering Academy": "欢迎使用 A.I 工程学院",
   "This short guide walks through each section of the sidebar so you know where to start. You can skip anytime or run this again later from the sidebar.": "本导览会按顺序介绍侧边栏的各个区块，方便你快速上手。你可随时跳过，之后也可在侧边栏中再次打开。",
   "Start here. **Environments** takes you through the full path: Local → Development → Staging → Production. Use it as your map for learning and doing MLOps.": "从这里开始。**环境**带你走完完整路径：本地 → 开发 → 预发布 → 生产。用它作为学习和实践 MLOps 的地图。",
   "Principles, Learning Paths, Playbooks, Readiness checklists, Blog, MLOps Roadmap, and Abbreviations. Build foundations and then go deeper with structured learning.": "原则、学习路径、手册、准备清单、博客、MLOps 路线图与缩写。打好基础后再通过结构化学习深入。",

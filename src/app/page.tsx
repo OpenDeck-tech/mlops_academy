@@ -39,7 +39,7 @@ export default function Home() {
         <ThemeToggle />
       </div>
       <section className="container mx-auto max-w-5xl px-6 py-20 text-center">
-        <Badge className="mb-4" variant="secondary">{t("MLOps Academy")}</Badge>
+        <Badge className="mb-4" variant="secondary">{t("A.I Engineering Academy")}</Badge>
         <h1 className="text-5xl font-semibold tracking-tight">{t("Master MLOps. Build production ML systems that last.")}</h1>
         <p className="text-muted-foreground mt-4 text-lg">
           {t("Curated, no-fluff curriculum from real-world experience. Tools change, fundamentals don't.")}

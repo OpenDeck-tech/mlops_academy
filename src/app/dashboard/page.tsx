@@ -301,7 +301,7 @@ export default async function DashboardPage() {
                   <div className="space-y-2">
                     <div>
                       <p className="text-sm text-muted-foreground">Plan</p>
-                      <p className="font-medium">MLOps Academy Pro</p>
+                      <p className="font-medium">A.I Engineering Academy Pro</p>
                     </div>
                     {subscription && typeof subscription === "object" && "current_period_end" in subscription && typeof subscription.current_period_end === "number" && (
                       <div>
@@ -353,7 +353,7 @@ export default async function DashboardPage() {
       <Card className="mt-6 border-l-4 border-l-violet-500 dark:border-l-violet-400">
         <CardHeader className="bg-violet-500/5 dark:bg-violet-400/5 rounded-t-lg border-b border-border/50">
           <CardTitle className="text-violet-700 dark:text-violet-300">Quick Actions</CardTitle>
-          <CardDescription>Navigate to different sections of MLOps Academy</CardDescription>
+          <CardDescription>Navigate to different sections of A.I Engineering Academy</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-3 md:grid-cols-3">

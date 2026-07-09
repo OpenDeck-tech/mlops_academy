@@ -22,7 +22,7 @@ export default async function ProPage() {
         </Link>
         <ThemeToggle />
       </div>
-      <h1 className="text-4xl font-semibold tracking-tight">MLOps Academy Pro</h1>
+      <h1 className="text-4xl font-semibold tracking-tight">A.I Engineering Academy Pro</h1>
       <p className="text-muted-foreground mt-2">Deep, practical curriculum. Continuously updated.</p>
       <Separator className="my-8" />
 

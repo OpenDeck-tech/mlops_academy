@@ -67,7 +67,7 @@ export default function SignupPage() {
         <CardHeader>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
-            Sign up to access MLOps Academy Pro
+            Sign up to access A.I Engineering Academy Pro
           </CardDescription>
         </CardHeader>
         <CardContent>

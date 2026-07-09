@@ -9,7 +9,7 @@ type SectionType =
   | "infrastructure" 
   | "software" 
   | "machine-learning"
-  | "mlops-engineer"
+  | "ai-engineer"
   | null;
 
 interface SectionInfo {
@@ -64,9 +64,9 @@ const sectionInfo: Record<Exclude<SectionType, null>, SectionInfo> = {
       "Production ML Best Practices"
     ]
   },
-  "mlops-engineer": {
-    title: "MLOps Engineer",
-    description: "The complete intersection: Combining Infrastructure + Software Engineering + Machine Learning for production ML systems",
+  "ai-engineer": {
+    title: "A.I Engineer",
+    description: "The complete intersection: Combining Infrastructure + Software Engineering + Machine Learning for production AI systems",
     icon: Rocket,
     color: "text-orange-600 dark:text-orange-400",
     topics: [
@@ -100,7 +100,7 @@ export function InteractiveVennDiagram() {
     <div className="w-full space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">The MLOps Engineer</CardTitle>
+          <CardTitle className="text-center">The A.I Engineer</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
@@ -117,7 +117,7 @@ export function InteractiveVennDiagram() {
                   cx="150"
                   cy="150"
                   r="100"
-                  fill={activeSection === "infrastructure" || activeSection === "mlops-engineer" 
+                  fill={activeSection === "infrastructure" || activeSection === "ai-engineer" 
                     ? "rgba(59, 130, 246, 0.3)" 
                     : "rgba(59, 130, 246, 0.1)"}
                   stroke="rgb(59, 130, 246)"
@@ -133,7 +133,7 @@ export function InteractiveVennDiagram() {
                   cx="250"
                   cy="150"
                   r="100"
-                  fill={activeSection === "software" || activeSection === "mlops-engineer"
+                  fill={activeSection === "software" || activeSection === "ai-engineer"
                     ? "rgba(107, 114, 128, 0.3)"
                     : "rgba(107, 114, 128, 0.1)"}
                   stroke="rgb(107, 114, 128)"
@@ -149,7 +149,7 @@ export function InteractiveVennDiagram() {
                   cx="200"
                   cy="250"
                   r="100"
-                  fill={activeSection === "machine-learning" || activeSection === "mlops-engineer"
+                  fill={activeSection === "machine-learning" || activeSection === "ai-engineer"
                     ? "rgba(34, 197, 94, 0.3)"
                     : "rgba(34, 197, 94, 0.1)"}
                   stroke="rgb(34, 197, 94)"
@@ -199,26 +199,26 @@ export function InteractiveVennDiagram() {
                   Machine Learning
                 </text>
 
-                {/* Center: MLOps Engineer */}
+                {/* Center: A.I Engineer */}
                 <g
                   className="cursor-pointer"
-                  onClick={() => handleSectionClick("mlops-engineer")}
-                  onMouseEnter={() => setHoveredSection("mlops-engineer")}
+                  onClick={() => handleSectionClick("ai-engineer")}
+                  onMouseEnter={() => setHoveredSection("ai-engineer")}
                   onMouseLeave={() => setHoveredSection(null)}
                 >
                   <circle 
                     cx="200" 
                     cy="183" 
                     r="25" 
-                    fill={activeSection === "mlops-engineer" 
+                    fill={activeSection === "ai-engineer" 
                       ? "rgba(249, 115, 22, 0.5)" 
                       : "rgba(249, 115, 22, 0.3)"}
                     stroke="rgb(249, 115, 22)"
                     strokeWidth="2"
                     className="transition-all"
                   />
-                  <text x="165" y="190" fontSize="14" className="font-bold fill-orange-600 dark:fill-orange-400">
-                    MLOps Engineer
+                  <text x="172" y="190" fontSize="14" className="font-bold fill-orange-600 dark:fill-orange-400">
+                    A.I Engineer
                   </text>
                 </g>
               </svg>

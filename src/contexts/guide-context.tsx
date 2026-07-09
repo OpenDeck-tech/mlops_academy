@@ -15,7 +15,7 @@ export type GuideStep = {
 export const guideSteps: GuideStep[] = [
   {
     id: "welcome",
-    title: "Welcome to MLOps Academy",
+    title: "Welcome to A.I Engineering Academy",
     description:
       "This short guide walks through each section of the sidebar so you know where to start. You can skip anytime or run this again later from the sidebar.",
   },
