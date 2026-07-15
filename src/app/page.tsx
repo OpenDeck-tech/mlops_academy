@@ -7,6 +7,7 @@ import { ShellCommandsSection } from "@/components/shell-commands-section";
 import { LogoCarousel } from "@/components/logo-carousel";
 import { ShareButtons } from "@/components/share-buttons";
 import { useTranslation } from "@/contexts/language-context";
+import { User } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -54,6 +55,36 @@ export default function Home() {
         <div className="mt-8 pt-6 border-t border-border/60 w-full max-w-md mx-auto">
           <ShareButtons title="Share with your team" variant="compact" />
         </div>
+      </section>
+
+      <section className="container mx-auto max-w-5xl px-6 pb-16">
+        <Card className="border-l-4 border-l-blue-500 dark:border-l-blue-400">
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/20">
+                <User className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <CardTitle>{t("Bio")}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              {t(
+                "I am Oluwatobi John Oluwafemi, the creator of A.I Engineering Academy. I have been in the machine learning operations space (MLOps) for over 5 years, working mainly in the financial sector."
+              )}
+            </p>
+            <p>
+              {t(
+                "I have helped set up greenfield MLOps foundations to enable AI within different teams."
+              )}
+            </p>
+            <p>
+              {t(
+                "The objective of A.I Engineering Academy is to transfer my knowledge and experience to those who plan on entering the MLOps and A.I Engineering space, providing them the technical and soft skills to become top talent."
+              )}
+            </p>
+          </CardContent>
+        </Card>
       </section>
 
       <section className="container mx-auto max-w-5xl px-6 py-16">
