@@ -181,13 +181,13 @@ export function ReadinessClient({ isSignedIn }: { isSignedIn: boolean }) {
                 </div>
                 {list.id === "career-ready" && (
                   <div className="pt-2 mt-auto text-xs text-muted-foreground">
-                    Tie this checklist into real roles and recruiters:
+                    Tie this checklist into real roles and practitioners:
                     <span className="inline-flex gap-2 ml-1">
                       <Link href="/roles" className="underline underline-offset-2">
                         Roles
                       </Link>
-                      <Link href="/recruiters" className="underline underline-offset-2">
-                        Recruiters
+                      <Link href="/practitioners" className="underline underline-offset-2">
+                        Practitioners
                       </Link>
                     </span>
                   </div>

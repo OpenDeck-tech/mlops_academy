@@ -35,7 +35,7 @@ export const guideSteps: GuideStep[] = [
     id: "community",
     title: "Community & Jobs",
     description:
-      "Podcasts, Tweets, Practitioners on LinkedIn, Recruiters, MLOps Community, and Reddit. Connect with others and find roles.",
+      "Podcasts, Tweets, Practitioners, Recruiters, MLOps Community, and Reddit. Connect with others and find roles.",
   },
   {
     id: "reference",

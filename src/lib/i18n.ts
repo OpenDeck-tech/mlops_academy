@@ -26,6 +26,7 @@ const zhTranslations: Record<string, string> = {
   "Abbreviations": "缩写",
   "Podcasts": "播客",
   "Tweets": "推文",
+  "Practitioners": "从业者",
   "Practitioners on LinkedIn": "LinkedIn 从业者",
   "Recruiters": "招聘",
   "MLOps Community": "MLOps 社区",
@@ -62,7 +63,7 @@ const zhTranslations: Record<string, string> = {
   "This short guide walks through each section of the sidebar so you know where to start. You can skip anytime or run this again later from the sidebar.": "本导览会按顺序介绍侧边栏的各个区块，方便你快速上手。你可随时跳过，之后也可在侧边栏中再次打开。",
   "Start here. **Environments** takes you through the full path: Local → Development → Staging → Production. Use it as your map for learning and doing MLOps.": "从这里开始。**环境**带你走完完整路径：本地 → 开发 → 预发布 → 生产。用它作为学习和实践 MLOps 的地图。",
   "Principles, Learning Paths, Playbooks, Readiness checklists, Blog, MLOps Roadmap, and Abbreviations. Build foundations and then go deeper with structured learning.": "原则、学习路径、手册、准备清单、博客、MLOps 路线图与缩写。打好基础后再通过结构化学习深入。",
-  "Podcasts, Tweets, Practitioners on LinkedIn, Recruiters, MLOps Community, and Reddit. Connect with others and find roles.": "播客、推文、LinkedIn 从业者、招聘方、MLOps 社区与 Reddit。与他人交流并发现职位。",
+  "Podcasts, Tweets, Practitioners, Recruiters, MLOps Community, and Reddit. Connect with others and find roles.": "播客、推文、从业者、招聘方、MLOps 社区与 Reddit。与他人交流并发现职位。",
   "**Roles** — curated MLOps jobs by location. **MCP** — Model Context Protocol in the Development environment. You're all set; use the sidebar to explore.": "**职位** — 按地区精选的 MLOps 职位。**MCP** — 开发环境中的 Model Context Protocol。准备就绪，用侧边栏开始探索吧。",
   // Blank / pipeline
   "Local Environment": "本地环境",

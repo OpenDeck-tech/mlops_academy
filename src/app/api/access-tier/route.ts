@@ -20,6 +20,7 @@ const REGULAR_ACCESS = {
     "/podcasts",
     "/roles",
     "/recruiters",
+    "/practitioners",
     "/dashboard",
     "/login",
     "/signup",
@@ -30,7 +31,7 @@ const REGULAR_ACCESS = {
   ],
   features: [
     "All public learning content (Principles, Journeys, Playbooks, Readiness, Blog, Roadmap, Abbreviations)",
-    "Podcasts, Roles, Recruiters",
+    "Podcasts, Roles, Recruiters, Practitioners",
     "Environment guides (Local, Development, Staging hub, Production)",
     "Dashboard (account, skills overview, next actions)",
     "Staging: Load Testing topic (non-Pro)",
@@ -65,7 +66,7 @@ const PRO_ONLY_ACCESS = {
 
 const GUEST_ACCESS = {
   description: "Not logged in",
-  routes: ["/", "/blank", "/principles", "/journeys", "/playbooks", "/readiness", "/blog", "/roadmap", "/abbreviations", "/podcasts", "/roles", "/recruiters", "/login", "/signup"],
+  routes: ["/", "/blank", "/principles", "/journeys", "/playbooks", "/readiness", "/blog", "/roadmap", "/abbreviations", "/podcasts", "/roles", "/recruiters", "/practitioners", "/login", "/signup"],
   features: [
     "All public learning content",
     "Cannot access Dashboard",

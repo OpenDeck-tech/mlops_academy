@@ -105,18 +105,18 @@ const journeys: Journey[] = [
         href: "/blog",
       },
       {
+        id: "practitioners",
+        title: "Connect with MLOps practitioners",
+        description:
+          "Browse practitioners shipping ML in production and reach out for 1–2 informal conversations to learn how they got started.",
+        href: "/practitioners",
+      },
+      {
         id: "skills-map",
         title: "Map your skills to job descriptions",
         description:
           "Pick one or two roles and explicitly mark where you are strong vs. weak across infra, data, CI/CD, and monitoring.",
         href: "/roles",
-      },
-      {
-        id: "network",
-        title: "Connect with practitioners and recruiters",
-        description:
-          "Use Practitioners, Recruiters and Community links from the sidebar to have 2–3 conversations with people doing the work.",
-        href: "/recruiters",
       },
     ],
   },
